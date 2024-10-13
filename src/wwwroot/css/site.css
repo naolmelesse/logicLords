@@ -15,7 +15,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .card-columns .card-body {
     height: 100px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lato', sans-serif;
     background: #fbfafd;
 }
 
@@ -110,13 +110,13 @@ body {
   margin-bottom: 60px;
 }
 p {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 h1 {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 ul {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 .footer {
     position: absolute;
@@ -124,7 +124,7 @@ ul {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 /*Backgrounds*/
 .bg-navbar {
