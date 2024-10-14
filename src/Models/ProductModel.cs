@@ -13,8 +13,21 @@ namespace ContosoCrafts.WebSite.Models
         [JsonPropertyName("img")]
         public string Image { get; set; }
 
+        [JsonPropertyName("Place of birth")]
+        public string Placeofbirth { get; set; }
+
+        [JsonPropertyName("Date of birth")]
+        public string Dateofbirth { get; set; }
+
+        public string Club { get; set; }
+
+        public string Height {  get; set; }
+
+        public string Position { get; set; }
+
+
         public string Url { get; set; }
-        
+         
         [StringLength (maximumLength: 33, MinimumLength = 1, ErrorMessage = "The Title should have a length of more than {2} and less than {1}")]
         public string Title { get; set; }
 
