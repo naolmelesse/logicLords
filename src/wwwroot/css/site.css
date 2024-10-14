@@ -49,6 +49,16 @@ for details on configuring this project to bundle and minify static web assets. 
     width: 4em;
 }
 
+#logo-text {
+    font-family: Lato, sans-serif;
+    font-weight: 700;
+    font-size: 1.3em;
+    margin-right: 1em;
+    margin-left: 0.3em;
+    text-decoration: none;
+    color: black;
+}
+
 /* Provide sufficient contrast against white background */
 a {
    color: #0366d6;
