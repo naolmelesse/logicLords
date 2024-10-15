@@ -66,13 +66,13 @@ a {
 
 .btn-primary {
     color: #fff;
-    background-color: #252152;
-    border-color: #252152;
+    background-color: #3C6E71;
+    border-color: #D9D9D9;
 }
 .btn-primary:hover {
     color: #fff;
-    background-color: #e9a8a6;
-    border-color: #e9a8a6;
+    background-color: #353535;
+    border-color: #353535;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -138,14 +138,14 @@ ul {
 }
 /*Backgrounds*/
 .bg-navbar {
-    background: -webkit-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
-    background: -o-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
-    background: -moz-linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
-    background: linear-gradient(110deg, #e9a8a6 60%, #252152 60%);
+    background: -webkit-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+    background: -o-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+    background: -moz-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+    background: linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
 }
 .bg-footer {
-    background: -webkit-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: -o-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: -moz-linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
-    background: linear-gradient(110deg, #252152 60%, #e9a8a6 60%);
+    background: -webkit-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+    background: -o-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+    background: -moz-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+    background: linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
 }
