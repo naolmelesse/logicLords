@@ -9,10 +9,20 @@
 <div style="background-color: blue; width: 100%; height: contain;">
 
     <div style="text-align: center; border-right: 2px solid; width: 50%; height: auto; float:left;">
-        PLACEHOLDER TEXT
+        <div class="px-5">
+            <label for="dropdown1">Choose a player to compare:</label>
+            <select asp-for="SelectedPlayerLeft" class="form-control" asp-items="Model.PlayerDropDownItems">
+                <option value="">-- Select Player --</option>
+            </select>
+        </div>
     </div>
 
     <div style="text-align: center; width:50%; height: auto; float:left;">
-        PLACEHOLDER TEXT
+        <div class="px-5">
+            <label for="dropdown2">Choose a player to compare:</label>
+            <select asp-for="SelectedPlayerRight" class="form-control" asp-items="Model.PlayerDropDownItems">
+                <option value="">-- Select Player --</option>
+            </select>
+        </div>
     </div>
 </div>  
