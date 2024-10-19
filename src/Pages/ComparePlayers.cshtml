@@ -8,21 +8,25 @@
 
 <div style="background-color: blue; width: 100%; height: contain;">
 
-    <div style="text-align: center; border-right: 2px solid; width: 50%; height: auto; float:left;">
+    <div style="text-align: center; border-right: 2px solid; width: 50%; height: auto; float:left;">       
         <div class="px-5">
             <label for="dropdown1">Choose a player to compare:</label>
             <select asp-for="SelectedPlayerLeft" class="form-control" asp-items="Model.PlayerDropDownItems">
                 <option value="">-- Select Player --</option>
             </select>
         </div>
+        <img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
+             alt="player Image Left" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
     </div>
 
-    <div style="text-align: center; width:50%; height: auto; float:left;">
+    <div style="text-align: center; width:50%; height: auto; float:left;">        
         <div class="px-5">
             <label for="dropdown2">Choose a player to compare:</label>
             <select asp-for="SelectedPlayerRight" class="form-control" asp-items="Model.PlayerDropDownItems">
                 <option value="">-- Select Player --</option>
             </select>
         </div>
+        <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
+             alt="player Image Right" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
     </div>
 </div>  
