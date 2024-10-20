@@ -1,0 +1,43 @@
+﻿@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@inject JsonFileProductService ProductService
+
+@code {
+    [Parameter]
+
+    public string Id { get; set; }
+    private ProductModel selectedPlayer;
+
+    protected override void OnParametersSet()
+
+    {
+        if (!string.IsNullOrEmpty(Id))
+        {
+            selectedPlayer = ProductService.GetAllData().FirstOrDefault(player => player.Id == Id);
+
+        }
+    }
+}
+
+@if (selectedPlayer != null)
+
+{
+
+    <div>
+        <h1>@selectedPlayer.Title</h1>
+        <img src=@selectedPlayer.Image alt=@selectedPlayer.Title />
+        <ol>
+            <li>Date of Birth: @selectedPlayer.Dateofbirth</li>
+            <li>Place of Birth: @selectedPlayer.Placeofbirth</li>
+            <li>Height: @selectedPlayer.Height</li>
+            <li>Position(s): @selectedPlayer.Position</li>
+            <li>Current Team: @selectedPlayer.Club</li>
+        </ol>
+    </div>
+}
+
+else
+
+{
+    <p>Player not found.</p>
+}
