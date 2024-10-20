@@ -1,0 +1,10 @@
+﻿@page "{id}"
+@using ContosoCrafts.WebSite.Models
+@using ContosoCrafts.WebSite.Services
+@using ContosoCrafts.WebSite.Components
+@model ReadModel
+@{
+    ViewData["Title"] = "READ";
+}
+
+@(await Html.RenderComponentAsync<PlayerData>(RenderMode.ServerPrerendered, new { Id = Model.Id }))
