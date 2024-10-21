@@ -22,17 +22,27 @@
 @if (selectedPlayer != null)
 
 {
-
-    <div>
+    <div width: 100%; height: contain;">
         <h1>@selectedPlayer.Title</h1>
-        <img src=@selectedPlayer.Image alt=@selectedPlayer.Title />
-        <ol>
-            <li>Date of Birth: @selectedPlayer.Dateofbirth</li>
-            <li>Place of Birth: @selectedPlayer.Placeofbirth</li>
-            <li>Height: @selectedPlayer.Height</li>
-            <li>Position(s): @selectedPlayer.Position</li>
-            <li>Current Team: @selectedPlayer.Club</li>
-        </ol>
+        <div style="text-align: left; width:50%; height: auto; float:left;">
+            <img src=@selectedPlayer.Image alt=@selectedPlayer.Title>
+        </div>
+
+        <div style="text-align: left; width:50%; height: auto; float:right;">
+            <ol>
+                <li>Date of Birth: @selectedPlayer.Dateofbirth</li>
+                <li>Place of Birth: @selectedPlayer.Placeofbirth</li>
+                <li>Height: @selectedPlayer.Height</li>
+                <li>Position(s): @selectedPlayer.Position</li>
+                <li>Current Team: @selectedPlayer.Club</li>
+                <li>Games Played:  @selectedPlayer.Appearances</li>
+                <li>Minutes Played:  @selectedPlayer.Minutesplayed</li>
+                <li>Goals:  @selectedPlayer.Goals</li>
+                <li>Assists:  @selectedPlayer.Assists</li>
+            </ol>
+
+        </div>
+        
     </div>
 }
 
