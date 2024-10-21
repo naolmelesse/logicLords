@@ -107,14 +107,10 @@ namespace ContosoCrafts.WebSite.Services
 
             // Update the data to the new passed in values
             productData.Title = data.Title;
-            productData.Description = data.Description.Trim();
-            productData.Url = data.Url;
+           
             productData.Image = data.Image;
 
-            productData.Quantity = data.Quantity;
-            productData.Price = data.Price;
-
-            productData.CommentList = data.CommentList;
+            
 
             SaveData(products);
 
@@ -151,8 +147,6 @@ namespace ContosoCrafts.WebSite.Services
             {
                 Id = System.Guid.NewGuid().ToString(),
                 Title = "Enter Title",
-                Description = "Enter Description",
-                Url = "Enter URL",
                 Image = "",
             };
 
