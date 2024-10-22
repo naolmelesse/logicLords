@@ -4,13 +4,33 @@
     ViewData["Title"] = "About Us";
 }
 
-<h1>@ViewData["Title"]</h1>
 
-<h3>This website is a collaboratve effort for SeattleU CPSC 5110 FQ2024</h3>
+<div class="container" style="
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;">
+    
+    <h1 style="font-size: 2rem; margin-bottom: 30px; font-weight: bold;">@ViewData["Title"]</h1>
 
-<h3>TEAM MEMBERS:</h3>
+    <div style="display: flex; justify-content: center; margin: 20px 0;">
+        <img src="https://se-images.campuslabs.com/clink/images/7efd44a7-65ef-4d0e-baad-7c542cb1c0bc3cfba19e-f7ea-46c5-b0b1-b079f04eeb20.png?preset=med-sq" 
+        alt="Project Image" />
+    </div>
 
-<h3>Brian Muwanguzi</h3>
-<h3>Naol Melesse</h3>
-<h3>Nebiyu Alemu</h3>
-<h3>Shubhajeet Baral</h3>
+    <h3>
+        This website was built and redesigned by <strong>Logic Lords</strong>,
+        a group of four students in the 2024 Fall Quarter Software Engineering Master's class at Seattle University
+    </h3>
+
+    <div class="team-members" style=" margin-top: 30px;">
+        <h3 style="margin-bottom: 15px;">TEAM MEMBERS:</h3>
+
+        <h4>Brian K Muwanguzi</h4>
+        <h4>Naol Melesse</h4>
+        <h4>Nebiyu Alemu</h4>
+        <h4>Shubhajeet Baral</h4>
+    </div>
+</div>
