@@ -4,13 +4,40 @@
     ViewData["Title"] = "Contact Us";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="contact-us-header">@ViewData["Title"]</h1>
 
-<h3>This website is a collaboratve effort for SeattleU CPSC 5110 FQ2024</h3>
+<div class="contact-info-container">
+    <div class="contact-info">
+        <div>
+        <div>
+            <h3>Contact Information</h3>
+            <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+            <p><strong>Email:</strong> <a>@Model.Email</a></p>
+        </div>
+        <div>
+            <h3>Address</h3>
+            <p>@Model.AddressLine1</p>
+            <p>@Model.City, @Model.State</p>
+        </div>
+        </div>
+        <div>
+            <div>
+                <h3>Contact the team</h3>
+                <p><strong>Brian Muwanguzi:</strong> <a>brian@dribblekings.com</a></p>
+                <p><strong>Naol Melesse:</strong> <a>naol@dribblekings.com</a></p>
+                <p><strong>Nebiyu Alemu:</strong> <a>nebiyu@dribblekings.com</a></p>
+                <p><strong>Shubhajeet Baral:</strong> <a>shubhajeet@dribblekings.com</a></p>
+            </div>
+            <div>
+                <h3>Business Hours</h3>
+                <p>Monday - Friday: 9 AM - 5 PM</p>
+                <p>Saturday, Sunday: Closed</p>
+            </div>
+        </div>
+    </div>
 
-<h3>TEAM MEMBERS:</h3>
 
-<h3>Brian Muwanguzi</h3>
-<h3>Naol Melesse</h3>
-<h3>Nebiyu Alemu</h3>
-<h3>Shubhajeet Baral</h3>
+
+</div>
+
+
