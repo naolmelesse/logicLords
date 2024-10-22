@@ -15,8 +15,15 @@
                     <option value="">-- Select Player --</option>
                 </select>
             </div>
-            <img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
+            @if (Model.SelectedPlayerLeft != null)
+            {
+            <img id="playerImageLeft" src="@Model.SelectedPlayerLeft.Image"
                  alt="player Image Left" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
+            }
+            @if (Model.SelectedPlayerLeft == null)
+            {<img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
+                 alt="player Image Left" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
+            }
         </div>
 
         <div style="text-align: center; width:50%; height: auto; float:left;">
@@ -26,20 +33,72 @@
                     <option value="">-- Select Player --</option>
                 </select>
             </div>
+            @if (Model.SelectedPlayerRight != null)
+            {
+                <img id="playerImageRight" src="@Model.SelectedPlayerRight.Image"
+                 alt="player Image Right" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
+            }
+            @if (Model.SelectedPlayerRight == null)
+            {
             <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
                  alt="player Image Right" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
+            }
         </div>
-
-    </form>
         <div class="comparison-list-container">
-            <p>Place of birth</p>
-            <p>Date of birth</p>
-            <p>Club</p>
-            <p>Height</p>
-            <p>Positions</p>
-            <p>Goals</p>
-            <p>Assists</p>
-            <p>Appearances</p>
-            <p>Minutes played</p>
+            @if (Model.SelectedPlayerLeft != null)
+            {
+                <div class="comparison-player-left">
+                    <p>@Model.SelectedPlayerLeft.Placeofbirth</p>
+                    <p>@Model.SelectedPlayerLeft.Dateofbirth</p>
+                    <p>@Model.SelectedPlayerLeft.Club</p>
+                    <p>@Model.SelectedPlayerLeft.Height</p>
+                    <p>@Model.SelectedPlayerLeft.Position</p>
+                    <p>@Model.SelectedPlayerLeft.Goals</p>
+                    <p>@Model.SelectedPlayerLeft.Assists</p>
+                    <p>@Model.SelectedPlayerLeft.Appearances</p>
+                    <p>@Model.SelectedPlayerLeft.Minutesplayed</p>
+                </div>
+            }
+            @if (Model.SelectedPlayerLeft == null)
+            {
+                <div>
+                    <p>No player selected</p>
+                </div>
+            }
+            <div class="comparison-stats">
+                <p>Place of birth</p>
+                <p>Date of birth</p>
+                <p>Club</p>
+                <p>Height</p>
+                <p>Positions</p>
+                <p>Goals</p>
+                <p>Assists</p>
+                <p>Appearances</p>
+                <p>Minutes played</p>
+            </div>
+            @if (Model.SelectedPlayerRight != null)
+            {                
+            <div class="comparison-player-right">
+                <p>@Model.SelectedPlayerRight.Placeofbirth</p>
+                <p>@Model.SelectedPlayerRight.Dateofbirth</p>
+                <p>@Model.SelectedPlayerRight.Club</p>
+                <p>@Model.SelectedPlayerRight.Height</p>
+                <p>@Model.SelectedPlayerRight.Position</p>
+                <p>@Model.SelectedPlayerRight.Goals</p>
+                <p>@Model.SelectedPlayerRight.Assists</p>
+                <p>@Model.SelectedPlayerRight.Appearances</p>
+                <p>@Model.SelectedPlayerRight.Minutesplayed</p>
+                </div>
+            }
+            @if (Model.SelectedPlayerRight == null)
+            {
+                <div>
+                    <p>No player selected</p>
+                </div>
+            }
+
+
         </div>
+    </form>
+
 </div>  
