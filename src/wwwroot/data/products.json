@@ -12,8 +12,15 @@
     "Appearances": "26",
     "Minutes played": "1498",
     "Title": "Alonso Martinez",
-    "Ratings": null
-  
+    "Ratings": [
+      5,
+      5,
+      3,
+      2,
+      1,
+      5
+    ]
+
   },
   {
     "Id": "christian-Benteke",
