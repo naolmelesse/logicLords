@@ -107,10 +107,18 @@ namespace ContosoCrafts.WebSite.Services
 
             // Update the data to the new passed in values
             productData.Title = data.Title;
-           
+            productData.Club = data.Club;
+            productData.Minutesplayed = data.Minutesplayed;
+            productData.Placeofbirth = data.Placeofbirth;
+            productData.Assists = data.Assists;
+            productData.Goals = data.Goals;
+            productData.Appearances = data.Appearances;
+            productData.Position = data.Position;
+            productData.Height = data.Height;
             productData.Image = data.Image;
+            productData.Dateofbirth = data.Dateofbirth;
 
-            
+
 
             SaveData(products);
 
