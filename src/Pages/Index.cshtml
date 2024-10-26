@@ -6,6 +6,13 @@
 }
 
 <h1>Logic Lords</h1>
+<div style="margin: 20px; text-align: center;">
+    <form method="get" action="/Search" style="display: flex; align-items: center;">
+        <input type="text" name="query" placeholder="Search..." 
+               style="padding: 8px; width: 80%; margin-right: 10px;">
+        <button type="submit" style="padding: 8px 16px;">Search</button>
+    </form>
+</div>
 @(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
 
 <script src="_framework/blazor.server.js"></script>
