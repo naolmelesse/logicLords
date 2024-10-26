@@ -71,25 +71,25 @@ namespace UnitTests.Pages.Product.Update
         public void OnGet_Valid_Id_Should_Return_Product()
         {
             // Arrange
-            var productId = "alonso-martinez";
+            var data = "alonso-martinez";
 
             // Act
-            pageModel.Id = productId;
+            pageModel.Id = data;
             pageModel.OnGet();
 
             // Assert
             Assert.That(pageModel.Player, Is.Not.Null);
-            Assert.That(pageModel.Player.Id, Is.EqualTo(productId));
+            Assert.That(pageModel.Player.Id, Is.EqualTo(data));
         }
 
         [Test]
         public void OnGet_Invalid_Id_Should_Return_Null()
         {
             // Arrange
-            var invalidProductId = "invalid-id";
+            var data = "invalid-id";
 
             // Act
-            pageModel.Id = invalidProductId;
+            pageModel.Id = data;
             pageModel.OnGet();
 
             // Assert
@@ -99,6 +99,8 @@ namespace UnitTests.Pages.Product.Update
         [Test]
         public void OnGet_Invalid_No_Id_Provided_Should_Return_Null()
         {
+            // Arrange
+
             // Act
             pageModel.Id = null;
             pageModel.OnGet();
@@ -115,8 +117,8 @@ namespace UnitTests.Pages.Product.Update
         public void OnPost_Valid_Model_Should_Update_And_Redirect()
         {
             // Arrange
-            var productId = "alonso-martinez";
-            var productToUpdate = new ProductModel { Id = productId, Title = "Updated Alonso Martinez" };
+            var data = "alonso-martinez";
+            var productToUpdate = new ProductModel { Id = data, Title = "Updated Alonso Martinez" };
             pageModel.Player = productToUpdate;
 
             // Act
