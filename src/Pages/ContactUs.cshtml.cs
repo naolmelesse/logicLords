@@ -10,8 +10,5 @@ namespace ContosoCrafts.WebSite.Pages
         public string AddressLine1 { get; set; } = "Seattle University";
         public string City { get; set; } = "Seattle";
         public string State { get; set; } = "WA";
-        public void OnGet()
-        {
-        }
     }
 }
