@@ -8,9 +8,6 @@ namespace ContosoCrafts.WebSite.Pages
     /// </summary>
     public class AboutUsModel : PageModel
     {
-        // Handler method for GET requests to the About Us page
-        public void OnGet()
-        {
-        }
+
     }
 }
