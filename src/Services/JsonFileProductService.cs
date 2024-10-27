@@ -9,20 +9,43 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace ContosoCrafts.WebSite.Services
 {
-   public class JsonFileProductService
+
+
+    /// <summary>
+    /// Service to manage product data stored in a JSON file.
+    /// Provides methods to perform CRUD operations and handle product ratings.
+    /// </summary>
+    public class JsonFileProductService
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonFileProductService"/> class.
+        /// </summary>
+        /// <param name="webHostEnvironment">Provides information about the web hosting environment.</param>
         public JsonFileProductService(IWebHostEnvironment webHostEnvironment)
         {
             WebHostEnvironment = webHostEnvironment;
         }
 
+
+        /// <summary>
+        /// Gets the web host environment used by the service.
+        /// </summary>
         public IWebHostEnvironment WebHostEnvironment { get; }
 
+
+        /// <summary>
+        /// Gets the full path of the JSON file used to store product data.
+        /// </summary>
         private string JsonFileName
         {
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "data", "products.json"); }
         }
 
+
+        /// <summary>
+        /// Retrieves all product data from the JSON file.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{ProductModel}"/> of all product records.</returns>
         public IEnumerable<ProductModel> GetAllData()
         {
             using(var jsonFileReader = File.OpenText(JsonFileName))
@@ -42,8 +65,9 @@ namespace ContosoCrafts.WebSite.Services
         /// If the rating does not exist, add it
         /// Save the update
         /// </summary>
-        /// <param name="productId"></param>
-        /// <param name="rating"></param>
+        /// <param name="productId">The ID of the product to rate.</param>
+        /// <param name="rating">The rating value to add (must be between 0 and 5).</param>
+        /// <returns>True if the rating was successfully added; otherwise, false.</returns>
         public bool AddRating(string productId, int rating)
         {
             // If the ProductID is invalid, return
@@ -95,7 +119,8 @@ namespace ContosoCrafts.WebSite.Services
         /// Update the fields
         /// Save to the data store
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">The product data containing updated values.</param>
+        /// <returns>The updated product model, or null if the product was not found.</returns>
         public ProductModel UpdateData(ProductModel data)
         {
             var products = GetAllData();
@@ -119,7 +144,7 @@ namespace ContosoCrafts.WebSite.Services
             productData.Dateofbirth = data.Dateofbirth;
 
 
-
+            // Save the updated product data.
             SaveData(products);
 
             return productData;
@@ -131,8 +156,10 @@ namespace ContosoCrafts.WebSite.Services
         private void SaveData(IEnumerable<ProductModel> products)
         {
 
+            // Open the JSON file for writing.
             using (var outputStream = File.Create(JsonFileName))
             {
+                // Serialize the product data and write to the JSON file.
                 JsonSerializer.Serialize<IEnumerable<ProductModel>>(
                     new Utf8JsonWriter(outputStream, new JsonWriterOptions
                     {
@@ -148,9 +175,10 @@ namespace ContosoCrafts.WebSite.Services
         /// Create a new product using default values
         /// After create the user can update to set values
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The newly created product model.</returns>
         public ProductModel CreateData()
         {
+            // Create a new product with default values.
             var data = new ProductModel()
             {
                 Id = System.Guid.NewGuid().ToString(),
@@ -170,7 +198,8 @@ namespace ContosoCrafts.WebSite.Services
         /// <summary>
         /// Remove the item from the system
         /// </summary>
-        /// <returns></returns>
+        /// <param name="id">The ID of the product to delete.</param>
+        /// <returns>The data set after the delete action</returns>
         public ProductModel DeleteData(string id)
         {
             // Get the current set, and append the new record to it
@@ -179,6 +208,7 @@ namespace ContosoCrafts.WebSite.Services
 
             var newDataSet = GetAllData().Where(m => m.Id.Equals(id) == false);
             
+            // Save update dataset
             SaveData(newDataSet);
 
             return data;
