@@ -7,9 +7,6 @@ namespace ContosoCrafts.WebSite.Pages.Product
     {
         [BindProperty(SupportsGet = true)]
         public string Id { get; set; }
-        public void OnGet()
-        {
-        }
     }
 }
 
