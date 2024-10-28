@@ -124,6 +124,10 @@ namespace ContosoCrafts.WebSite.Services
         public ProductModel UpdateData(ProductModel data)
         {
             var products = GetAllData();
+            if (data == null)
+            {
+                return null;
+            }
             var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
             if (productData == null)
             {
