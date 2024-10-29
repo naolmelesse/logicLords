@@ -85,6 +85,29 @@ for details on configuring this project to bundle and minify static web assets. 
     margin: auto;
 }
 
+/* Style for the scroll-to-top button */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 3rem;
+    right: 1.5rem;
+    display: none;
+    font-size: 1.5rem;
+    background-color: #3C6E71;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 90%;
+    cursor: pointer;
+}
+
+#scrollTopBtn img{
+    width: 2.5rem;
+}
+
+#scrollTopBtn:hover {
+    background-color: #353535;
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
