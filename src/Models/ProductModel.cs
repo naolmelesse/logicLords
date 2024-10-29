@@ -51,9 +51,12 @@ namespace ContosoCrafts.WebSite.Models
         public string Title { get; set; }       
 
         // Ratings recieved for the player
-        public int[] Ratings { get; set; }   
-        
-        // Override ToString to serialize the object to a JSON string
+        public int[] Ratings { get; set; }
+
+        /// <summary>
+        /// Override ToString to serialize the object to a JSON string
+        /// </summary>
+        /// <returns>String representation of the data</returns>
         public override string ToString() => JsonSerializer.Serialize<ProductModel>(this);
 
     }
