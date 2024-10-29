@@ -8,6 +8,8 @@ using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Buffers.Text;
+using System.Numerics;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -37,8 +39,12 @@ namespace ContosoCrafts.WebSite.Pages
         //The Players retrieved from the Product Model
         public IEnumerable<ProductModel> PlayerList { get; private set; }
 
-
         
+        // Gets the list of players that match the search term.        
+        public IEnumerable<ProductModel> SelectedPlayerList { get; private set; }
+
+
+
         // Gets or sets the search term provided by the user.        
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
@@ -46,27 +52,32 @@ namespace ContosoCrafts.WebSite.Pages
 
         /// <summary>
         /// Handles GET requests to the error page.
-        /// Loads all data for players from the Product Service
+        /// Loads all data for players from the Product Service and applies filtering if a search term is provided.
+
         /// </summary>
         public void OnGet()
         {
             PlayerList = PlayerService.GetAllData();
+
             // Filter based on search term if provided
-            if (!string.IsNullOrEmpty(SearchTerm))
-            {
-                PlayerList = PlayerList
-                    .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
-            }
+            OnGetSearch();
         }
 
         /// <summary>
-        /// Handles GET requests specifically for search functionality.
-        /// Reuses the same filtering logic defined in the <see cref="OnGet"/> method.
+        /// Filters the player list based on the search term.
+        /// If no search term is provided, <see cref="SelectedPlayerList"/> is set to null.
         /// </summary>
         public void OnGetSearch()
         {
-            // This method will handle search-specific requests
-            OnGet(); 
+            {
+                if (string.IsNullOrEmpty(SearchTerm))
+                {
+                    SelectedPlayerList = null;
+                    return;
+                }
+                SelectedPlayerList = PlayerList
+                        .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
+            }
         }
 
     }
