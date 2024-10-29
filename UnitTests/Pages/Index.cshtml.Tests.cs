@@ -39,7 +39,7 @@ namespace UnitTests.Pages.Index
 
             // Assert
             Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(pageModel.Products.ToList().Any(), Is.EqualTo(true));
+            Assert.That(pageModel.PlayerList.ToList().Any(), Is.EqualTo(true));
         }
         #endregion OnGet
     }
