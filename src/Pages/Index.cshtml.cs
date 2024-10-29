@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System;
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -25,14 +28,20 @@ namespace ContosoCrafts.WebSite.Pages
             JsonFileProductService productService)
         {
             _logger = logger;
-            ProductService = productService;
+            PlayerService = productService;
         }
 
         //Getter of the JsonFileProductService
-        public JsonFileProductService ProductService { get; }
+        public JsonFileProductService PlayerService { get; }
 
         //The Players retrieved from the Product Model
-        public IEnumerable<ProductModel> Products { get; private set; }
+        public IEnumerable<ProductModel> PlayerList { get; private set; }
+
+
+        
+        // Gets or sets the search term provided by the user.        
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
 
         /// <summary>
@@ -41,7 +50,24 @@ namespace ContosoCrafts.WebSite.Pages
         /// </summary>
         public void OnGet()
         {
-            Products = ProductService.GetAllData();
+            PlayerList = PlayerService.GetAllData();
+            // Filter based on search term if provided
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                PlayerList = PlayerList
+                    .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
+            }
         }
+
+        /// <summary>
+        /// Handles GET requests specifically for search functionality.
+        /// Reuses the same filtering logic defined in the <see cref="OnGet"/> method.
+        /// </summary>
+        public void OnGetSearch()
+        {
+            // This method will handle search-specific requests
+            OnGet(); 
+        }
+
     }
 }
