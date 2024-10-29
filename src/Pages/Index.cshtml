@@ -6,12 +6,27 @@
 }
 
 <h1>Logic Lords</h1>
-<div style="margin: 20px; text-align: center;">
-    <form method="get" action="/Search" style="display: flex; align-items: center;">
-        <input type="text" name="query" placeholder="Search..." 
-               style="padding: 8px; width: 80%; margin-right: 10px;">
-        <button type="submit" style="padding: 8px 16px;">Search</button>
+<div class=" container my-5">
+    <h2>Search</h2>
+    <form method="get" asp-page-handler="Search" class="d-flex align-items-center">
+        <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
+     @if (Model.PlayerList != null && Model.PlayerList.Any() && !string.IsNullOrEmpty(Model.SearchTerm))
+    {
+            <ul class="search-list">
+                @foreach (var player in Model.PlayerList)
+                {
+                   <a href="/Product/Read/@player.Id" class="search-list-item">
+                       @player.Title
+                    </a>
+                }
+            </ul>
+    }
+    @if (!string.IsNullOrEmpty(Model.SearchTerm))
+    {
+            <p class="mt-4">No results found for "@Model.SearchTerm".</p>
+    }
 </div>
 @(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
 
