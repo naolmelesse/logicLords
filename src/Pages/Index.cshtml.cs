@@ -39,21 +39,24 @@ namespace ContosoCrafts.WebSite.Pages
         //The Players retrieved from the Product Model
         public IEnumerable<ProductModel> PlayerList { get; private set; }
 
-        
         // Gets the list of players that match the search term.        
         public IEnumerable<ProductModel> SelectedPlayerList { get; private set; }
-
-
 
         // Gets or sets the search term provided by the user.        
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
 
+        // Gets or sets the minimum player age provided by the user.   
+        [BindProperty(SupportsGet = true)]
+        public int? MinAge { get; set; }
+
+        // Gets or sets the maximum player age provided by the user.   
+        [BindProperty(SupportsGet = true)]
+        public int? MaxAge { get; set; }
 
         /// <summary>
         /// Handles GET requests to the error page.
         /// Loads all data for players from the Product Service and applies filtering if a search term is provided.
-
         /// </summary>
         public void OnGet()
         {
@@ -64,20 +67,37 @@ namespace ContosoCrafts.WebSite.Pages
         }
 
         /// <summary>
-        /// Filters the player list based on the search term.
+        /// Filters the player list based on the search term and age range.
         /// If no search term is provided, <see cref="SelectedPlayerList"/> is set to null.
         /// </summary>
         public void OnGetSearch()
         {
+            //Load players from PlayerList to SelectedPlayerList to filter
+            SelectedPlayerList = PlayerList;
+
+            // Filter based on search term if provided
+            if (string.IsNullOrEmpty(SearchTerm) == false)
             {
-                if (string.IsNullOrEmpty(SearchTerm))
-                {
-                    SelectedPlayerList = null;
-                    return;
-                }
-                SelectedPlayerList = PlayerList
-                        .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
             }
+
+            // Filter based on MinAge if value provided
+            if (MinAge.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.Age >= MinAge.Value);
+            }
+
+            // Filter based on MaxAge if value provided
+            if (MaxAge.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.Age <= MaxAge.Value);
+            }
+
+            SelectedPlayerList = SelectedPlayerList.ToList();
+
         }
 
     }
