@@ -25,6 +25,9 @@ namespace ContosoCrafts.WebSite.Models
         [JsonPropertyName("Date of birth")]
         public string Dateofbirth { get; set; }
 
+        //Player's Age
+        public int Age { get; set; }
+
         // The soccer club the player is contracted to
         public string Club { get; set; }
 
