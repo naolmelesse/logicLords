@@ -4,28 +4,35 @@
 @inject JsonFileProductService ProductService
 
 <div class="card-columns">
-    @foreach (var product in ProductService.GetAllData())
+    @if (Players.Any())
     {
-        <div class="card">
-            <div class="card-img" style="background-image: url('@product.Image');">
+        @foreach (var product in Players)
+        {
+            <div class="card">
+                <div class="card-img" style="background-image: url('@product.Image');">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@product.Title</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <div class="d-flex justify-content-between">
+                            <button @onclick="(e => SelectProduct(product.Id))"
+                                    data-toggle="modal" data-target="#productModal" class="btn btn-primary">
+                                More Info
+                            </button>
+                            <a href="/ComparePlayers?SelectedPlayerLeftId=@product.Id&SelectedPlayerRightId=" class="btn btn-secondary">
+                                Compare
+                            </a>
+                        </div>
+                    </small>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">@product.Title</h5>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">
-                    <div class="d-flex justify-content-between">
-                        <button @onclick="(e => SelectProduct(product.Id))"
-                            data-toggle="modal" data-target="#productModal" class="btn btn-primary">
-                            More Info
-                        </button>
-                        <a href="/ComparePlayers?SelectedPlayerLeftId=@product.Id&SelectedPlayerRightId=" class="btn btn-secondary">
-                            Compare
-                        </a>
-                    </div>
-                </small>
-            </div>
-        </div>
+        }
+    }
+    @if (Players.Any() == false)
+    {
+        <p>No players available to display.</p>
     }
 </div>
 
@@ -46,7 +53,7 @@
                         </div>
                         <div class="card-body">
                             
-                            <p class="card-text">Date of Birth:  @selectedProduct.Dateofbirth</p>
+                            <p class="card-text">Date of Birth:  @selectedProduct.Dateofbirth (@selectedProduct.Age y/o)</p>
                             <p class="card-text">Place of Birth:  @selectedProduct.Placeofbirth</p>
                             <p class="card-text">Height:  @selectedProduct.Height</p>
                             <p class="card-text">Position(s):  @selectedProduct.Position</p>
@@ -90,13 +97,15 @@
 
 @code
 {
+    [Parameter]
+    public IEnumerable<ProductModel> Players { get; set; }
     ProductModel selectedProduct;
     string selectedProductId;
 
     void SelectProduct(string productId)
     {
         selectedProductId = productId;
-        selectedProduct = ProductService.GetAllData().First(x => x.Id == productId);
+        selectedProduct = Players.FirstOrDefault(x => x.Id == productId);
         GetCurrentRating();
     }
 
