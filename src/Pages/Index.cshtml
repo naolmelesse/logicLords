@@ -6,28 +6,24 @@
 }
 
 <h1>Logic Lords</h1>
-<div class=" container my-5">
-    <h2>Search</h2>
-    <form method="get" asp-page-handler="Search" class="d-flex align-items-center">
-        <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
+<div class="container my-5 justify-content-center">
+    <h2>Filter and Search</h2>
+    <form method="get" asp-page-handler="Search" class="align-items-center">
+        
+        <!-- Text box for search input -->
+        <div class="container my-1">
+            <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
+        </div>
+     
+        <!-- Search Button -->
         <button type="submit" class="btn btn-primary">Search</button>
+   
+
     </form>
-    @if (Model.SelectedPlayerList?.Any() == true)
-    {
-        <ul class="search-list">
-            @foreach (var player in Model.SelectedPlayerList)
-            {
-                <a href="/Product/Read/@player.Id" class="search-list-item">
-                    @player.Title
-                </a>
-            }
-        </ul>
-    }
-    @if (Model.SelectedPlayerList?.Count() < 1)
-    {
-        <p class="mt-4">No results found for "@Model.SearchTerm".</p>
-    }
 </div>
-@(await Html.RenderComponentAsync<ProductList>(RenderMode.ServerPrerendered))
+
+@(await Html.RenderComponentAsync<ProductList>(
+    RenderMode.ServerPrerendered,
+    new { Players = Model.SelectedPlayerList ?? Model.PlayerList }))
 
 <script src="_framework/blazor.server.js"></script>
