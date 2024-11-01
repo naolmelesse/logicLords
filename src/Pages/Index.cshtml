@@ -9,7 +9,7 @@
 <div class="container my-5 justify-content-center">
     <h2>Filter and Search</h2>
     <form method="get" asp-page-handler="Search" class="align-items-center">
-        
+
         <!-- Text box for search input -->
         <div class="container my-1">
             <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
@@ -47,7 +47,7 @@
                 <option value="">Min Appearance</option>
                 @for (int appearance = 16; appearance <= 40; appearance++)
                 {
-                    <option value="@appearance" >@appearance</option>
+                    <option value="@appearance" selected="@(Model.MinAppearance == appearance ? "selected" : null)">@appearance</option>
                 }
             </select>
             -
@@ -56,15 +56,15 @@
                 <option value="">Max Appearance</option>
                 @for (int appearance = 16; appearance <= 40; appearance++)
                 {
-                    <option value="@appearance" >@appearance</option>
+                    <option value="@appearance" selected="@(Model.MaxAppearance == appearance ? "selected" : null)">@appearance</option>
                 }
             </select>
         </div>
 
-     
+
         <!-- Search Button -->
         <button type="submit" class="btn btn-primary">Search</button>
-   
+
 
     </form>
 </div>
