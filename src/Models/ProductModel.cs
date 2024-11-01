@@ -46,6 +46,9 @@ namespace ContosoCrafts.WebSite.Models
         // The number of appearances a player has made (starts and subs)
         public string Appearances { get; set; }
 
+        // The number of appearances a player has made as an int(starts and subs)
+        public int AppearancesAsInt { get; set; }
+
         // Total minutes the player has made
         [JsonPropertyName("Minutes played")]
         public string Minutesplayed { get; set; }
