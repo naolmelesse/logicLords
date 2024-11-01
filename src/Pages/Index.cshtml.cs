@@ -54,6 +54,14 @@ namespace ContosoCrafts.WebSite.Pages
         [BindProperty(SupportsGet = true)]
         public int? MaxAge { get; set; }
 
+        // Gets or sets the minimum player age provided by the user.   
+        [BindProperty(SupportsGet = true)]
+        public int? MinAppearance { get; set; }
+
+        // Gets or sets the maximum player age provided by the user.   
+        [BindProperty(SupportsGet = true)]
+        public int? MaxAppearance { get; set; }
+
         /// <summary>
         /// Handles GET requests to the error page.
         /// Loads all data for players from the Product Service and applies filtering if a search term is provided.
@@ -94,6 +102,20 @@ namespace ContosoCrafts.WebSite.Pages
             {
                 SelectedPlayerList = SelectedPlayerList
                     .Where(player => player.Age <= MaxAge.Value);
+            }
+
+            // Filter based on MinAppearance if value provided
+            if (MinAppearance.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.AppearancesAsInt >= MinAppearance.Value);
+            }
+
+            // Filter based on MaxAppearance if value provided
+            if (MaxAppearance.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.AppearancesAsInt <= MaxAppearance.Value);
             }
 
             SelectedPlayerList = SelectedPlayerList.ToList();
