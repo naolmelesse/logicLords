@@ -108,6 +108,21 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: #353535;
 }
 
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.search-form select{
+    width: 500px;
+}
+
+.filters-container{
+
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
