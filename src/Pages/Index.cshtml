@@ -8,58 +8,63 @@
 <h1>Logic Lords</h1>
 <div class="container my-5 justify-content-center">
     <h2>Filter and Search</h2>
-    <form method="get" asp-page-handler="Search" class="align-items-center">
+    <form method="get" asp-page-handler="Search" class=" search-form">
 
-        <!-- Text box for search input -->
-        <div class="container my-1">
-            <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
-        </div>
+            <!-- Text box for search input -->
+            <div class="container my-1">
+                <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
+            </div>
 
-        <!--Age Filter-->
-        <div class="row justify-content-center align-items-center">
-            <label class="m-0">Age Range:</label>
+            <div class="filters-container">
+                <!--Age Filter-->
+                <div class="row justify-content-center align-items-center">
+                    <label class="m-0">Age Range:</label>
 
-            <!-- Dropdown for min age-->
-            <select name="MinAge" class="form-control mx-2 col-md-2">
-                <option value="">Min Age</option>
-                @for (int age = 16; age <= 40; age++)
-                {
-                    <option value="@age" selected="@(Model.MinAge == age ? "selected" : null)">@age</option>
-                }
-            </select>
-            -
-            <!-- Dropdown for max age -->
-            <select name="MaxAge" class="form-control mx-2 col-md-2">
-                <option value="">Max Age</option>
-                @for (int age = 16; age <= 40; age++)
-                {
-                    <option value="@age" selected="@(Model.MaxAge == age ? "selected" : null)">@age</option>
-                }
-            </select>
-        </div>
+                    <!-- Dropdown for min age-->
+                    <select name="MinAge" class="form-control mx-2 col-md-2">
+                        <option value="">Min Age</option>
+                        @for (int age = 16; age <= 40; age++)
+                        {
+                            <option value="@age" selected="@(Model.MinAge == age ? "selected" : null)">@age</option>
+                        }
+                    </select>
+                    -
+                    <!-- Dropdown for max age -->
+                    <select name="MaxAge" class="form-control mx-2 col-md-2">
+                        <option value="">Max Age</option>
+                        @for (int age = 16; age <= 40; age++)
+                        {
+                            <option value="@age" selected="@(Model.MaxAge == age ? "selected" : null)">@age</option>
+                        }
+                    </select>
+                </div>
 
-        <!--Appearance Filter-->
-        <div class="row justify-content-center align-items-center mt-1">
-            <label class="m-0">Appearance Range:</label>
+                <!--Appearance Filter-->
+                <div class="row justify-content-center align-items-center mt-1">
+                    <label class="m-0">Appearance Range:</label>
 
-            <!-- Dropdown for Appearance age-->
-            <select name="MinAppearance" class="form-control mx-2 col-md-2">
-                <option value="">Min Appearance</option>
-                @for (int appearance = 16; appearance <= 40; appearance++)
-                {
-                    <option value="@appearance" selected="@(Model.MinAppearance == appearance ? "selected" : null)">@appearance</option>
-                }
-            </select>
-            -
-            <!-- Dropdown for Appearance age -->
-            <select name="MaxAppearance" class="form-control mx-2 col-md-2">
-                <option value="">Max Appearance</option>
-                @for (int appearance = 16; appearance <= 40; appearance++)
-                {
-                    <option value="@appearance" selected="@(Model.MaxAppearance == appearance ? "selected" : null)">@appearance</option>
-                }
-            </select>
-        </div>
+                    <!-- Dropdown for Appearance age-->
+                    <select name="MinAppearance" class="form-control mx-2 col-md-2">
+                        <option value="">Min Appearance</option>
+                        @for (int appearance = 16; appearance <= 40; appearance++)
+                        {
+                            <option value="@appearance" selected="@(Model.MinAppearance == appearance ? "selected" : null)">@appearance</option>
+                        }
+                    </select>
+                    -
+                    <!-- Dropdown for Appearance age -->
+                    <select name="MaxAppearance" class="form-control mx-2 col-md-2">
+                        <option value="">Max Appearance</option>
+                        @for (int appearance = 16; appearance <= 40; appearance++)
+                        {
+                            <option value="@appearance" selected="@(Model.MaxAppearance == appearance ? "selected" : null)">@appearance</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            
+
+
 
 
         <!-- Search Button -->
