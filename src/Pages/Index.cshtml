@@ -61,6 +61,19 @@
                         }
                     </select>
                 </div>
+
+
+                <!-- Position Filter -->
+                <div class="row justify-content-center align-items-center mt-3">
+                    <label class="m-0">Position:</label>
+                    <select name="Position" class="form-control mx-2 col-md-4">
+                        <option value="">Select Position</option>
+                        <option value="Forward" selected="@(Model.Position == "Forward" ? "selected" : null)">Forward</option>
+                        <option value="Striker" selected="@(Model.Position == "Striker" ? "selected" : null)">Striker</option>                    
+                        <option value="Winger" selected="@(Model.Position == "Winger" ? "selected" : null)">Winger</option>
+                        <option value="Midfielder" selected="@(Model.Position == "Midfielder" ? "selected" : null)">Midfielder</option>
+                    </select>
+                </div>
             </div>
             
 
