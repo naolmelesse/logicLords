@@ -62,6 +62,10 @@ namespace ContosoCrafts.WebSite.Pages
         [BindProperty(SupportsGet = true)]
         public int? MaxAppearance { get; set; }
 
+        // Gets the position provided by the user.
+        [BindProperty(SupportsGet = true)]
+        public string Position { get; set; } 
+
         /// <summary>
         /// Handles GET requests to the error page.
         /// Loads all data for players from the Product Service and applies filtering if a search term is provided.
@@ -111,11 +115,19 @@ namespace ContosoCrafts.WebSite.Pages
                     .Where(player => player.AppearancesAsInt >= MinAppearance.Value);
             }
 
+
             // Filter based on MaxAppearance if value provided
             if (MaxAppearance.HasValue)
             {
                 SelectedPlayerList = SelectedPlayerList
                     .Where(player => player.AppearancesAsInt <= MaxAppearance.Value);
+            }
+
+            // Filter based on Position if value provided
+            if (!string.IsNullOrEmpty(Position))
+            {
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.Position.Equals(Position, StringComparison.OrdinalIgnoreCase));
             }
 
             SelectedPlayerList = SelectedPlayerList.ToList();
