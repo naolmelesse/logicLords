@@ -16,7 +16,7 @@ namespace ContosoCrafts.WebSite.Pages
     public class ComparePlayersModel : PageModel
     {
         // Logger instance for logging information and errors
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<ComparePlayersModel> _logger;
 
         /// <summary>
         /// Constructor for initializing the ComparePlayersModel with logger and player service dependencies.
@@ -24,7 +24,7 @@ namespace ContosoCrafts.WebSite.Pages
         /// <param name="logger">The logger instance.</param>
         /// <param name="playerService">Service for handling player data retrieval.</param>
         
-        public ComparePlayersModel(ILogger<IndexModel> logger,
+        public ComparePlayersModel(ILogger<ComparePlayersModel> logger,
            JsonFileProductService playerService)
         {
             _logger = logger;
