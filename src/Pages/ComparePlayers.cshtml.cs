@@ -35,20 +35,20 @@ namespace ContosoCrafts.WebSite.Pages
         public JsonFileProductService PlayerService { get; }
 
         // List of players retrieved from the PlayerService
-        public IEnumerable<ProductModel> PlayerList { get; private set; }
+        public IEnumerable<ProductModel> PlayerList { get; set; }
 
         // List of items to display in a dropdown for selecting players
-        public IEnumerable<SelectListItem> PlayerDropDownItems { get; private set; }
+        public IEnumerable<SelectListItem> PlayerDropDownItems { get; set; }
 
         // Player selected on the left side for comparison
-        public ProductModel SelectedPlayerLeft { get; private set; }
+        public ProductModel SelectedPlayerLeft { get; set; }
         [BindProperty(SupportsGet = true)]
 
         // ID of the selected player on the left side
         public string SelectedPlayerLeftId { get; set; }
 
         // Player selected on the right side for comparison
-        public ProductModel SelectedPlayerRight { get; private set; }
+        public ProductModel SelectedPlayerRight { get; set; }
 
         [BindProperty(SupportsGet = true)]
         // ID of the selected player on the right side
