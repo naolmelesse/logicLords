@@ -64,7 +64,11 @@ namespace ContosoCrafts.WebSite.Pages
 
         // Gets the position provided by the user.
         [BindProperty(SupportsGet = true)]
-        public string Position { get; set; } 
+        public string Position { get; set; }
+
+        // Gets the Height provided by the user.
+        [BindProperty(SupportsGet = true)]
+        public string Height { get; set; }
 
         /// <summary>
         /// Handles GET requests to the error page.
@@ -129,6 +133,36 @@ namespace ContosoCrafts.WebSite.Pages
                 SelectedPlayerList = SelectedPlayerList
                     .Where(player => player.Position.Equals(Position, StringComparison.OrdinalIgnoreCase));
             }
+
+            // Filter based on Height if value provided
+            if (Height != null)
+            {
+                if (Height.Equals("< 155 cm"))
+                {
+                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs < 155);
+                }
+                if (Height.Equals("155 cm - 164 cm"))
+                {
+                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 155 && player.HeightInCMs <= 164);
+                }
+                if (Height.Equals("165 cm - 174 cm"))
+                {
+                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 165 && player.HeightInCMs <= 174);
+                }
+                if (Height.Equals("175 cm - 184 cm"))
+                {
+                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 175 && player.HeightInCMs <= 184);
+                }
+                if (Height.Equals("185 cm - 194 cm"))
+                {
+                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 185 && player.HeightInCMs <= 194);
+                }
+                if (Height.Equals("> 195 cm"))
+                {
+                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs > 195);
+                }
+            }
+
 
             SelectedPlayerList = SelectedPlayerList.ToList();
 
