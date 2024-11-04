@@ -34,6 +34,9 @@ namespace ContosoCrafts.WebSite.Models
         // Player's height in both metric and imperial
         public string Height { get; set; }
 
+        // Player's height in centimeters
+        public int HeightInCMs { get; set; }
+
         // Player's usual position on the field
         public string Position { get; set; }
 
