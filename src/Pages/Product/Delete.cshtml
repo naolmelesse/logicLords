@@ -1,0 +1,15 @@
+﻿@page "{id}"
+@using ContosoCrafts.WebSite.Components
+@model ContosoCrafts.WebSite.Pages.Product.DeleteModel
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+@(await Html.RenderComponentAsync<PlayerData>(RenderMode.ServerPrerendered, new { Id = Model.Player.Id }))
+
+<p>Are you sure you want to delete "@Model.Player.Title"?</p>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+</form>
