@@ -54,11 +54,11 @@ namespace ContosoCrafts.WebSite.Pages
         [BindProperty(SupportsGet = true)]
         public int? MaxAge { get; set; }
 
-        // Gets or sets the minimum player age provided by the user.   
+        // Gets or sets the minimum player appearance provided by the user.   
         [BindProperty(SupportsGet = true)]
         public int? MinAppearance { get; set; }
 
-        // Gets or sets the maximum player age provided by the user.   
+        // Gets or sets the maximum player appearance provided by the user.   
         [BindProperty(SupportsGet = true)]
         public int? MaxAppearance { get; set; }
 
