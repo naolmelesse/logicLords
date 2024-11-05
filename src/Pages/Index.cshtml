@@ -5,10 +5,11 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>Logic Lords</h1>
-<div class="container my-5 justify-content-center">
-    <h2>Filter and Search</h2>
-    <form method="get" asp-page-handler="Search" class=" search-form">
+<div class="container-home">
+    <h1>Logic Lords</h1>
+    <div class="container my-5 justify-content-center">
+        <h2>Filter and Search</h2>
+        <form method="get" asp-page-handler="Search" class=" search-form">
 
             <!-- Text box for search input -->
             <div class="container my-1">
@@ -69,7 +70,7 @@
                     <select name="Position" class="form-control mx-2 col-md-4">
                         <option value="">Select Position</option>
                         <option value="Forward" selected="@(Model.Position == "Forward" ? "selected" : null)">Forward</option>
-                        <option value="Striker" selected="@(Model.Position == "Striker" ? "selected" : null)">Striker</option>                    
+                        <option value="Striker" selected="@(Model.Position == "Striker" ? "selected" : null)">Striker</option>
                         <option value="Winger" selected="@(Model.Position == "Winger" ? "selected" : null)">Winger</option>
                         <option value="Midfielder" selected="@(Model.Position == "Midfielder" ? "selected" : null)">Midfielder</option>
                     </select>
@@ -89,20 +90,23 @@
                     </select>
                 </div>
             </div>
-            
 
 
 
 
-        <!-- Search Button -->
-        <button type="submit" class="btn btn-primary">Search</button>
+
+            <!-- Search Button -->
+            <button type="submit" class="btn btn-primary">Search</button>
 
 
-    </form>
+        </form>
+    </div>
+
+    @(await Html.RenderComponentAsync<ProductList>(
+        RenderMode.ServerPrerendered,
+        new { Players = Model.SelectedPlayerList ?? Model.PlayerList }))
 </div>
 
-@(await Html.RenderComponentAsync<ProductList>(
-    RenderMode.ServerPrerendered,
-    new { Players = Model.SelectedPlayerList ?? Model.PlayerList }))
+
 
 <script src="_framework/blazor.server.js"></script>
