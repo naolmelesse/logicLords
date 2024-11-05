@@ -8,6 +8,13 @@
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+.container-home {
+    background-size: contain;
+    background-image: url('../data/background.jpg');
+    color: #fff;
+    padding: 2em;
+}
+
 .card-columns .card:hover .card-img {
     opacity: 1;
     -webkit-transform-style: preserve-3d;
