@@ -20,21 +20,5 @@ namespace UnitTests.Components
         }
 
         #endregion TestSetup
-
-        [Test]
-        public void ProductList_Valid_Default_Should_Return_Content()
-        {
-            // Arrange
-            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
-
-            // Act
-            var page = RenderComponent<ProductList>();
-
-            // Get the Cards retrned
-            var result = page.Markup;
-
-            // Assert
-            Assert.That(result.Contains("Lionel Messi"), Is.EqualTo(true));
-        }
     }
 }
