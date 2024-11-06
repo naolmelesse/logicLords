@@ -51,6 +51,12 @@ namespace ContosoCrafts.WebSite.Controllers
         [HttpPatch]
         public ActionResult Patch([FromBody] RatingRequest request)
         {
+            // Validate that ProductId is not null or empty
+            if (string.IsNullOrEmpty(request.ProductId))
+            {
+                return BadRequest("ProductId cannot be null or empty.");
+            }
+
             ProductService.AddRating(request.ProductId, request.Rating);
             
             return Ok();
