@@ -199,6 +199,34 @@ namespace ContosoCrafts.WebSite.Services
             return data;
         }
 
+        public ProductModel CreateData(ProductModel newPlayer)
+        {
+            if (newPlayer == null)
+            {
+                return null;
+            }
+
+            var playersInDB = GetAllData();
+            var existingIds = new HashSet<string>(playersInDB.Select(player => player.Id));
+
+            var baseId = newPlayer.Title.Replace(' ', '-');
+            var newId = baseId;
+            var counter = 1;  // Start counter at 1 (not 0)
+
+            while (existingIds.Contains(newId))
+            {
+                newId = baseId + counter++;
+            }
+
+            newPlayer.Id = newId;
+
+            playersInDB = playersInDB.Append(newPlayer).ToList();
+
+            SaveData(playersInDB);
+
+            return newPlayer;
+        }
+
         /// <summary>
         /// Remove the item from the system
         /// </summary>
