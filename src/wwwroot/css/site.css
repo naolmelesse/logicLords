@@ -14,6 +14,29 @@ for details on configuring this project to bundle and minify static web assets. 
     padding: 2em;
 }
 
+.navbar-container{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    
+}
+.nav-link {
+    display: flex;
+    gap: 0.5rem;
+    color: #fff !important;
+}
+
+.bg-navbar {
+    background-color: #284B63;
+}
+
 .home-search-container {
     color: #fff;
 }
@@ -202,11 +225,7 @@ a {
     border-color: #353535;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -262,13 +281,6 @@ ul {
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
     font-family: 'Lato', sans-serif;
-}
-/*Backgrounds*/
-.bg-navbar {
-    background: -webkit-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
-    background: -o-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
-    background: -moz-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
-    background: linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
 }
 .bg-footer {
     background: -webkit-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
