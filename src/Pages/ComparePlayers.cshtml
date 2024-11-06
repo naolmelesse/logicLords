@@ -4,50 +4,33 @@
     ViewData["Title"] = "Player Comparison";
 }
 
-<h1 style="text-align: center">@ViewData["Title"]</h1>
+<h1 class="title">@ViewData["Title"]</h1>
 
-<div width: 100%; height: contain;">
+
+
     <form method="Get">
-        <div style="text-align: center; border-right: 2px solid; width: 50%; height: auto; float:left;">
-            <div class="px-5">
-                <label for="dropdown1">Choose a player to compare:</label>
-                <select asp-for="SelectedPlayerLeftId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
-                    <option value="">-- Select Player --</option>
-                </select>
-            </div>
-            @if (Model.SelectedPlayerLeft != null)
-            {
-            <img id="playerImageLeft" src="@Model.SelectedPlayerLeft.Image"
-                 alt="player Image Left" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
-            }
-            @if (Model.SelectedPlayerLeft == null)
-            {<img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
-                 alt="player Image Left" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
-            }
-        </div>
+    <div class="comparison-container">
+        <!-- Left Player Card -->
+    <div class="player-card">
+            <label for="dropdown1">Choose a player to compare:</label>
+            <select asp-for="SelectedPlayerLeftId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
+                <option value="">-- Select Player --</option>
+            </select>
 
-        <div style="text-align: center; width:50%; height: auto; float:left;">
-            <div class="px-5">
-                <label for="dropdown2">Choose a player to compare:</label>
-                <select asp-for="SelectedPlayerRightId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
-                    <option value="">-- Select Player --</option>
-                </select>
+            <div class="player-image">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <img id="playerImageLeft" src="@Model.SelectedPlayerLeft.Image" alt="player Image Left" />
+                }
+                @if (Model.SelectedPlayerLeft == null)
+                {
+                    <img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Left" />
+                }
             </div>
-            @if (Model.SelectedPlayerRight != null)
-            {
-                <img id="playerImageRight" src="@Model.SelectedPlayerRight.Image"
-                 alt="player Image Right" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
-            }
-            @if (Model.SelectedPlayerRight == null)
-            {
-            <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png"
-                 alt="player Image Right" style="width: 300px; height: 300px; object-fit: cover; margin-bottom: 10px;" />
-            }
-        </div>
-        <div class="comparison-list-container">
-            @if (Model.SelectedPlayerLeft != null)
-            {
-                <div class="comparison-player-left">
+
+            <div class="player-details">
+                @if (Model.SelectedPlayerLeft != null)
+                {
                     <p>@Model.SelectedPlayerLeft.Placeofbirth</p>
                     <p>@Model.SelectedPlayerLeft.Dateofbirth</p>
                     <p>@Model.SelectedPlayerLeft.Club</p>
@@ -57,28 +40,51 @@
                     <p>@Model.SelectedPlayerLeft.Assists</p>
                     <p>@Model.SelectedPlayerLeft.Appearances</p>
                     <p>@Model.SelectedPlayerLeft.Minutesplayed</p>
-                </div>
-            }
-            @if (Model.SelectedPlayerLeft == null)
-            {
-                <div>
+                }
+                @if (Model.SelectedPlayerLeft == null)
+                {
                     <p>No player selected</p>
-                </div>
-            }
-            <div class="comparison-stats">
-                <p>Place of birth</p>
-                <p>Date of birth</p>
-                <p>Club</p>
-                <p>Height</p>
-                <p>Positions</p>
-                <p>Goals</p>
-                <p>Assists</p>
-                <p>Appearances</p>
-                <p>Minutes played</p>
+                }
             </div>
+        
+    </div>
+
+    <!-- Comparison Stats Column -->
+        <div class="comparison-stats">
+            <p><strong>⚔️ Comparison ⚔️</strong></p>
+            <p>🌍 Place of birth 🌍</p>
+            <p>📅 Date of birth 📅</p>
+            <p>🏟️ Club 🏟️</p>
+            <p>📏 Height 📏</p>
+            <p>⚽ Position ⚽</p>
+            <p>🥅 Goals 🥅</p>
+            <p>🎯 Assists 🎯</p>
+            <p>👕 Appearances 👕</p>
+            <p>⏱️ Minutes played ⏱️</p>
+        </div>
+
+
+    <!-- Right Player Card -->
+    <div class="player-card">
+        <label for="dropdown2">Choose a player to compare:</label>
+        <select asp-for="SelectedPlayerRightId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
+            <option value="">-- Select Player --</option>
+        </select>
+
+        <div class="player-image">
             @if (Model.SelectedPlayerRight != null)
-            {                
-            <div class="comparison-player-right">
+            {
+                <img id="playerImageRight" src="@Model.SelectedPlayerRight.Image" alt="player Image Right" />
+            }
+            @if (Model.SelectedPlayerRight == null)
+            {
+                <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Right" />
+            }
+        </div>
+
+        <div class="player-details">
+            @if (Model.SelectedPlayerRight != null)
+            {
                 <p>@Model.SelectedPlayerRight.Placeofbirth</p>
                 <p>@Model.SelectedPlayerRight.Dateofbirth</p>
                 <p>@Model.SelectedPlayerRight.Club</p>
@@ -88,17 +94,14 @@
                 <p>@Model.SelectedPlayerRight.Assists</p>
                 <p>@Model.SelectedPlayerRight.Appearances</p>
                 <p>@Model.SelectedPlayerRight.Minutesplayed</p>
-                </div>
             }
             @if (Model.SelectedPlayerRight == null)
             {
-                <div>
-                    <p>No player selected</p>
-                </div>
+                <p>No player selected</p>
             }
-
-
         </div>
+    </div>
+
+    </div>
     </form>
 
-</div>  
