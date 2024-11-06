@@ -206,6 +206,45 @@ namespace UnitTests.Pages.Product.AddRating
             Assert.That(result, Is.InstanceOf<ProductModel>());
             Assert.That(dataNewList.First(x => x.Id.Equals(result.Id)).Title, Is.EqualTo(result.Title));
         }
+
+        [Test]
+        public void CreateData_Valid_Product_Should_Return_Product()
+        {
+            // Arrange
+            var data = new ProductModel
+            {
+                Title = "Ready Player",
+                Dateofbirth = "15 October 1998",
+                Placeofbirth = "Santiago, Chile",
+                Height = "1.74 m (5 ft 8 in)",
+                Position = "Goalkeeper",
+                Club = "Columbus Crew",
+                Appearances = "12",
+                Minutesplayed = "880",
+                Assists = "5",
+                Image = "/data/players/ChristianBenteke.png"
+            };
+
+            // Act
+            var result = TestHelper.ProductService.CreateData(data);
+            var dataNewList = TestHelper.ProductService.GetAllData();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<ProductModel>());
+            Assert.That(dataNewList.First(x => x.Id.Equals(result.Id)).Title, Is.EqualTo(result.Title));
+        }
+
+        [Test]
+        public void CreateData_Invalid_Product_Should_Return_null()
+        {
+            // Arrange
+
+            // Act
+            var result = TestHelper.ProductService.CreateData(null);
+
+            // Assert
+            Assert.That(result, Is.Null);
+        }
         #endregion CreateData
 
         #region DeleteData
