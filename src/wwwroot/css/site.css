@@ -11,8 +11,11 @@ for details on configuring this project to bundle and minify static web assets. 
 .container-home {
     background-size: contain;
     background-image: url('../data/background.jpg');
-    color: #fff;
     padding: 2em;
+}
+
+.home-search-container {
+    color: #fff;
 }
 
 .card-columns .card:hover .card-img {
@@ -66,14 +69,67 @@ for details on configuring this project to bundle and minify static web assets. 
     color: black;
 }
 
-.comparison-list-container {
-    padding: 2em 0;
-    width: 65%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
+
+.title {
     text-align: center;
 }
+
+.comparison-container {
+    display: flex;
+    justify-content: center;
+
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    background: #3C6E71;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.player-card {
+    flex: 1;
+    max-width: 300px;
+    border: 2px solid #353535;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+    .player-card label,
+    .player-card select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+.player-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.player-details{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.player-details p {
+    margin: 5px 0;
+}
+
+.comparison-stats {
+    flex: 1;
+    max-width: 350px;
+    padding: 0 15px;
+    text-align: center;
+    align-self: flex-end;
+    display: grid;
+    gap: 10px;
+    border-left: 1px solid #353535;
+    border-right: 1px solid #353535;
+}
+
 
 .contact-us-header{
     text-align: center;
