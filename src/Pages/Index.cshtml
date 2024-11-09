@@ -8,21 +8,19 @@
 <div class="container-home">
     <h1>Logic Lords</h1>
     <div class="container my-5 justify-content-center home-search-container">
-        <h2>Filter and Search</h2>
-        <form method="get" asp-page-handler="Search" class=" search-form">
+        <h2 class="search-heading">Filter and Search</h2>
+        <form method="get" asp-page-handler="Search" class="search-form">
 
             <!-- Text box for search input -->
-            <div class="container my-1">
-                <input type="text" name="SearchTerm" class="form-control" placeholder="Search..." value="@Model.SearchTerm" />
+            <div class="search-input-container container my-1">
+                <input type="text" name="SearchTerm" class="form-control search-input" placeholder="Search..." value="@Model.SearchTerm" />
             </div>
 
             <div class="filters-container">
                 <!--Age Filter-->
-                <div class="row justify-content-center align-items-center">
-                    <label class="m-0">Age Range:</label>
-
-                    <!-- Dropdown for min age-->
-                    <select name="MinAge" class="form-control mx-2 col-md-2">
+                <div class="age-filter row justify-content-center align-items-center">
+                    <label class="age-label m-0">Age Range:</label>
+                    <select name="MinAge" class="form-control age-dropdown mx-2 col-md-2">
                         <option value="">Min Age</option>
                         @for (int age = 16; age <= 40; age++)
                         {
@@ -30,8 +28,7 @@
                         }
                     </select>
                     -
-                    <!-- Dropdown for max age -->
-                    <select name="MaxAge" class="form-control mx-2 col-md-2">
+                    <select name="MaxAge" class="form-control age-dropdown mx-2 col-md-2">
                         <option value="">Max Age</option>
                         @for (int age = 16; age <= 40; age++)
                         {
@@ -40,12 +37,10 @@
                     </select>
                 </div>
 
-                <!--Appearance Filter-->
-                <div class="row justify-content-center align-items-center mt-1">
-                    <label class="m-0">Appearance Range:</label>
-
-                    <!-- Dropdown for Appearance age-->
-                    <select name="MinAppearance" class="form-control mx-2 col-md-2">
+                <!-- Appearance Filter -->
+                <div class="appearance-filter row justify-content-center align-items-center mt-1">
+                    <label class="appearance-label m-0">Appearance Range:</label>
+                    <select name="MinAppearance" class="form-control appearance-dropdown mx-2 col-md-2">
                         <option value="">Min Appearance</option>
                         @for (int appearance = 16; appearance <= 40; appearance++)
                         {
@@ -53,8 +48,7 @@
                         }
                     </select>
                     -
-                    <!-- Dropdown for Appearance age -->
-                    <select name="MaxAppearance" class="form-control mx-2 col-md-2">
+                    <select name="MaxAppearance" class="form-control appearance-dropdown mx-2 col-md-2">
                         <option value="">Max Appearance</option>
                         @for (int appearance = 16; appearance <= 40; appearance++)
                         {
@@ -63,11 +57,10 @@
                     </select>
                 </div>
 
-
                 <!-- Position Filter -->
-                <div class="row justify-content-center align-items-center mt-3">
-                    <label class="m-0">Position:</label>
-                    <select name="Position" class="form-control mx-2 col-md-4">
+                <div class="position-filter row justify-content-center align-items-center mt-3">
+                    <label class="position-label m-0">Position:</label>
+                    <select name="Position" class="form-control position-dropdown mx-2 col-md-4">
                         <option value="">Select Position</option>
                         <option value="Forward" selected="@(Model.Position == "Forward" ? "selected" : null)">Forward</option>
                         <option value="Striker" selected="@(Model.Position == "Striker" ? "selected" : null)">Striker</option>
@@ -77,9 +70,9 @@
                 </div>
 
                 <!-- Height Filter -->
-                <div class="row justify-content-center align-items-center mt-3">
-                    <label class="m-0">Height:</label>
-                    <select name="Height" class="form-control mx-2 col-md-4">
+                <div class="height-filter row justify-content-center align-items-center mt-3">
+                    <label class="height-label m-0">Height:</label>
+                    <select name="Height" class="form-control height-dropdown mx-2 col-md-4">
                         <option value="">Select Height Range</option>
                         <option value="< 155 cm" selected="@(Model.Height == "< 155 cm" ? "selected" : null)">< 155 cm</option>
                         <option value="155 cm - 164 cm" selected="@(Model.Height == "155 cm - 164 cm" ? "selected" : null)">155 cm - 164 cm</option>
@@ -91,14 +84,8 @@
                 </div>
             </div>
 
-
-
-
-
             <!-- Search Button -->
-            <button type="submit" class="btn btn-primary">Search</button>
-
-
+            <button type="submit" class="btn btn-primary search-button">Search</button>
         </form>
     </div>
 
@@ -106,7 +93,5 @@
         RenderMode.ServerPrerendered,
         new { Players = Model.SelectedPlayerList ?? Model.PlayerList }))
 </div>
-
-
 
 <script src="_framework/blazor.server.js"></script>
