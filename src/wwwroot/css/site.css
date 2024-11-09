@@ -37,9 +37,104 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color: #284B63;
 }
 
-.home-search-container {
-    color: #fff;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
+
+/* Home Search Container */
+.home-search-container {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.search-heading {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+/* Input Container */
+.search-input-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Filter Container Styles */
+.filters-container {
+    margin-top: 20px;
+}
+
+.age-filter, .appearance-filter, .position-filter, .height-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.age-label, .appearance-label, .position-label, .height-label {
+    font-weight: bold;
+    color: #555;
+    margin-right: 10px;
+}
+
+/* Dropdown Styles */
+.age-dropdown, .appearance-dropdown, .position-dropdown, .height-dropdown {
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Search Button */
+.search-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .age-filter, .appearance-filter, .position-filter, .height-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .age-dropdown, .appearance-dropdown, .position-dropdown, .height-dropdown {
+        margin-bottom: 10px;
+    }
+}
+
 
 .card-columns .card:hover .card-img {
     opacity: 1;
