@@ -39,20 +39,17 @@ namespace ContosoCrafts.WebSite.Models
         public string Position { get; set; }
 
         // Number of goals scored by the player
-        public string Goals { get; set; }
+        public int Goals { get; set; }
 
         // Number of assists made by the player
-        public string Assists { get; set; }
+        public int Assists { get; set; }
 
         // The number of appearances a player has made (starts and subs)
-        public string Appearances { get; set; }
-
-        // The number of appearances a player has made as an int(starts and subs)
-        public int AppearancesAsInt { get; set; }
+        public int Appearances { get; set; }
 
         // Total minutes the player has made
         [JsonPropertyName("Minutes played")]
-        public string Minutesplayed { get; set; }
+        public int Minutesplayed { get; set; }
        
         // The name of the player
         public string Title { get; set; }       
