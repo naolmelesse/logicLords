@@ -1,11 +1,9 @@
+using ContosoCrafts.WebSite.Models;
+using Microsoft.AspNetCore.Hosting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-
-using ContosoCrafts.WebSite.Models;
-
-using Microsoft.AspNetCore.Hosting;
 
 namespace ContosoCrafts.WebSite.Services
 {
