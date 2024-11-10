@@ -1,11 +1,15 @@
-﻿using ContosoCrafts.WebSite.Models;
-using ContosoCrafts.WebSite.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System;
+
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+
+using ContosoCrafts.WebSite.Models;
+using ContosoCrafts.WebSite.Services;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Buffers.Text;
+using System.Numerics;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -112,7 +116,7 @@ namespace ContosoCrafts.WebSite.Pages
             if (MinAppearance.HasValue)
             {
                 SelectedPlayerList = SelectedPlayerList
-                    .Where(player => player.AppearancesAsInt >= MinAppearance.Value);
+                    .Where(player => player.Appearances >= MinAppearance.Value);
             }
 
 
@@ -120,7 +124,7 @@ namespace ContosoCrafts.WebSite.Pages
             if (MaxAppearance.HasValue)
             {
                 SelectedPlayerList = SelectedPlayerList
-                    .Where(player => player.AppearancesAsInt <= MaxAppearance.Value);
+                    .Where(player => player.Appearances <= MaxAppearance.Value);
             }
 
             // Filter based on Position if value provided
