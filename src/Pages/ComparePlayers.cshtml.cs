@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace ContosoCrafts.WebSite.Pages
-{   
+{
     /// <summary>
     /// Class for methods and properties related to player comparison
     /// </summary>
