@@ -1,13 +1,12 @@
-using System;
-using System.IO;
-using System.Linq;
+using ContosoCrafts.WebSite.Pages;
+using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using ContosoCrafts.WebSite.Models;
-using ContosoCrafts.WebSite.Pages;
-using ContosoCrafts.WebSite.Services;
+using System;
+using System.IO;
+using System.Linq;
 
 
 // THIS IS THE UNIT TEST FOR THE HOME PAGE
