@@ -214,9 +214,9 @@ namespace UnitTests.Pages.Product.AddRating
                 Height = "1.74 m (5 ft 8 in)",
                 Position = "Goalkeeper",
                 Club = "Columbus Crew",
-                Appearances = "12",
-                Minutesplayed = "880",
-                Assists = "5",
+                Appearances = 12,
+                Minutesplayed = 880,
+                Assists = 5,
                 Image = "/data/players/ChristianBenteke.png"
             };
 
