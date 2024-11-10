@@ -1,15 +1,10 @@
-﻿using ContosoCrafts.WebSite.Models;
-using ContosoCrafts.WebSite.Pages;
+﻿using ContosoCrafts.WebSite.Pages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UnitTests.Pages
 {
