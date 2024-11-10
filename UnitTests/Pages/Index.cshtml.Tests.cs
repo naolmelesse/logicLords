@@ -139,7 +139,7 @@ namespace UnitTests.Pages.Index
 
             // Assert
             var expectedPlayers = productService.GetAllData()
-                .Where(p => p.AppearancesAsInt >= 30)
+                .Where(p => p.Appearances >= 30)
                 .Select(p => p.Title)
                 .ToList();
 
@@ -157,7 +157,7 @@ namespace UnitTests.Pages.Index
 
             // Assert
             var expectedPlayers = productService.GetAllData()
-                .Where(p => p.AppearancesAsInt <= 25)
+                .Where(p => p.Appearances <= 25)
                 .Select(p => p.Title)
                 .ToList();
 
@@ -300,7 +300,7 @@ namespace UnitTests.Pages.Index
                 .Where(p =>
                     p.Title.Contains("Messi", StringComparison.OrdinalIgnoreCase) &&
                     p.Age >= 30 && p.Age <= 40 &&
-                    p.AppearancesAsInt >= 15 && p.AppearancesAsInt <= 25 &&
+                    p.Appearances >= 15 && p.Appearances <= 25 &&
                     p.Position.Equals("Forward", StringComparison.OrdinalIgnoreCase) &&
                     p.HeightInCMs >= 165 && p.HeightInCMs <= 174)
                 .Select(p => p.Title)
