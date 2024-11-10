@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System;
-
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-
-using ContosoCrafts.WebSite.Models;
+﻿using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Buffers.Text;
-using System.Numerics;
 
 namespace ContosoCrafts.WebSite.Pages
 {
