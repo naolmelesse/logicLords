@@ -51,6 +51,7 @@ namespace UnitTests.Pages.Product
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result, Is.TypeOf<RedirectToPageResult>());
+            Assert.That((result as RedirectToPageResult).PageName, Is.EqualTo("/Error"));
         }
 
         /// <summary>
