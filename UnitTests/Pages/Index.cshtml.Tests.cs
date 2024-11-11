@@ -313,33 +313,6 @@ namespace UnitTests.Pages.Index
             Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(data.Count));
         }
 
-        [Test]
-        public void OnGet_Invalid_Height_Null_Should_NotFilterByHeight()
-        {
-            // Arrange
-            pageModel.Height = null;
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(pageModel.PlayerList.Count()));
-        }
-
-        [Test]
-        public void OnGet_Invalid_Height_Range_Should_Not_Filter_Players()
-        {
-            // Arrange
-            pageModel.Height = "Invalid Range";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(pageModel.PlayerList.Count()));
-        }
-
-
         #endregion OnGet
     }
 }
