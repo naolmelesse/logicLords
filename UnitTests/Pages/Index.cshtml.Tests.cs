@@ -1,7 +1,6 @@
 using ContosoCrafts.WebSite.Pages;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
