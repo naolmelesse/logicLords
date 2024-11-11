@@ -17,13 +17,12 @@ namespace UnitTests.Controllers
         public void Setup()
         {
             // Arrange:             
-            controller = new ProductsController(TestHelper.ProductService) 
-            {
-            };
+            controller = new ProductsController(TestHelper.ProductService) {};
+
         }
 
         [Test]
-        public void Get_ReturnsAllProducts()
+        public void Get_Valid_Should_Return_All_Products()
         {
             // Arrange:
             var players = TestHelper.ProductService.GetAllData();
@@ -47,11 +46,15 @@ namespace UnitTests.Controllers
         }
 
         [Test]
-        public void Patch_UpdatesProductRating_ReturnsOkResult()
+        public void Patch_Valid_Update_Product_Rating__Should_Return_OkResult()
         {
             // Arrange: 
             var players = TestHelper.ProductService.GetAllData();
+
+            // Get the first player's data
             var data = players.First();
+
+            // Add a new rating for the first player
             var ratingRequest = new ProductsController.RatingRequest
             {
                 ProductId = data.Id,
@@ -66,8 +69,9 @@ namespace UnitTests.Controllers
 
             // Verify the product rating was updated in the data
             var updatedProduct = TestHelper.ProductService.GetAllData().First(p => p.Id == data.Id);
-            Assert.That(updatedProduct.Ratings.Last(), Is.EqualTo(5)); // Ensure the last rating matches
 
+            // Ensure the last rating matches
+            Assert.That(updatedProduct.Ratings.Last(), Is.EqualTo(5)); 
 
         }
 
