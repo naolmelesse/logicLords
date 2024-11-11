@@ -1,6 +1,7 @@
 using ContosoCrafts.WebSite.Pages;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -47,15 +48,17 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Should_Return_AllPlayers()
         {
             // Arrange
+            var data = productService.GetAllData().Count();
 
             // Act
             pageModel.OnGet();
 
+            var result = pageModel.PlayerList.Count();
+
             // Assert
-            Assert.That(pageModel.ModelState.IsValid, Is.True);
-            var expectedCount = productService.GetAllData().Count();
-            Assert.That(pageModel.PlayerList.Count(), Is.EqualTo(expectedCount));
-            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(expectedCount));
+            Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
+            Assert.That(result, Is.EqualTo(data));
+            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(data));
         }
 
         [Test]
@@ -66,11 +69,12 @@ namespace UnitTests.Pages.Index
 
             // Act
             pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.First().Title;
 
             // Assert
             Assert.That(pageModel.ModelState.IsValid, Is.True);
             Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(1));
-            Assert.That(pageModel.SelectedPlayerList.First().Title, Is.EqualTo("Lionel Messi"));
+            Assert.That(result, Is.EqualTo("Lionel Messi"));
         }
 
         [Test]
@@ -78,17 +82,17 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.MinAge = 30;
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.Age >= 30)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -96,17 +100,17 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.MaxAge = 25;
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.Age <= 25)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -115,17 +119,18 @@ namespace UnitTests.Pages.Index
             // Arrange
             pageModel.MinAge = 26;
             pageModel.MaxAge = 30;
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.Age >= 26 && p.Age <= 30)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -133,17 +138,17 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.MinAppearance = 30;
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.Appearances >= 30)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -151,37 +156,37 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.MaxAppearance = 25;
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.Appearances <= 25)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
 
 
         [Test]
-        public void OnGet_Valid_Height_Should_Return_PlayersWithinHeightRange_165cm_174cm()
+        public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_165cm_174cm()
         {
             // Arrange
             pageModel.Height = "165 cm - 174 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 165 && p.HeightInCMs <= 174)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -189,17 +194,17 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.Height = "155 cm - 164 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 155 && p.HeightInCMs <= 164)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -207,20 +212,18 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.Height = "175 cm - 184 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 175 && p.HeightInCMs <= 184)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
 
-            // Ensure the specific line in OnGetSearch is executed
-            Assert.That(expectedPlayers.Count, Is.GreaterThan(0));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -228,17 +231,19 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.Height = "< 155 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs < 155)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+
+
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -246,20 +251,17 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.Height = "185 cm - 194 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 185 && p.HeightInCMs <= 194)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
 
-            // Ensure the specific line in OnGetSearch is executed
-            Assert.That(expectedPlayers.Count, Is.GreaterThan(0));
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
@@ -267,21 +269,21 @@ namespace UnitTests.Pages.Index
         {
             // Arrange
             pageModel.Height = "> 195 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs > 195)
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
         }
 
         [Test]
-        public void OnGet_Valid_All_Filters_Should_Return_PlayersMatchingAllCriteria()
+        public void OnGet_Valid_All_Filters_Should_Return_Players_Matching_All_Criteria()
         {
             // Arrange
             pageModel.SearchTerm = "Messi";
@@ -291,12 +293,8 @@ namespace UnitTests.Pages.Index
             pageModel.MaxAppearance = 25;
             pageModel.Position = "Forward";
             pageModel.Height = "165 cm - 174 cm";
-
-            // Act
-            pageModel.OnGet();
-
-            // Assert
-            var expectedPlayers = productService.GetAllData()
+            
+            var data = productService.GetAllData()
                 .Where(p =>
                     p.Title.Contains("Messi", StringComparison.OrdinalIgnoreCase) &&
                     p.Age >= 30 && p.Age <= 40 &&
@@ -306,8 +304,13 @@ namespace UnitTests.Pages.Index
                 .Select(p => p.Title)
                 .ToList();
 
-            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(expectedPlayers.Count));
-            Assert.That(pageModel.SelectedPlayerList.Select(p => p.Title), Is.EquivalentTo(expectedPlayers));
+            // Act
+            pageModel.OnGet();
+            var result = pageModel.SelectedPlayerList.Select(p => p.Title);
+
+            // Assert
+            Assert.That(result, Is.EquivalentTo(data));
+            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(data.Count));
         }
 
         [Test]
