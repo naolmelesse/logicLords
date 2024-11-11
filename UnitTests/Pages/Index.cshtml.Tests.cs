@@ -1,14 +1,12 @@
 using ContosoCrafts.WebSite.Pages;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
-
 
 // THIS IS THE UNIT TEST FOR THE HOME PAGE
 
@@ -18,25 +16,40 @@ namespace UnitTests.Pages.Index
     {
         #region TestSetup
 
+        // The IndexModel instance being tested
         public static IndexModel pageModel;
+
+        // The product service used to retrieve player data
         public static JsonFileProductService productService;
+
+        // The web host environment for accessing environment-specific information
         public static IWebHostEnvironment webHostEnvironment;
 
+        /// <summary>
+        /// Initializes common objects needed for the tests
+        /// </summary>
         [SetUp]
         public void TestInitialize()
         {
+            // Create a mock logger for the IndexModel
             var MockLoggerDirect = Mock.Of<ILogger<IndexModel>>();
 
+            // Create a mock of the IWebHostEnvironment
             var webHostEnvironmentMock = new Mock<IWebHostEnvironment>();
 
+            // Get the path to the wwwroot directory
             var webRootPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "wwwroot");
 
+            // Set up the mock to return the wwwroot path when WebRootPath is accessed
             webHostEnvironmentMock.Setup(m => m.WebRootPath).Returns(webRootPath);
 
+            // Assign the mock IWebHostEnvironment to the webHostEnvironment variable
             webHostEnvironment = webHostEnvironmentMock.Object;
 
+            // Initialize the product service with the mocked web host environment
             productService = new JsonFileProductService(webHostEnvironment);
 
+            // Initialize the IndexModel with the mock logger and product service
             pageModel = new IndexModel(MockLoggerDirect, productService);
         }
 
@@ -44,6 +57,9 @@ namespace UnitTests.Pages.Index
 
         #region OnGet
 
+        /// <summary>
+        /// Test that OnGet retrieves all players when no filters are applied
+        /// </summary>
         [Test]
         public void OnGet_Valid_Should_Return_AllPlayers()
         {
@@ -61,11 +77,15 @@ namespace UnitTests.Pages.Index
             Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with a search term returns the filtered players
+        /// </summary>
         [Test]
         public void OnGet_Valid_SearchTerm_Should_Return_FilteredPlayers()
         {
             // Arrange
             pageModel.SearchTerm = "Lionel";
+            var data = "Lionel Messi";
 
             // Act
             pageModel.OnGet();
@@ -74,9 +94,12 @@ namespace UnitTests.Pages.Index
             // Assert
             Assert.That(pageModel.ModelState.IsValid, Is.True);
             Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(1));
-            Assert.That(result, Is.EqualTo("Lionel Messi"));
+            Assert.That(result, Is.EqualTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with MinAge returns players above the specified age
+        /// </summary>
         [Test]
         public void OnGet_Valid_MinAge_Should_Return_Players_Above_MinAge()
         {
@@ -95,6 +118,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with MaxAge returns players below the specified age
+        /// </summary>
         [Test]
         public void OnGet_Valid_MaxAge_Should_Return_PlayersBelowMaxAge()
         {
@@ -113,6 +139,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with both MinAge and MaxAge returns players within the age range
+        /// </summary>
         [Test]
         public void OnGet_Valid_MinAndMaxAge_Should_Return_Players_Within_AgeRange()
         {
@@ -124,7 +153,6 @@ namespace UnitTests.Pages.Index
                 .Select(p => p.Title)
                 .ToList();
 
-
             // Act
             pageModel.OnGet();
             var result = pageModel.SelectedPlayerList.Select(p => p.Title);
@@ -133,6 +161,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with Min Appearance returns players with appearances above the specified minimum
+        /// </summary>
         [Test]
         public void OnGet_Valid_MinAppearance_Should_Return_Players_Above_MinAppearance()
         {
@@ -151,6 +182,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with Max Appearance returns players with appearances below the specified maximum
+        /// </summary>
         [Test]
         public void OnGet_Valid_MaxAppearance_Should_Return_Players_Below_MaxAppearance()
         {
@@ -169,8 +203,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
-
-
+        /// <summary>
+        /// Test that OnGet with specific height range returns players within 165 cm to 174 cm
+        /// </summary>
         [Test]
         public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_165cm_174cm()
         {
@@ -189,6 +224,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with height range 155 cm to 164 cm returns correct players
+        /// </summary>
         [Test]
         public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_155_164()
         {
@@ -207,6 +245,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with height range 175 cm to 184 cm returns correct players
+        /// </summary>
         [Test]
         public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_175cm_184cm()
         {
@@ -217,7 +258,6 @@ namespace UnitTests.Pages.Index
                 .Select(p => p.Title)
                 .ToList();
 
-
             // Act
             pageModel.OnGet();
             var result = pageModel.SelectedPlayerList.Select(p => p.Title);
@@ -226,6 +266,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with height less than 155 cm returns players below 155 cm
+        /// </summary>
         [Test]
         public void OnGet_Valid_Height_Less_Than_155_Should_Return_Players_Below_155cm()
         {
@@ -241,11 +284,12 @@ namespace UnitTests.Pages.Index
             var result = pageModel.SelectedPlayerList.Select(p => p.Title);
 
             // Assert
-
-
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with height between 185 cm and 194 cm returns correct players
+        /// </summary>
         [Test]
         public void OnGet_Valid_Height_Between_185_And_194_Should_Return_Players_Within_Range()
         {
@@ -264,6 +308,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with height greater than 195 cm returns players above 195 cm
+        /// </summary>
         [Test]
         public void OnGet_Valid_Height_Greater_Than_195_Should_Return_Players_Above_195cm()
         {
@@ -282,6 +329,9 @@ namespace UnitTests.Pages.Index
             Assert.That(result, Is.EquivalentTo(data));
         }
 
+        /// <summary>
+        /// Test that OnGet with all filters applied returns players matching all criteria
+        /// </summary>
         [Test]
         public void OnGet_Valid_All_Filters_Should_Return_Players_Matching_All_Criteria()
         {
@@ -293,7 +343,7 @@ namespace UnitTests.Pages.Index
             pageModel.MaxAppearance = 25;
             pageModel.Position = "Forward";
             pageModel.Height = "165 cm - 174 cm";
-            
+
             var data = productService.GetAllData()
                 .Where(p =>
                     p.Title.Contains("Messi", StringComparison.OrdinalIgnoreCase) &&
