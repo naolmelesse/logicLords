@@ -3,12 +3,21 @@ using ContosoCrafts.WebSite.Models;
 
 namespace UnitTests.Models
 {
+
+    /// <summary>
+    /// Unit tests for the <see cref="CommentModel"/> class.
+    /// This test class validates the properties of the CommentModel.
+    /// </summary>
     public class CommentModelTests
     {
         #region TestSetup
 
+        // A shared instance of <see cref="CommentModel"/> for testing.
         public static CommentModel commentModel;
 
+        /// <summary>
+        /// Initializes the test setup.
+        /// </summary>
         [SetUp]
         public void TestInitialize()
         {
@@ -20,6 +29,10 @@ namespace UnitTests.Models
 
         #region Property Tests
 
+        /// <summary>
+        /// Test to verify that the Id property is initialized with a unique non-null value.
+        /// The Id should be a valid GUID.
+        /// </summary>
         [Test]
         public void Id_Should_Be_Initialized_With_UniqueValue()
         {
@@ -35,6 +48,10 @@ namespace UnitTests.Models
             Assert.That(System.Guid.TryParse(result, out _), Is.True, "Id should be a valid GUID.");
         }
 
+        /// <summary>
+        /// Test to verify that the Id property is initialized with a unique non-null value.
+        /// The Id should be a valid GUID.
+        /// </summary>
         [Test]
         public void Comment_Property_Should_Be_Assignable_And_Retrievable()
         {
@@ -49,6 +66,9 @@ namespace UnitTests.Models
             Assert.That(result, Is.EqualTo(data), "The Comment property should return the assigned value.");
         }
 
+        /// <summary>
+        /// Test to verify that the Id property can be set to a valid value and retrieved correctly.
+        /// </summary>
         [Test]
         public void Id_Set_ValidValue_Should_Return_CorrectId()
         {
