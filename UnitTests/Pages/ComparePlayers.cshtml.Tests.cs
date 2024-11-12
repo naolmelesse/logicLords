@@ -1,5 +1,4 @@
 ﻿using ContosoCrafts.WebSite.Pages;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Moq;
