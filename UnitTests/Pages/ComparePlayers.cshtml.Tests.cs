@@ -1,4 +1,5 @@
 ﻿using ContosoCrafts.WebSite.Pages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -8,6 +9,7 @@ using System.Linq;
 
 namespace UnitTests.Pages
 {
+
     public class ComparePlayers
     {
         #region TestSetup
@@ -36,10 +38,12 @@ namespace UnitTests.Pages
 
             // Act
             pageModel.OnGet();
+            var result1 = pageModel.SelectedPlayerRight;
+            var result2 = pageModel.SelectedPlayerLeft;
 
             // Assert
-            Assert.That(pageModel.SelectedPlayerRight, Is.Null);
-            Assert.That(pageModel.SelectedPlayerLeft, Is.Null);
+            Assert.That(result1, Is.Null);
+            Assert.That(result2, Is.Null);
         }
 
         [Test]
@@ -47,15 +51,16 @@ namespace UnitTests.Pages
         {
             // Arrange
             var players = TestHelper.ProductService.GetAllData();
-            var data = TestHelper.ProductService.GetAllData().First();
-            pageModel.SelectedPlayerLeftId = data.Id;
+            var data = players.First().Id;
+            pageModel.SelectedPlayerLeftId = data;
             pageModel.SelectedPlayerRightId = null;
 
             // Act
             pageModel.OnGet();
+            var result = pageModel.SelectedPlayerLeft.Id;
 
             // Assert
-            Assert.That(pageModel.SelectedPlayerLeft.Id, Is.EqualTo(data.Id));
+            Assert.That(result, Is.EqualTo(data));
             Assert.That(pageModel.SelectedPlayerRight, Is.Null);
         }
 
@@ -65,52 +70,57 @@ namespace UnitTests.Pages
         {
             // Arrange
             var players = TestHelper.ProductService.GetAllData();
-            var data = TestHelper.ProductService.GetAllData().Skip(1).First();
+            var data = players.Skip(1).First().Id;
             pageModel.SelectedPlayerLeftId = null;
-            pageModel.SelectedPlayerRightId = data.Id;
+            pageModel.SelectedPlayerRightId = data;
 
             // Act
             pageModel.OnGet();
+            var result = pageModel.SelectedPlayerRight.Id;
 
             // Assert
+            Assert.That(result, Is.EqualTo(data));
             Assert.That(pageModel.SelectedPlayerLeft, Is.Null);
-            Assert.That(pageModel.SelectedPlayerRight.Id, Is.EqualTo(data.Id));
+           
         }
 
         [Test]
         public void OnGet_Valid_Both_Sides_Player_Selected_Return_Void()
         {
             // Arrange
-            var players = TestHelper.ProductService.GetAllData();
-            var data1 = TestHelper.ProductService.GetAllData().Skip(2).First();
-            var data2 = TestHelper.ProductService.GetAllData().Skip(3).First();
-            pageModel.SelectedPlayerLeftId = data1.Id;
-            pageModel.SelectedPlayerRightId = data2.Id;
+            var player = TestHelper.ProductService.GetAllData();
+            var data1 = player.Skip(2).First().Id;
+            var data2 = player.Skip(3).First().Id;
+            pageModel.SelectedPlayerLeftId = data1;
+            pageModel.SelectedPlayerRightId = data2;
 
             // Act
             pageModel.OnGet();
+            var result1 = pageModel.SelectedPlayerLeft.Id;
+            var result2 = pageModel.SelectedPlayerRight.Id;
+
 
             // Assert
-            Assert.That(pageModel.SelectedPlayerLeft.Id, Is.EqualTo(data1.Id));
-            Assert.That(pageModel.SelectedPlayerRight.Id, Is.EqualTo(data2.Id));
+            Assert.That(result1, Is.EqualTo(data1));
+            Assert.That(result2, Is.EqualTo(data2));
         }
 
         [Test]
-        public void PlayerDropDownItems_Property_Should_Be_Assignable_And_Retrievable()
+        public void PlayerDropDownItems_Valid_Property_Should_Be_Assignable_And_Retrievable()
         {
             // Arrange
-            var testPlayerList = new List<SelectListItem>
+            var data = new List<SelectListItem>
             {
                 new SelectListItem { Value = "1", Text = "Player One" },
                 new SelectListItem { Value = "2", Text = "Player Two" }
             };
 
             // Act
-            pageModel.PlayerDropDownItems = testPlayerList;
+            pageModel.PlayerDropDownItems = data;
             var result = pageModel.PlayerDropDownItems;
 
             // Assert
-            Assert.That(result, Is.EqualTo(testPlayerList), "PlayerDropDownItems should return the assigned list.");
+            Assert.That(result, Is.EqualTo(data), "PlayerDropDownItems should return the assigned list.");
         }
         #endregion OnGet
     }
