@@ -32,10 +32,7 @@ namespace UnitTests.Pages.Product.Read
         [SetUp]
         public void TestInitialize()
         {
-            httpContextDefault = new DefaultHttpContext()
-            {
-                //RequestServices = serviceProviderMock.Object,
-            };
+            httpContextDefault = new DefaultHttpContext();
 
             modelState = new ModelStateDictionary();
 
@@ -60,27 +57,26 @@ namespace UnitTests.Pages.Product.Read
 
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
-            pageModel = new ReadModel()
-            {
-            };
+            pageModel = new ReadModel();
         }
 
         #endregion TestSetup
 
         #region OnGet
+        
         [Test]
-
-        public void OnGet_Valid_Should_Return_Products()
+        public void OnGet_Valid_Should_Return_Products_With_Correct_ID()
         {
             // Arrange
             var readModel = new ReadModel();
-            var expectedId = "test-id";
+            var data = "test-id";
+            readModel.Id = data;
 
             // Act
-            readModel.Id = expectedId;
+            var result = readModel.Id;
 
             // Assert
-            Assert.That(expectedId, Is.EqualTo(readModel.Id));
+            Assert.That(result, Is.EqualTo(data));
         }
         #endregion OnGet
     }
