@@ -8,18 +8,23 @@ using System.Linq;
 
 namespace UnitTests.Pages
 {
-
     public class ComparePlayers
     {
         #region TestSetup
 
+        // The Compare Player Page Model instance being tested
         public static ComparePlayersModel pageModel;
 
+        /// <summary>
+        /// Initializes common objects needed for the tests
+        /// </summary>
         [SetUp]
         public void TestInitialize()
         {
+            // Create a mock logger for the ComparePlayersModel
             var MockLoggerDirect = Mock.Of<ILogger<ComparePlayersModel>>();
 
+            // Initialize the ComparePlayersModel with the mock logger and test product service
             pageModel = new ComparePlayersModel(MockLoggerDirect, TestHelper.ProductService)
             {
             };
@@ -28,6 +33,10 @@ namespace UnitTests.Pages
         #endregion TestSetup
 
         #region OnGet
+
+        /// <summary>
+        /// Test that OnGet with no player ID selected returns null
+        /// </summary>
         [Test]
         public void OnGet_Valid_No_Selected_Player_Id_Return_Void()
         {
@@ -45,6 +54,9 @@ namespace UnitTests.Pages
             Assert.That(result2, Is.Null);
         }
 
+        /// <summary>
+        /// Test that OnGet with only the left player selected sets the left player correctly
+        /// </summary>
         [Test]
         public void OnGet_Valid_Left_Side_Player_Selected_Return_Void()
         {
@@ -63,7 +75,9 @@ namespace UnitTests.Pages
             Assert.That(pageModel.SelectedPlayerRight, Is.Null);
         }
 
-
+        /// <summary>
+        /// Test that OnGet with only the right player selected sets the right player correctly
+        /// </summary>
         [Test]
         public void OnGet_Valid_Right_Side_Player_Selected_Return_Void()
         {
@@ -80,9 +94,11 @@ namespace UnitTests.Pages
             // Assert
             Assert.That(result, Is.EqualTo(data));
             Assert.That(pageModel.SelectedPlayerLeft, Is.Null);
-           
         }
 
+        /// <summary>
+        /// Test that OnGet with both players selected sets both players correctly
+        /// </summary>
         [Test]
         public void OnGet_Valid_Both_Sides_Player_Selected_Return_Void()
         {
@@ -98,12 +114,14 @@ namespace UnitTests.Pages
             var result1 = pageModel.SelectedPlayerLeft.Id;
             var result2 = pageModel.SelectedPlayerRight.Id;
 
-
             // Assert
             Assert.That(result1, Is.EqualTo(data1));
             Assert.That(result2, Is.EqualTo(data2));
         }
 
+        /// <summary>
+        /// Test that the PlayerDropDownItems property can be assigned and retrieved correctly
+        /// </summary>
         [Test]
         public void PlayerDropDownItems_Valid_Property_Should_Be_Assignable_And_Retrievable()
         {
@@ -121,7 +139,7 @@ namespace UnitTests.Pages
             // Assert
             Assert.That(result, Is.EqualTo(data), "PlayerDropDownItems should return the assigned list.");
         }
+
         #endregion OnGet
     }
 }
-
