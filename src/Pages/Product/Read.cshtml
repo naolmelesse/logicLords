@@ -4,7 +4,16 @@
 @using ContosoCrafts.WebSite.Components
 @model ReadModel
 @{
-    ViewData["Title"] = "READ";
+    ViewData["Title"] = "Player Details";
 }
 
-@(await Html.RenderComponentAsync<PlayerData>(RenderMode.ServerPrerendered, new { Id = Model.Id }))
+<div class="read-page-container">
+    <div class="content-wrapper">
+        <h1 class="page-title">Player Information</h1>
+
+        <div class="player-data-container">
+            @(await Html.RenderComponentAsync<PlayerData>(RenderMode.ServerPrerendered, new { Id = Model.Id }))
+        </div>
+    </div>
+</div>
+
