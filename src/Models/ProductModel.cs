@@ -8,6 +8,7 @@ namespace ContosoCrafts.WebSite.Models
     /// </summary>
     public class ProductModel
     {
+
         // Unique Identifier for a player
         public string Id { get; set; }        
 
