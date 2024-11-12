@@ -349,11 +349,100 @@ button.accept-policy {
   line-height: inherit;
 }
 
+/* Read page styles */
+.read-page-container {
+    padding: 2rem;
+    background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+    margin: auto;
+    text-align: center;
+}
+
+.read-page-container img{
+    border-radius: 95%;
+    border: 0.5rem dotted #D9D9D9;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+.read-page-container h1{
+    margin-bottom: 2rem;
+}
+
+.read-page-container ol{
+    display: flex;
+    flex-direction:column;
+    gap: 0.5rem;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.page-title {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 1rem;
+}
+
+.player-data-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 2rem;
+    height: 55vh;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .read-page-container {
+        padding: 1rem;
+    }
+
+    .content-wrapper {
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .player-data-container {
+        padding: 1rem;
+    }
+}
+
+/* Animation for content loading */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-wrapper {
+    animation: fadeIn 0.5s ease-out;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
