@@ -12,8 +12,6 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-// THIS IS THE UNIT TEST FOR THE READ PAGE
-
 namespace UnitTests.Pages.Product.Read
 {
     public class ReadTests
