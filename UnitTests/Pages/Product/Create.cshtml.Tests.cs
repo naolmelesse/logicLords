@@ -22,13 +22,28 @@ namespace UnitTests.Pages.Product
 
         // Required objects for setting up the test context
         #region TestSetup
+        // Default HTTP context used in the tests
         public static DefaultHttpContext httpContextDefault;
+
+        // Web host environment interface instance
         public static IWebHostEnvironment webHostEnvironment;
+
+        // Model state dictionary for managing model validation state
         public static ModelStateDictionary modelState;
+
+        // Action context containing the route data, action descriptor, and model state
         public static ActionContext actionContext;
+
+        // Metadata provider for models
         public static EmptyModelMetadataProvider modelMetadataProvider;
+
+        // Dictionary for storing view data
         public static ViewDataDictionary viewData;
+
+        // Dictionary for storing temporary data between requests
         public static TempDataDictionary tempData;
+
+        // Page context containing action context, view data, and HTTP context
         public static PageContext pageContext;
 
         // The page model being tested
