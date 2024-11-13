@@ -8,6 +8,9 @@ using System.Linq;
 
 namespace UnitTests.Pages
 {
+    /// <summary>
+    /// Class for unit tests of Compare players feature
+    /// </summary>
     public class ComparePlayers
     {
         #region TestSetup
