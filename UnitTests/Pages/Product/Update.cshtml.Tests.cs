@@ -13,6 +13,9 @@ using NUnit.Framework;
 
 namespace UnitTests.Pages.Product.Update
 {
+    /// <summary>
+    /// Unit tests for Update page
+    /// </summary>
     public class UpdateTests
     {
         #region TestSetup
