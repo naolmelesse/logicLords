@@ -121,12 +121,19 @@ namespace ContosoCrafts.WebSite.Services
         /// <returns>The updated product model, or null if the product was not found.</returns>
         public ProductModel UpdateData(ProductModel data)
         {
+            //Get all products
             var products = GetAllData();
+
+            // Check if data is null
             if (data == null)
             {
                 return null;
             }
+
+            //Find the data from the products
             var productData = products.FirstOrDefault(x => x.Id.Equals(data.Id));
+
+            //Check if the product was found
             if (productData == null)
             {
                 return null;
