@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace UnitTests.Pages.Startup
 {
+    /// <summary>
+    /// Unit tests for Startup file
+    /// </summary>
     public class StartupTests
     {
         #region TestSetup
