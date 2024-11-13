@@ -15,6 +15,10 @@ using System.Linq;
 
 namespace UnitTests.Pages.Product.Index
 {
+
+    /// <summary>
+    /// Unit test for Index Tests Page
+    /// </summary>
     public class IndexTests
     {
         #region TestSetup
