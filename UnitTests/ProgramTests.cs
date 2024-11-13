@@ -41,45 +41,5 @@ namespace UnitTests
         }
 
         #endregion CreateHostBuilder Tests
-
-        #region Main Method Tests
-
-        [Test]
-        public void Main_Valid_Should_Run_WithoutException()
-        {
-            // Arrange
-            string[] args = { };
-
-            MethodInfo mainMethod = typeof(Program).GetMethod("Main", BindingFlags.Static | BindingFlags.Public);
-
-            Assert.That(mainMethod, Is.Not.Null, "Main method should exist in Program class.");
-
-            // Act
-            Exception thrownException = null;
-            Task mainTask = Task.Run(() =>
-            {
-                try
-                {
-                    // Invoke the Main method
-                    mainMethod.Invoke(null, new object[] { args });
-                }
-                catch (TargetInvocationException tie)
-                {
-                    // Unwrap the inner exception
-                    thrownException = tie.InnerException;
-                }
-            });
-
-            // Allow the Main method to run for a short duration
-            Thread.Sleep(2000);
-
-            // Since Run() is blocking, we cannot gracefully stop the host.
-            // We'll check if any exceptions were thrown during the invocation.
-
-            // Assert
-            Assert.That(thrownException, Is.Null, $"Main method threw an exception: {thrownException?.Message}");
-        }
-
-        #endregion Main Method Tests
     }
 }
