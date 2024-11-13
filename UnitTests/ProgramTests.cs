@@ -4,6 +4,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace UnitTests
 {
+    /// <summary>
+    /// Unit tests for the Programfile
+    /// </summary>
     public class ProgramTests
     {
         #region CreateHostBuilder Tests
