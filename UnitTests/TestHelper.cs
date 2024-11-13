@@ -27,17 +27,39 @@ namespace UnitTests
     /// </summary>
     public static class TestHelper
     {
+        // Mock instance of IWebHostEnvironment for testing
         public static Mock<IWebHostEnvironment> MockWebHostEnvironment;
+
+        // Factory for creating URL helpers
         public static IUrlHelperFactory UrlHelperFactory;
+
+        // Default HTTP context for handling HTTP requests in tests
         public static DefaultHttpContext HttpContextDefault;
+
+        // Instance of IWebHostEnvironment for environment-specific settings
         public static IWebHostEnvironment WebHostEnvironment;
+
+        // Dictionary to store the model validation state
         public static ModelStateDictionary ModelState;
+
+        // Action context holding details like route data, action descriptor, and model state
         public static ActionContext ActionContext;
+
+        // Provider for model metadata used in views and data binding
         public static EmptyModelMetadataProvider ModelMetadataProvider;
+
+        // Dictionary for storing and passing view data to views
         public static ViewDataDictionary ViewData;
+
+        // Dictionary for holding temporary data between requests
         public static TempDataDictionary TempData;
+
+        // Page context containing action context, view data, and HTTP context
         public static PageContext PageContext;
+
+        // Service for managing product data from JSON files
         public static JsonFileProductService ProductService;
+
 
         /// <summary>
         /// Default Constructor
