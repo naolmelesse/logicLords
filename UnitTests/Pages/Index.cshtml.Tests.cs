@@ -12,6 +12,9 @@ using System.Linq;
 
 namespace UnitTests.Pages.Index
 {
+    /// <summary>
+    /// Class for unit tests of the home page
+    /// </summary>
     public class IndexTests
     {
         #region TestSetup
