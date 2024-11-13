@@ -54,7 +54,7 @@ namespace ContosoCrafts.WebSite.Controllers
             {
                 return BadRequest("ProductId cannot be null or empty.");
             }
-
+            // Add rating to the product
             ProductService.AddRating(request.ProductId, request.Rating);
             
             return Ok();
