@@ -58,6 +58,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
             // Call DeleteData to delete the player
             var deletedPlayer = _playerService.DeleteData(id);
 
+            // Check if the player to be deleted doesn't exist
             if (deletedPlayer == null)
             {
                 return RedirectToPage("/Error"); 
