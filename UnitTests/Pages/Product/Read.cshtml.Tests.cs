@@ -14,6 +14,10 @@ using NUnit.Framework;
 
 namespace UnitTests.Pages.Product.Read
 {
+
+    /// <summary>
+    /// Unit tests for Read Page
+    /// </summary>
     public class ReadTests
     {
         #region TestSetup
