@@ -1,10 +1,6 @@
 using NUnit.Framework;
 using ContosoCrafts.WebSite;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace UnitTests
 {
@@ -12,6 +8,9 @@ namespace UnitTests
     {
         #region CreateHostBuilder Tests
 
+        /// <summary>
+        /// Test that CreateHostBuilder with valid arguments returns a non-null IHostBuilder instance.
+        /// </summary>
         [Test]
         public void CreateHostBuilder_Valid_Args_Should_Return_IHostBuilder()
         {
@@ -26,6 +25,9 @@ namespace UnitTests
             Assert.That(hostBuilder, Is.InstanceOf<IHostBuilder>(), "CreateHostBuilder should return an instance of IHostBuilder.");
         }
 
+        /// <summary>
+        /// Test that CreateHostBuilder with null arguments handles it gracefully and returns a non-null IHostBuilder instance.
+        /// </summary>
         [Test]
         public void CreateHostBuilder_Invalid_NullArgs_Should_Return_IHostBuilder()
         {
