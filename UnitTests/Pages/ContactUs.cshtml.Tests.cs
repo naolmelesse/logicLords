@@ -3,6 +3,9 @@ using ContosoCrafts.WebSite.Pages;
 
 namespace UnitTests.Pages.ContactUs
 {
+    /// <summary>
+    /// Class for unit tests of contact us page data
+    /// </summary>
     public class ContactUsTests
     {
         #region TestSetup
