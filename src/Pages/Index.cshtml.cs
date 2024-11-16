@@ -88,9 +88,12 @@ namespace ContosoCrafts.WebSite.Pages
         /// </summary>
         public void OnGetSearch()
         {
-            //Load players from PlayerList to SelectedPlayerList to filter
-            SelectedPlayerList = PlayerList;
-
+            // Load players from PlayerList to SelectedPlayerList to filter if not already loaded
+            if(SelectedPlayerList == null)
+            {
+                SelectedPlayerList = PlayerList;
+            }
+            
             // Filter based on search term if provided
             if (string.IsNullOrEmpty(SearchTerm) == false)
             {
@@ -98,9 +101,17 @@ namespace ContosoCrafts.WebSite.Pages
                     .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
             }
 
-            // Filter based on MinAge if value provided
+            // Filter based on MinAge if value provided that validates if greater than MaxAge when provided
             if (MinAge.HasValue)
             {
+                if (MaxAge.HasValue)
+                {
+                    if (MinAge > MaxAge)
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid Age Range: Min Age cannot be greater than Max Age");
+                        return;
+                    }
+                }
                 SelectedPlayerList = SelectedPlayerList
                     .Where(player => player.Age >= MinAge.Value);
             }
