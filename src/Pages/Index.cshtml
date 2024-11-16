@@ -87,6 +87,17 @@
             <!-- Search Button -->
             <button type="submit" class="btn btn-primary search-button">Search</button>
         </form>
+
+        <!-- Display Validation Errors -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
     </div>
 
     @(await Html.RenderComponentAsync<ProductList>(
