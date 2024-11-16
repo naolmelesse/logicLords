@@ -123,9 +123,17 @@ namespace ContosoCrafts.WebSite.Pages
                     .Where(player => player.Age <= MaxAge.Value);
             }
 
-            // Filter based on MinAppearance if value provided
+            // Filter based on MinAppearance if value provided that validates if greater than MaxAppearance when provided
             if (MinAppearance.HasValue)
             {
+                if (MaxAppearance.HasValue)
+                {
+                    if (MinAppearance > MaxAppearance)
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid Appearance Range: Min Appearances cannot be greater than Max Appearances");
+                        return;
+                    }
+                }
                 SelectedPlayerList = SelectedPlayerList
                     .Where(player => player.Appearances >= MinAppearance.Value);
             }
