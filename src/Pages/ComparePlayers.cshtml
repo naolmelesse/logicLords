@@ -20,7 +20,11 @@
             <div class="player-image">
                 @if (Model.SelectedPlayerLeft != null)
                 {
-                    <img id="playerImageLeft" src="@Model.SelectedPlayerLeft.Image" alt="player Image Left" />
+                    <img id="playerImageLeft"
+                         src="@(Model.SelectedPlayerLeft.Image == null ? "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" : Model.SelectedPlayerLeft.Image)"
+                         onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
+                         alt="Player Image Left" />
+
                 }
                 @if (Model.SelectedPlayerLeft == null)
                 {
@@ -74,8 +78,11 @@
         <div class="player-image">
             @if (Model.SelectedPlayerRight != null)
             {
-                <img id="playerImageRight" src="@Model.SelectedPlayerRight.Image" alt="player Image Right" />
-            }
+                    <img id="playerImageRight"
+                         src="@(Model.SelectedPlayerRight.Image == null ? "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" : Model.SelectedPlayerRight.Image)"
+                         onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
+                         alt="Player Image Right" />
+                }
             @if (Model.SelectedPlayerRight == null)
             {
                 <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Right" />
