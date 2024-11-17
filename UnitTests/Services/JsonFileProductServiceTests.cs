@@ -1,5 +1,6 @@
 using ContosoCrafts.WebSite.Models;
 using NUnit.Framework;
+using System;
 using System.Linq;
 
 namespace UnitTests.Pages.Product.AddRating
@@ -340,6 +341,65 @@ namespace UnitTests.Pages.Product.AddRating
             var dataNewList = TestHelper.ProductService.GetAllData();
             Assert.That(result, Is.InstanceOf<ProductModel>());
             Assert.That(dataNewList.First(x => x.Id.Equals(result.Id)).Title, Is.EqualTo(result.Title));
+        }
+
+        /// <summary>
+        /// Test case for creating a valid product, expecting the product to be added successfully and returned.
+        /// </summary>
+        [Test]
+        public void CreateData_Valid_Product_With_Duplicate_Parameters_Should_Return_Product_With_Numbered_Id()
+        {
+            // Arrange
+
+            // Variable to hold new product data
+            var data1 = new ProductModel
+            {
+                Title = "Ready Player",
+                Dateofbirth = "15 October 1998",
+                Placeofbirth = "Santiago, Chile",
+                Height = "1.74 m (5 ft 8 in)",
+                Position = "Goalkeeper",
+                Club = "Columbus Crew",
+                Appearances = 12,
+                Minutesplayed = 880,
+                Assists = 5,
+                Image = "/data/players/ChristianBenteke.png"
+            };
+            var data2 = new ProductModel
+            {
+                Title = "Ready Player",
+                Dateofbirth = "15 October 1998",
+                Placeofbirth = "Santiago, Chile",
+                Height = "1.74 m (5 ft 8 in)",
+                Position = "Goalkeeper",
+                Club = "Columbus Crew",
+                Appearances = 12,
+                Minutesplayed = 880,
+                Assists = 5,
+                Image = "/data/players/ChristianBenteke.png"
+            };
+
+            // Act
+
+            // Create first player
+            var originalPlayer = TestHelper.ProductService.CreateData(data1);
+            Console.WriteLine(originalPlayer.Id);
+
+            // Variable to hold the duplicate player
+            var duplicatedPlayer = TestHelper.ProductService.CreateData(data2);
+            Console.WriteLine(duplicatedPlayer.Id);
+
+
+            // Assert
+
+            // Variable to hold the new data list after creation
+            var dataNewList = TestHelper.ProductService.GetAllData();
+            Assert.That(originalPlayer, Is.InstanceOf<ProductModel>());
+            Assert.That(duplicatedPlayer, Is.InstanceOf<ProductModel>());
+            Assert.That(duplicatedPlayer.Id, Is.Not.EqualTo(originalPlayer.Id));
+            Assert.That(duplicatedPlayer.Id, Is.Not.EqualTo(originalPlayer.Id));
+            Assert.That(originalPlayer.Id, Does.Contain("Ready-Player"));
+            Assert.That(duplicatedPlayer.Id, Does.Contain("Ready-Player"));
         }
 
         #endregion CreateData
