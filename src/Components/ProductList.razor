@@ -17,7 +17,7 @@
                 <div class="card-footer">
                     <small class="text-muted">
                         <div class="d-flex justify-content-between">
-                            <button @onclick="(e => SelectProduct(product.Id))"
+                            <button id="morebutton_@product.Id" @onclick="(e => SelectProduct(product.Id))"
                                     data-toggle="modal" data-target="#productModal" class="btn btn-primary">
                                 More Info
                             </button>
