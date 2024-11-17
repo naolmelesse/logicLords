@@ -366,6 +366,48 @@ namespace UnitTests.Pages.Index
             Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(data.Count));
         }
 
+        /// <summary>
+        /// Test that OnGet with MinAge greater than MaxAge adds a model error and does not proceed with filtering
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_MinAge_Greater_Than_MaxAge_Should_Set_ModelError()
+        {
+            // Arrange
+            pageModel.MinAge = 30;
+            pageModel.MaxAge = 25;
+
+            // Act
+            pageModel.OnGet();
+
+            // Assert
+            Assert.That(pageModel.ModelState.IsValid, Is.False);
+            Assert.That(pageModel.ModelState[string.Empty].Errors.First().ErrorMessage,
+                Is.EqualTo("Invalid Age Range: Min Age cannot be greater than Max Age"));
+            // Ensure that SelectedPlayerList remains unfiltered due to the error
+            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(pageModel.PlayerList.Count()));
+        }
+
+        /// <summary>
+        /// Test that OnGet with MinAppearance greater than MaxAppearance adds a model error and does not proceed with filtering
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_MinAppearance_Greater_Than_MaxAppearance_Should_Set_ModelError()
+        {
+            // Arrange
+            pageModel.MinAppearance = 30;
+            pageModel.MaxAppearance = 25;
+
+            // Act
+            pageModel.OnGet();
+
+            // Assert
+            Assert.That(pageModel.ModelState.IsValid, Is.False);
+            Assert.That(pageModel.ModelState[string.Empty].Errors.First().ErrorMessage,
+                Is.EqualTo("Invalid Appearance Range: Min Appearances cannot be greater than Max Appearances"));
+            // Ensure that SelectedPlayerList remains unfiltered due to the error
+            Assert.That(pageModel.SelectedPlayerList.Count(), Is.EqualTo(pageModel.PlayerList.Count()));
+        }
+
         #endregion OnGet
     }
 }
