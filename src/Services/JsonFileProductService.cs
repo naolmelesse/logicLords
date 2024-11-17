@@ -44,7 +44,7 @@ namespace ContosoCrafts.WebSite.Services
         /// Retrieves all product data from the JSON file.
         /// </summary>
         /// <returns>An <see cref="IEnumerable{ProductModel}"/> of all product records.</returns>
-        public IEnumerable<ProductModel> GetAllData()
+        public virtual IEnumerable<ProductModel> GetAllData()
         {
             using(var jsonFileReader = File.OpenText(JsonFileName))
             {
