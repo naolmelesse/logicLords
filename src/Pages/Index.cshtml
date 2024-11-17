@@ -4,11 +4,24 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<div class="banner">
+    <div class='banner-upper'>
+        <h1>DRIBBLE KINGS</h1>
+        <div class="banner-text">
+            <p>Home of players.</p>
+            <p>know more about your favorite player.</p>
+        </div>
 
+    </div>
+
+    <button href="#search">GET STARTED NOW</button>
+</div>
 <div class="container-home">
+
+
     <h1>Logic Lords</h1>
     <div class="container my-5 justify-content-center home-search-container">
-        <h2 class="search-heading">Filter and Search</h2>
+        <h2 class="search-heading" id="search">Filter and Search</h2>
         <form method="get" asp-page-handler="Search" class="search-form">
 
             <!-- Text box for search input -->
