@@ -77,6 +77,16 @@ namespace ContosoCrafts.WebSite.Models
         [StringLength(100, ErrorMessage = "Name cannot be longer than 100 characters.")]
         public string Title { get; set; }
 
+        // The number of games where a player doesn't concede
+
+        [Range(0, int.MaxValue, ErrorMessage = "Clean Sheets must be a non-negative number.")]
+        [JsonPropertyName("Clean sheets")]
+        public int CleanSheets { get; set; }
+
+        // Number of saves made by a goalkeeper during the game
+        [Range(0, int.MaxValue, ErrorMessage = " Saves must be a non-negative number.")]
+        public int Saves { get; set; }
+
         // Ratings recieved for the player
         public int[] Ratings { get; set; }
 
