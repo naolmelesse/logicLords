@@ -14,6 +14,8 @@
     "Appearances": 26,
     "Minutes played": 1498,
     "Title": "Alonso Martinez",
+    "Clean sheets": 7,
+    "Saves": 0,
     "Ratings": [
       5,
       5,
@@ -38,6 +40,8 @@
     "Appearances": 30,
     "Minutes played": 2601,
     "Title": "Christian Benteke",
+    "Clean sheets": 2,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -55,6 +59,8 @@
     "Appearances": 30,
     "Minutes played": 2291,
     "Title": "Cristian Arango",
+    "Clean sheets": 9,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -72,6 +78,8 @@
     "Appearances": 27,
     "Minutes played": 2118,
     "Title": "Cucho Hernandez",
+    "Clean sheets": 12,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -89,6 +97,8 @@
     "Appearances": 30,
     "Minutes played": 2500,
     "Title": "Daniel Gazdag",
+    "Clean sheets": 8,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -106,6 +116,8 @@
     "Appearances": 28,
     "Minutes played": 1942,
     "Title": "Dejan Joveljic",
+    "Clean sheets": 7,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -123,6 +135,8 @@
     "Appearances": 32,
     "Minutes played": 2755,
     "Title": "Denis Bouanga",
+    "Clean sheets": 12,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -140,6 +154,8 @@
     "Appearances": 28,
     "Minutes played": 2459,
     "Title": "Evander da Silva Ferreira",
+    "Clean sheets": 6,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -157,6 +173,8 @@
     "Appearances": 29,
     "Minutes played": 2435,
     "Title": "Jonathan Rodriguez",
+    "Clean sheets": 6,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -174,6 +192,8 @@
     "Appearances": 19,
     "Minutes played": 1485,
     "Title": "Lionel Messi",
+    "Clean sheets": 6,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -191,6 +211,8 @@
     "Appearances": 27,
     "Minutes played": 1920,
     "Title": "Luis Suarez",
+    "Clean sheets": 6,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -208,6 +230,8 @@
     "Appearances": 30,
     "Minutes played": 2304,
     "Title": "Peter Musa",
+    "Clean sheets": 7,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -225,6 +249,8 @@
     "Appearances": 33,
     "Minutes played": 2730,
     "Title": "Gabriel Pec",
+    "Clean sheets": 7,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -242,6 +268,8 @@
     "Appearances": 30,
     "Minutes played": 2460,
     "Title": "Brian White",
+    "Clean sheets": 7,
+    "Saves": 0,
     "Ratings": null
   },
   {
@@ -259,6 +287,199 @@
     "Appearances": 32,
     "Minutes played": 2707,
     "Title": "Luciano Acosta",
+    "Clean sheets": 7,
+    "Saves": 0,
+    "Ratings": null
+  },
+
+  {
+    "Id": "hugo-lloris",
+    "img": "/data/players/HugoLloris.png",
+    "Place of birth": "Nice, France",
+    "Date of birth": "1986-26-12",
+    "Age": 37,
+    "Club": "Los Angeles FC",
+    "Height": "1.88 m (6 ft 2 in)",
+    "HeightInCMs": 188,
+    "Position": "Goalkeeper",
+    "Goals": 0,
+    "Assists": 1,
+    "Appearances": 33,
+    "Minutes played": 2970,
+    "Title": "Hugo Hadrien Dominique Lloris",
+    "Clean sheets": 12,
+    "Saves": 97,
+    "Ratings": null
+  },
+  {
+    "Id": "stefan-frei",
+    "img": "/data/players/StefanFrei.png",
+    "Place of birth": "Altstätten, Switzerland",
+    "Date of birth": "1986-20-04",
+    "Age": 38,
+    "Club": "Seattle Sounders",
+    "Height": "1.91 m (6 ft 3 in)",
+    "HeightInCMs": 19,
+    "Position": "Goalkeeper",
+    "Goals": 0,
+    "Assists": 0,
+    "Appearances": 29,
+    "Minutes played": 2466,
+    "Title": "Stefan Frei",
+    "Clean sheets": 13,
+    "Saves": 71,
+    "Ratings": null
+  },
+  {
+    "Id": "kristijan-kahlina",
+    "img": "/data/players/KristijanKahlina.png",
+    "Place of birth": "Zagreb, Croatia",
+    "Date of birth": "1992-24-07",
+    "Age": 32,
+    "Club": "Charlotte FC",
+    "Height": "1.88 m (6 ft 2 in)",
+    "HeightInCMs": 188,
+    "Position": "Goalkeeper",
+    "Goals": 0,
+    "Assists": 0,
+    "Appearances": 34,
+    "Minutes played": 3060,
+    "Title": "Kristijan Kahlina",
+    "Clean sheets": 12,
+    "Saves": 121,
+    "Ratings": null
+  },
+  {
+    "Id": "patrick-schulte",
+    "img": "/data/players/PatrickSchulte.png",
+    "Place of birth": "St. Charles, Missouri, United States",
+    "Date of birth": "2001-13-03",
+    "Age": 23,
+    "Club": "Columbus Crew",
+    "Height": "1.90 m (6 ft 3 in)",
+    "HeightInCMs": 190,
+    "Position": "Goalkeeper",
+    "Goals": 0,
+    "Assists": 0,
+    "Appearances": 27,
+    "Minutes played": 2601,
+    "Title": "Patrick Timothy Schulte",
+    "Clean sheets": 10,
+    "Saves": 76,
+    "Ratings": null
+  },
+  {
+    "Id": "steve-clark",
+    "img": "/data/players/SteveClark.png",
+    "Place of birth": "Mason, Michigan, United States",
+    "Date of birth": "1990-12-03",
+    "Age": 33,
+    "Club": "Houston Dynamo",
+    "Height": "1.85 m (6 ft 1 in)",
+    "HeightInCMs": 185,
+    "Position": "Goalkeeper",
+    "Goals": 0,
+    "Assists": 1,
+    "Appearances": 31,
+    "Minutes played": 2773,
+    "Title": "Steve Thomas Clark",
+    "Clean sheets": 8,
+    "Saves": 98,
+    "Ratings": null
+  },
+  {
+    "Id": "jordi-alba",
+    "img": "/data/players/JordiAlba.png",
+    "Place of birth": "L'Hospitalet de Llobregat, Spain",
+    "Date of birth": "1989-21-03",
+    "Age": 35,
+    "Club": "Inter Miami",
+    "Height": "1.70 m (5 ft 7 in)",
+    "HeightInCMs": 170,
+    "Position": "Defender",
+    "Goals": 4,
+    "Assists": 14,
+    "Appearances": 38,
+    "Minutes played": 2231,
+    "Title": "Jordi Alba",
+    "Clean sheets": 6,
+    "Saves": 0,
+    "Ratings": null
+  },
+  {
+    "Id": "paul-marie",
+    "img": "/data/players/PaulMarie.png",
+    "Place of birth": "Saint-Aubin-des-Bois, France",
+    "Date of birth": "1995-24-03",
+    "Age": 29,
+    "Club": "San Jose Earthquakes",
+    "Height": "1.73 m (5 ft 8 in)",
+    "HeightInCMs": 173,
+    "Position": "Defender",
+    "Goals": 3,
+    "Assists": 1,
+    "Appearances": 30,
+    "Minutes played": 1534,
+    "Title": "Paul Marie",
+    "Clean sheets": 2,
+    "Saves": 0,
+    "Ratings": null
+  },
+  {
+    "Id": "jackson-ragen",
+    "img": "/data/players/JacksonRagen.png",
+    "Place of birth": "Seattle, Washington, United States",
+    "Date of birth": "1998-24-09",
+    "Age": 26,
+    "Club": "Seattle Sounders",
+    "Height": "1.98 m (6 ft 6 in)",
+    "HeightInCMs": 198,
+    "Position": "Defender",
+    "Goals": 3,
+    "Assists": 1,
+    "Appearances": 33,
+    "Minutes played": 2905,
+    "Title": "Jackson Cameron Ragen",
+    "Clean sheets": 13,
+    "Saves": 0,
+    "Ratings": null
+  },
+  {
+    "Id": "micheal-boxall",
+    "img": "/data/players/MichealBoxall.png",
+    "Place of birth": "Auckland, New Zealand",
+    "Date of birth": "1988-18-08",
+    "Age": 36,
+    "Club": "Minnesota United",
+    "Height": "1.88 m (6 ft 2 in)",
+    "HeightInCMs": 188,
+    "Position": "Defender",
+    "Goals": 1,
+    "Assists": 1,
+    "Appearances": 32,
+    "Minutes played": 2835,
+    "Title": "Micheal Boxall",
+    "Clean sheets": 7,
+    "Saves": 0,
+    "Ratings": null
+  },
+  {
+    "Id": "steven-moreira",
+    "img": "/data/players/StevenMoreira.png",
+    "Place of birth": "Noisy-le-Grand, France",
+    "Date of birth": "1994-13-08",
+    "Age": 30,
+    "Club": "Columbus Crew",
+    "Height": "1.76 m (5 ft 9 in)",
+    "HeightInCMs": 176,
+    "Position": "Defender",
+    "Goals": 2,
+    "Assists": 4,
+    "Appearances": 27,
+    "Minutes played": 2104,
+    "Title": "Steven Moreira",
+    "Clean sheets": 12,
+    "Saves": 0,
     "Ratings": null
   }
 ]
