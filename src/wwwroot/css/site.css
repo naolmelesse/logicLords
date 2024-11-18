@@ -1,9 +1,9 @@
 ﻿.checked {
-  color: orange;
+    color: orange;
 }
 
 .fa-star {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
@@ -12,9 +12,10 @@ for details on configuring this project to bundle and minify static web assets. 
     background-size: contain;
     background-image: url('../data/background.jpg');
     padding: 2em;
+    margin-top: 75vh;
 }
 
-.navbar-container{
+.navbar-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -25,8 +26,8 @@ for details on configuring this project to bundle and minify static web assets. 
     display: flex;
     gap: 2rem;
     font-size: 1.2rem;
-    
 }
+
 .nav-link {
     display: flex;
     gap: 0.5rem;
@@ -40,6 +41,7 @@ for details on configuring this project to bundle and minify static web assets. 
 /* Banner Styles*/
 .banner {
     height: 75vh;
+    width: 100vw;
     background-size: cover;
     background-image: url('https://img.freepik.com/premium-photo/soccer-ball-covered-snow-snowy-mountain-landscape_1150025-47805.jpg');
     display: flex;
@@ -48,22 +50,25 @@ for details on configuring this project to bundle and minify static web assets. 
     justify-content: space-around;
     align-items: center;
     color: #fff;
-    margin-top: 2.55%;
+    margin-top: 70px;
     margin-bottom: 5%;
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    left: 0;
 }
 
-    .banner button {
-        width: 25%;
-        border: none;
-        background: #284B63;
-        color: #fff;
-        padding: 0.5em;
-        font-weight: 600;
-        border-radius: 0.5em;
-    }
+.banner button {
+    width: 25%;
+    border: none;
+    background: #284B63;
+    color: #fff;
+    padding: 0.5em;
+    font-weight: 600;
+    border-radius: 0.5em;
+}
 
-
-.banner h1{
+.banner h1 {
     font-size: 8.5em;
 }
 
@@ -72,12 +77,11 @@ for details on configuring this project to bundle and minify static web assets. 
     backdrop-filter: blur(8px);
 }
 
-    .banner p {
-        font-size: 1.75em;
-        padding: 0;
-        margin: 0;
-
-    }
+.banner p {
+    font-size: 1.75em;
+    padding: 0;
+    margin: 0;
+}
 
 /* General Styles */
 body {
@@ -190,26 +194,27 @@ body {
 }
 
 .card-columns .card-img {
-  height: 330px;
-  vertical-align: bottom;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  opacity: .8;
+    height: 330px;
+    vertical-align: bottom;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    opacity: .8;
 }
 
 .modal .card-img {
-  height: 500px;
-  vertical-align: bottom;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+    height: 500px;
+    vertical-align: bottom;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .card-columns .card:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(37,33,82,.12), 0 4px 8px rgba(37,33,82,.06);
 }
+
 .card-footer {
     background: #fbfafd;
 }
@@ -237,7 +242,6 @@ body {
 .comparison-container {
     display: flex;
     justify-content: center;
-
     gap: 20px;
     padding: 20px;
     flex-wrap: wrap;
@@ -255,11 +259,11 @@ body {
     text-align: center;
 }
 
-.player-card label,
-.player-card select {
-    width: 100%;
-    margin-bottom: 10px;
-}
+    .player-card label,
+    .player-card select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
 .player-image img {
     width: 100%;
@@ -268,15 +272,15 @@ body {
     margin-bottom: 10px;
 }
 
-.player-details{
+.player-details {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.player-details p {
-    margin: 5px 0;
-}
+    .player-details p {
+        margin: 5px 0;
+    }
 
 .comparison-stats {
     flex: 1;
@@ -291,17 +295,17 @@ body {
 }
 
 
-.contact-us-header{
+.contact-us-header {
     text-align: center;
     margin-bottom: 1.5em;
 }
 
-.contact-info{
+.contact-info {
     display: flex;
     justify-content: space-evenly;
 }
 
-.contact-address{
+.contact-address {
     display: flex;
     justify-content: space-around;
     width: 60%;
@@ -323,27 +327,25 @@ body {
     cursor: pointer;
 }
 
-#scrollTopBtn img{
-    width: 2.5rem;
-}
+    #scrollTopBtn img {
+        width: 2.5rem;
+    }
 
-#scrollTopBtn:hover {
-    background-color: #353535;
-}
+    #scrollTopBtn:hover {
+        background-color: #353535;
+    }
 
 .search-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
 }
 
-.search-form select{
+.search-form select {
     width: 500px;
 }
 
-.filters-container{
-
+.filters-container {
 }
 
 /* Provide sufficient contrast against white background */
@@ -356,39 +358,40 @@ a {
     background-color: #3C6E71;
     border-color: #D9D9D9;
 }
+
 .btn-primary:hover {
     color: #fff;
     background-color: #353535;
     border-color: #353535;
 }
 
-
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Read/delete page styles */
@@ -399,7 +402,7 @@ button.accept-policy {
     text-align: center;
 }
 
-.read-delete-page-container img{
+.read-delete-page-container img {
     border-radius: 95%;
     border: 0.5rem dotted #D9D9D9;
     width: 50%;
@@ -407,13 +410,13 @@ button.accept-policy {
     margin-top: 5%;
 }
 
-.read-delete-page-container h1{
+.read-delete-page-container h1 {
     margin-bottom: 2rem;
 }
 
-.read-delete-page-container ol{
+.read-delete-page-container ol {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 0.5rem;
 }
 
@@ -443,6 +446,7 @@ button.accept-policy {
     margin-top: 2rem;
     height: 55vh;
 }
+
 .delete-wrapper {
     display: flex;
     flex-direction: column;
@@ -456,13 +460,13 @@ button.accept-policy {
 .delete-wrapper form {
     margin-top: 1rem;
     display: flex;
-    justify-content: center; 
-    gap: 1rem; 
+    justify-content: center;
+    gap: 1rem;
     width: 100%;
 }
 
 .delete-wrapper .btn {
-margin: 0;
+    margin: 0;
 }
 
 /*Styling for the index page*/
@@ -470,8 +474,8 @@ margin: 0;
 .table thead th {
     text-align: center;
     vertical-align: middle;
-    background-color: #364f6b; 
-    color: white; 
+    background-color: #364f6b;
+    color: white;
 }
 
 /* Center align table cells */
@@ -511,7 +515,6 @@ margin: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-    
 
 /* Additional table styling for better appearance */
 .table {
@@ -531,7 +534,6 @@ margin: 0;
     color: #495057;
     border-bottom: 2px solid #dee2e6;
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -609,10 +611,10 @@ margin: 0;
     gap: 0.5rem;
 }
 
-    .form-group label {
-        font-weight: 500;
-        color: #2c3e50;
-    }
+.form-group label {
+    font-weight: 500;
+    color: #2c3e50;
+}
 
 .form-input {
     padding: 0.75rem;
@@ -622,11 +624,11 @@ margin: 0;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-    .form-input:focus {
-        outline: none;
-        border-color: #4a90e2;
-        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-    }
+.form-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
 
 .submit-group {
     grid-column: 1 / -1;
@@ -645,9 +647,9 @@ margin: 0;
     transition: background-color 0.3s;
 }
 
-    .submit-button:hover {
-        background-color: #353535;
-    }
+.submit-button:hover {
+    background-color: #353535;
+}
 
 @media (max-width: 768px) {
     .update-page-container {
@@ -688,18 +690,22 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 p {
     font-family: 'Lato', sans-serif;
 }
+
 h1 {
     font-family: 'Lato', sans-serif;
 }
+
 ul {
     font-family: 'Lato', sans-serif;
 }
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -708,9 +714,24 @@ ul {
     line-height: 60px; /* Vertically center the text there */
     font-family: 'Lato', sans-serif;
 }
+
 .bg-footer {
     background: -webkit-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
     background: -o-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
     background: -moz-linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
     background: linear-gradient(110deg, #D9D9D9 60%, #284B63 60%);
+}
+
+@media (max-width: 576px) {
+    .banner-upper h1 {
+        font-size: 2.5rem;
+        Smaller for extra small screens
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-upper h1 {
+        font-size: 4.5rem;
+        Larger for medium screens and up
+    }
 }
