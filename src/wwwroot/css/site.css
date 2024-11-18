@@ -302,6 +302,7 @@ body {
 
 .contact-info {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
@@ -311,6 +312,28 @@ body {
     width: 60%;
     margin: auto;
 }
+
+@media (min-width: 768px) {
+    .contact-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+}
+
+@media (max-width: 369px) {
+    .contact-info {
+        font-size: 0.8em;
+    }
+
+        .contact-info h3 {
+            font-size: 1.5em;
+        }
+
+    .contact-us-header {
+        font-size: 1.75em;
+    }
+} 
 
 /* Style for the scroll-to-top button */
 #scrollTopBtn {
