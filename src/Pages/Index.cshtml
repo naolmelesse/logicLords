@@ -13,67 +13,73 @@
         </div>
 
     </div>
-
-    <button href="#search">GET STARTED NOW</button>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <a href="#search" class="btn btn-get-started">
+            Get Started <i class="bi bi-chevron-right"></i>
+        </a>
+    </div>
 </div>
-<div class="container-home">
-
-
+<div class="container-home p-1 p-md-4 p-sm-1">
     <h1>Logic Lords</h1>
     <div class="container my-5 justify-content-center home-search-container">
         <h2 class="search-heading" id="search">Filter and Search</h2>
-        <form method="get" asp-page-handler="Search" class="search-form">
+        <form method="get" asp-page-handler="Search" class="">
 
             <!-- Text box for search input -->
-            <div class="search-input-container container my-1">
-                <input type="text" name="SearchTerm" class="form-control search-input" placeholder="Search..." value="@Model.SearchTerm" />
+            <div class="d-flex my-1">
+                <input type="text" name="SearchTerm" class="form-control flex-grow-1" placeholder="Search..." value="@Model.SearchTerm" />
+                <button type="submit" class="btn btn-primary px-3 ml-2">Search</button>
             </div>
 
-            <div class="filters-container">
+            <div class="row">
                 <!--Age Filter-->
-                <div class="age-filter row justify-content-center align-items-center">
-                    <label class="age-label m-0">Age Range:</label>
-                    <select name="MinAge" class="form-control age-dropdown mx-2 col-md-2">
-                        <option value="">Min Age</option>
-                        @for (int age = 16; age <= 40; age++)
-                        {
-                            <option value="@age" selected="@(Model.MinAge == age ? "selected" : null)">@age</option>
-                        }
-                    </select>
-                    -
-                    <select name="MaxAge" class="form-control age-dropdown mx-2 col-md-2">
-                        <option value="">Max Age</option>
-                        @for (int age = 16; age <= 40; age++)
-                        {
-                            <option value="@age" selected="@(Model.MaxAge == age ? "selected" : null)">@age</option>
-                        }
-                    </select>
+                <div class="age-filter col-12 col-md-6 mt-3">
+                    <label class="age-label m-0 w-100 pl-3">Age Range:</label>
+                    <div class="row justify-content-center">
+                        <select name="MinAge" class="search-filter-dropdown col-5 age-dropdown">
+                            <option value="">Min Age</option>
+                            @for (int age = 16; age <= 40; age++)
+                            {
+                                <option value="@age" selected="@(Model.MinAge == age ? "selected" : null)">@age</option>
+                            }
+                        </select>
+                        <div class="mx-2">-</div>
+                        <select name="MaxAge" class="search-filter-dropdown col-5 age-dropdown">
+                            <option value="">Max Age</option>
+                            @for (int age = 16; age <= 40; age++)
+                            {
+                                <option value="@age" selected="@(Model.MaxAge == age ? "selected" : null)">@age</option>
+                            }
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Appearance Filter -->
-                <div class="appearance-filter row justify-content-center align-items-center mt-1">
-                    <label class="appearance-label m-0">Appearance Range:</label>
-                    <select name="MinAppearance" class="form-control appearance-dropdown mx-2 col-md-2">
-                        <option value="">Min Appearance</option>
-                        @for (int appearance = 16; appearance <= 40; appearance++)
-                        {
-                            <option value="@appearance" selected="@(Model.MinAppearance == appearance ? "selected" : null)">@appearance</option>
-                        }
-                    </select>
-                    -
-                    <select name="MaxAppearance" class="form-control appearance-dropdown mx-2 col-md-2">
-                        <option value="">Max Appearance</option>
-                        @for (int appearance = 16; appearance <= 40; appearance++)
-                        {
-                            <option value="@appearance" selected="@(Model.MaxAppearance == appearance ? "selected" : null)">@appearance</option>
-                        }
-                    </select>
+                <div class="appearance-filter  col-12 col-md-6 mt-3">
+                    <label class="appearance-label m-0 w-100 pl-3">Appearance Range:</label>
+                    <div class="row justify-content-center">
+                        <select name="MinAppearance" class="search-filter-dropdown appearance-dropdown col-5">
+                            <option value="">Min Appearance</option>
+                            @for (int appearance = 16; appearance <= 40; appearance++)
+                            {
+                                <option value="@appearance" selected="@(Model.MinAppearance == appearance ? "selected" : null)">@appearance</option>
+                            }
+                        </select>
+                        <div class="mx-2">-</div>
+                        <select name="MaxAppearance" class="search-filter-dropdown col-5 appearance-dropdown ">
+                            <option value="">Max Appearance</option>
+                            @for (int appearance = 16; appearance <= 40; appearance++)
+                            {
+                                <option value="@appearance" selected="@(Model.MaxAppearance == appearance ? "selected" : null)">@appearance</option>
+                            }
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Position Filter -->
-                <div class="position-filter row justify-content-center align-items-center mt-3">
-                    <label class="position-label m-0">Position:</label>
-                    <select name="Position" class="form-control position-dropdown mx-2 col-md-4">
+                <div class="position-filter col-12 col-md-6 pr-4 mt-3">
+                    <label class="position-label m-0 w-100 pl-3">Position:</label>
+                    <select name="Position" class="search-filter-dropdown position-dropdown mx-2">
                         <option value="">Select Position</option>
                         <option value="Forward" selected="@(Model.Position == "Forward" ? "selected" : null)">Forward</option>
                         <option value="Striker" selected="@(Model.Position == "Striker" ? "selected" : null)">Striker</option>
@@ -83,28 +89,25 @@
                 </div>
 
                 <!-- Height Filter -->
-                <div class="height-filter row justify-content-center align-items-center mt-3">
-                    <label class="height-label m-0">Height:</label>
-                    <select name="Height" class="form-control height-dropdown mx-2 col-md-4">
+                <div class="height-filter col-12 col-md-6 pr-4 mt-3">
+                    <label class="height-label m-0 w-100 pl-3">Height:</label>
+                    <select name="Height" class="search-filter-dropdown height-dropdown mx-2 col-md-">
                         <option value="">Select Height Range</option>
                         <option value="< 155 cm" selected="@(Model.Height == "< 155 cm" ? "selected" : null)">< 155 cm</option>
-                        <option value="155 cm - 164 cm" selected="@(Model.Height == "155 cm - 164 cm" ? "selected" : null)">155 cm - 164 cm</option>
-                        <option value="165 cm - 174 cm" selected="@(Model.Height == "165 cm - 174 cm" ? "selected" : null)">165 cm - 174 cm</option>
-                        <option value="175 cm - 184 cm" selected="@(Model.Height == "175 cm - 184 cm" ? "selected" : null)">175 cm - 184 cm</option>
-                        <option value="185 cm - 194 cm" selected="@(Model.Height == "185 cm - 194 cm" ? "selected" : null)">185 cm - 194 cm</option>
+                        <option value="155 cm - 16 cm" selected="@(Model.Height == "155 cm - 16 cm" ? "selected" : null)">155 cm - 16 cm</option>
+                        <option value="165 cm - 17 cm" selected="@(Model.Height == "165 cm - 17 cm" ? "selected" : null)">165 cm - 17 cm</option>
+                        <option value="175 cm - 18 cm" selected="@(Model.Height == "175 cm - 18 cm" ? "selected" : null)">175 cm - 18 cm</option>
+                        <option value="185 cm - 19 cm" selected="@(Model.Height == "185 cm - 19 cm" ? "selected" : null)">185 cm - 19 cm</option>
                         <option value="> 195 cm" selected="@(Model.Height == "> 195 cm" ? "selected" : null)">> 195 cm</option>
                     </select>
                 </div>
             </div>
-
-            <!-- Search Button -->
-            <button type="submit" class="btn btn-primary search-button">Search</button>
         </form>
 
         <!-- Display Validation Errors -->
         @if (!ViewData.ModelState.IsValid)
         {
-            <div class="alert alert-danger">
+            <div class="alert alert-danger mt-4">
                 @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
                 {
                     <p>@error.ErrorMessage</p>
