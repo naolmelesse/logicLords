@@ -11,7 +11,6 @@ for details on configuring this project to bundle and minify static web assets. 
 .container-home {
     background-size: contain;
     background-image: url('../data/background.jpg');
-    padding: 2em;
     margin-top: 75vh;
 }
 
@@ -20,6 +19,10 @@ for details on configuring this project to bundle and minify static web assets. 
     justify-content: space-between;
     width: 100%;
     align-items: center;
+}
+
+.navbar {
+    z-index: 1000;
 }
 
 .nav-links {
@@ -50,27 +53,28 @@ for details on configuring this project to bundle and minify static web assets. 
     justify-content: space-around;
     align-items: center;
     color: #fff;
-    margin-top: 70px;
+    margin-top: 80px;
+    padding-top: 60px;
     margin-bottom: 5%;
     position: absolute;
-    z-index: -10;
+    z-index: 1;
     top: 0;
     left: 0;
 }
 
-.banner button {
-    width: 25%;
-    border: none;
-    background: #284B63;
-    color: #fff;
-    padding: 0.5em;
-    font-weight: 600;
-    border-radius: 0.5em;
-}
+    .banner button {
+        width: 25%;
+        border: none;
+        background: #284B63;
+        color: #fff;
+        padding: 0.5em;
+        font-weight: 600;
+        border-radius: 0.5em;
+    }
 
-.banner h1 {
-    font-size: 8.5em;
-}
+    .banner h1 {
+        font-size: 8.5em;
+    }
 
 .banner-text {
     background: rgba(255, 255, 255, 0.2);
@@ -82,6 +86,28 @@ for details on configuring this project to bundle and minify static web assets. 
     padding: 0;
     margin: 0;
 }
+
+.btn-get-started {
+    font-size: 1.25rem;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #126B63, #284B63); /* Gradient background */
+    color: white;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 5px 10px rgba(0, 123, 255, 0.2); /* Light shadow */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+    .btn-get-started:hover {
+        background: linear-gradient(135deg, #00bcd4, #007bff); /* Inverted gradient */
+        transform: scale(1.05); /* Slightly enlarge button */
+        box-shadow: 0 10px 15px rgba(0, 123, 255, 0.3); /* Larger shadow */
+    }
 
 /* General Styles */
 body {
@@ -126,11 +152,20 @@ body {
     margin-top: 20px;
 }
 
-.age-filter, .appearance-filter, .position-filter, .height-filter {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
+.search-filter-dropdown {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.6rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 /* Labels */
@@ -138,15 +173,6 @@ body {
     font-weight: bold;
     color: #555;
     margin-right: 10px;
-}
-
-/* Dropdown Styles */
-.age-dropdown, .appearance-dropdown, .position-dropdown, .height-dropdown {
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    padding: 8px;
-    flex: 1;
-    min-width: 150px;
 }
 
 /* Search Button */
@@ -169,17 +195,6 @@ body {
         background-color: #0056b3;
     }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .age-filter, .appearance-filter, .position-filter, .height-filter {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .age-dropdown, .appearance-dropdown, .position-dropdown, .height-dropdown {
-        margin-bottom: 10px;
-    }
-}
 
 
 .card-columns .card:hover .card-img {
@@ -333,7 +348,7 @@ body {
     .contact-us-header {
         font-size: 1.75em;
     }
-} 
+}
 
 /* Style for the scroll-to-top button */
 #scrollTopBtn {
@@ -364,9 +379,9 @@ body {
     align-items: center;
 }
 
-.search-form select {
-    width: 500px;
-}
+    .search-form select {
+        width: 500px;
+    }
 
 .filters-container {
 }
@@ -382,11 +397,11 @@ a {
     border-color: #D9D9D9;
 }
 
-.btn-primary:hover {
-    color: #fff;
-    background-color: #353535;
-    border-color: #353535;
-}
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #353535;
+        border-color: #353535;
+    }
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -425,23 +440,23 @@ button.accept-policy {
     text-align: center;
 }
 
-.read-delete-page-container img {
-    border-radius: 95%;
-    border: 0.5rem dotted #D9D9D9;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 5%;
-}
+    .read-delete-page-container img {
+        border-radius: 95%;
+        border: 0.5rem dotted #D9D9D9;
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 5%;
+    }
 
-.read-delete-page-container h1 {
-    margin-bottom: 2rem;
-}
+    .read-delete-page-container h1 {
+        margin-bottom: 2rem;
+    }
 
-.read-delete-page-container ol {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
+    .read-delete-page-container ol {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
 .content-wrapper {
     max-width: 1200px;
@@ -480,17 +495,17 @@ button.accept-policy {
     width: 100%;
 }
 
-.delete-wrapper form {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-}
+    .delete-wrapper form {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
 
-.delete-wrapper .btn {
-    margin: 0;
-}
+    .delete-wrapper .btn {
+        margin: 0;
+    }
 
 /*Styling for the index page*/
 /* Center align table headers */
@@ -517,26 +532,26 @@ button.accept-policy {
     transition: all 0.2s ease;
 }
 
-/* Color scheme for action links */
-.table td a[asp-page="Read"] {
-    color: #3498db;
-    background-color: #ebf5fb;
-}
+    /* Color scheme for action links */
+    .table td a[asp-page="Read"] {
+        color: #3498db;
+        background-color: #ebf5fb;
+    }
 
-.table td a[asp-page="Update"] {
-    color: #f39c12;
-    background-color: #fef5e7;
-}
+    .table td a[asp-page="Update"] {
+        color: #f39c12;
+        background-color: #fef5e7;
+    }
 
-.table td a[asp-page="Delete"] {
-    color: #e74c3c;
-    background-color: #fdedec;
-}
+    .table td a[asp-page="Delete"] {
+        color: #e74c3c;
+        background-color: #fdedec;
+    }
 
-.table td a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    .table td a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
 
 /* Additional table styling for better appearance */
@@ -549,14 +564,14 @@ button.accept-policy {
     margin-top: 1rem;
 }
 
-.table th {
-    padding: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    color: #495057;
-    border-bottom: 2px solid #dee2e6;
-}
+    .table th {
+        padding: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        color: #495057;
+        border-bottom: 2px solid #dee2e6;
+    }
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -634,10 +649,10 @@ button.accept-policy {
     gap: 0.5rem;
 }
 
-.form-group label {
-    font-weight: 500;
-    color: #2c3e50;
-}
+    .form-group label {
+        font-weight: 500;
+        color: #2c3e50;
+    }
 
 .form-input {
     padding: 0.75rem;
@@ -647,11 +662,11 @@ button.accept-policy {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-}
+    .form-input:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    }
 
 .submit-group {
     grid-column: 1 / -1;
@@ -670,9 +685,9 @@ button.accept-policy {
     transition: background-color 0.3s;
 }
 
-.submit-button:hover {
-    background-color: #353535;
-}
+    .submit-button:hover {
+        background-color: #353535;
+    }
 
 @media (max-width: 768px) {
     .update-page-container {
@@ -748,6 +763,13 @@ ul {
 @media (max-width: 576px) {
     .banner-upper h1 {
         font-size: 2.5rem;
+        Smaller for extra small screens
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-upper h1 {
+        font-size: 3.5rem;
         Smaller for extra small screens
     }
 }
