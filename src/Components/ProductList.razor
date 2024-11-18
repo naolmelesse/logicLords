@@ -3,33 +3,35 @@
 @using Microsoft.AspNetCore.Components.Web
 @inject JsonFileProductService ProductService
 
-<div class="card-columns">
+<div class="row">
     @if (Players.Any())
     {
         @foreach (var product in Players)
         {
-            <div class="card">
-                <img class="card-img"
-                     onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
-                     src="@(!string.IsNullOrEmpty(product.Image) ?
+            <div class="col-12 col-sm-6 col-md-4 p-2">
+                <div class="card">
+                    <img class="card-img"
+                         onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
+                         src="@(!string.IsNullOrEmpty(product.Image) ?
                      product.Image :
                     "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png")" />
 
-                <div class="card-body">
-                    <h5 class="card-title">@product.Title</h5>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">
-                        <div class="d-flex justify-content-between">
-                            <button id="morebutton_@product.Id" @onclick="(e => SelectProduct(product.Id))"
-                                    data-toggle="modal" data-target="#productModal" class="btn btn-primary">
-                                More Info
-                            </button>
-                            <a href="/ComparePlayers?SelectedPlayerLeftId=@product.Id&SelectedPlayerRightId=" class="btn btn-secondary">
-                                Compare
-                            </a>
-                        </div>
-                    </small>
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Title</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <div class="d-flex justify-content-between">
+                                <button id="morebutton_@product.Id" @onclick="(e => SelectProduct(product.Id))"
+                                        data-toggle="modal" data-target="#productModal" class="btn btn-primary">
+                                    More Info
+                                </button>
+                                <a href="/ComparePlayers?SelectedPlayerLeftId=@product.Id&SelectedPlayerRightId=" class="btn btn-secondary">
+                                    Compare
+                                </a>
+                            </div>
+                        </small>
+                    </div>
                 </div>
             </div>
         }
@@ -66,10 +68,7 @@
                             <p class="card-text">Minutes Played:  @selectedProduct.Minutesplayed</p>
                             <p class="card-text">Goals:  @selectedProduct.Goals</p>
                             <p class="card-text">Assists:  @selectedProduct.Assists</p>
-                            <p class="card-text">Clean Sheets:  @selectedProduct.CleanSheets</p>
-                            <p class="card-text">Saves:  @selectedProduct.Saves</p>
 
-                            
                         </div>
                     </div>
                 </div>
