@@ -27,7 +27,7 @@
   },
   {
     "Id": "christian-Benteke",
-    "img": "/data/players/ChristianBenteke.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/cdqfbxkfjnkyqbeoixeh.png",
     "Place of birth": "Kinshasa, Zaire",
     "Date of birth": "1990-12-03",
     "Age": 33,
@@ -294,7 +294,7 @@
 
   {
     "Id": "hugo-lloris",
-    "img": "/data/players/HugoLloris.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/ulciakvfji3wcnhvofyy.png",
     "Place of birth": "Nice, France",
     "Date of birth": "1986-12-26",
     "Age": 37,
@@ -313,7 +313,7 @@
   },
   {
     "Id": "stefan-frei",
-    "img": "/data/players/StefanFrei.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/h9bsenpfk1coiuyto93e.png",
     "Place of birth": "Altstätten, Switzerland",
     "Date of birth": "1986-04-20",
     "Age": 38,
@@ -332,7 +332,7 @@
   },
   {
     "Id": "kristijan-kahlina",
-    "img": "/data/players/KristijanKahlina.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/mbl0hicpgkwi5hcs47ec.png",
     "Place of birth": "Zagreb, Croatia",
     "Date of birth": "1992-07-24",
     "Age": 32,
@@ -351,7 +351,7 @@
   },
   {
     "Id": "patrick-schulte",
-    "img": "/data/players/PatrickSchulte.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/cn5zvlzbht4a8jwcjpvd.png",
     "Place of birth": "St. Charles, Missouri, United States",
     "Date of birth": "2001-03-13",
     "Age": 23,
@@ -370,7 +370,7 @@
   },
   {
     "Id": "steve-clark",
-    "img": "/data/players/SteveClark.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/auvmn9hgkjzp8r50y4zz.png",
     "Place of birth": "Mason, Michigan, United States",
     "Date of birth": "1990-03-12",
     "Age": 33,
@@ -389,7 +389,7 @@
   },
   {
     "Id": "jordi-alba",
-    "img": "/data/players/JordiAlba.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/fcn62ofsf3emeqtriffb.png",
     "Place of birth": "L'Hospitalet de Llobregat, Spain",
     "Date of birth": "1989-03-21",
     "Age": 35,
@@ -408,7 +408,7 @@
   },
   {
     "Id": "paul-marie",
-    "img": "/data/players/PaulMarie.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/yipazsnvmgdauc0jzbfv.png",
     "Place of birth": "Saint-Aubin-des-Bois, France",
     "Date of birth": "1995-03-24",
     "Age": 29,
@@ -427,7 +427,7 @@
   },
   {
     "Id": "jackson-ragen",
-    "img": "/data/players/JacksonRagen.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/yqfpi7adoixbdv4gwumo.png",
     "Place of birth": "Seattle, Washington, United States",
     "Date of birth": "1998-09-24",
     "Age": 26,
@@ -446,7 +446,7 @@
   },
   {
     "Id": "micheal-boxall",
-    "img": "/data/players/MichealBoxall.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/prd-league/kgjsjs21uezfqcq7s4lm.png",
     "Place of birth": "Auckland, New Zealand",
     "Date of birth": "1988-08-18",
     "Age": 36,
@@ -465,7 +465,7 @@
   },
   {
     "Id": "steven-moreira",
-    "img": "/data/players/StevenMoreira.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/dc6qbfmy1bn1531indak.png",
     "Place of birth": "Noisy-le-Grand, France",
     "Date of birth": "1994-08-13",
     "Age": 30,
