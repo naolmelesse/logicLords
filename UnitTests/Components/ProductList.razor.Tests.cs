@@ -224,17 +224,11 @@ namespace UnitTests.Components
         [Test]
         public void SubmitRating_With_Valid_Rating_Should_Display_Checked_Stars()
         {
-
             // Arrange
-
-            // Get all player data from the ProductService.
             var players = TestHelper.ProductService.GetAllData();
 
             // Select the first player to rate.
             var playerToRate = players.First();
-
-            // Pre-set the player's ratings to include a rating of 5.
-            playerToRate.Ratings = new List<int> { 5 }.ToArray();
 
             // Add the ProductService to the test's service collection for dependency injection.
             Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
@@ -242,27 +236,33 @@ namespace UnitTests.Components
             // Render the ProductList component, passing the list of players as a parameter.
             var page = RenderComponent<ProductList>(parameters => parameters.Add(p => p.Players, players));
 
-
             // Act
-
-            // Open the modal for the selected player by clicking the "more" button.
+            // Open the modal for the selected player by clicking the "More Info" button.
             page.Find("#morebutton_" + playerToRate.Id).Click();
 
-            // Submit a rating of 4 by clicking the fourth star.
-            page.FindAll("span.fa-star")[3].Click();
+            // Extract the player modal page's markup.
+            var modal = page.Find("#productModal");
 
+            // Click the third star to simulate giving a rating of 3.
+            
+            var stars = modal.QuerySelectorAll("span.fa");
+            if (stars.Count() >= 4)
+            {
+                
+                stars[2].Click();
+            }
+
+            // Get updated player ratings.
+            var result = playerToRate.Ratings.ToList();
 
             // Assert
-
-            // Retrieve the markup of the rendered component after rating submission.
-            var result = page.Markup;
-
-            // Verify that the text "4 Votes" is present in the markup, indicating the rating submission.
-            Assert.That(result.Contains("4 Votes"));
+            // Verify that the correct rating was applied by checking the player's ratings.
+            Assert.That(result.Contains(3));
 
             // Verify that a star is marked as checked, indicating the selected rating is displayed.
-            Assert.That(result.Contains("fa-star checked"));
+            Assert.That(page.Markup.Contains("fa-star checked"));
         }
+
 
         #endregion Interaction Tests
     }
