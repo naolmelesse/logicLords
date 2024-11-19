@@ -1,0 +1,36 @@
+﻿@page
+@model ContosoCrafts.WebSite.Pages.Leaderboard.CleanSheetsLeaderboardModel
+
+@{
+    ViewData["Title"] = "Clean Sheets Leaderboard";
+}
+
+<div>
+    <div class="container mt-5">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Clean Sheets</th>
+                    <th scope="col">Matches Played</th>
+                    <th scope="col">Assists</th>                    
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var player in Model.PlayerList)
+                {
+                    <tr>
+                        <td>@player.Title</td>
+                        <td>@player.CleanSheets</td>
+                        <td>@player.Appearances</td>
+                        <td>@player.Assists</td>
+                        <td>@player.Age</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
