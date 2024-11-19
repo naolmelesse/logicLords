@@ -12,14 +12,15 @@ using System.Threading.Tasks;
 
 namespace UnitTests.Pages.Leaderboard
 {
+
     /// <summary>
-    /// Class for unit tests of Compare players feature
+    /// Class for unit tests of Assists Leaderboard feature
     /// </summary>
     class AssistsLeaderboardTests
     {
         #region TestSetup
 
-        // The Compare Player Page Model instance being tested
+        // The Assists Leaderboard Page Model instance being tested
         public static AssistsLeaderboardModel pageModel;
 
         /// <summary>
@@ -28,10 +29,10 @@ namespace UnitTests.Pages.Leaderboard
         [SetUp]
         public void TestInitialize()
         {
-            // Create a mock logger for the ComparePlayersModel
+            // Create a mock logger for the AssistsLeaderboardModel
             var MockLoggerDirect = Mock.Of<ILogger<AssistsLeaderboardModel>>();
 
-            // Initialize the ComparePlayersModel with the mock logger and test product service
+            // Initialize the AssistsLeaderboardModel with the mock logger and test product service
             pageModel = new AssistsLeaderboardModel(MockLoggerDirect, TestHelper.ProductService)
             {
             };
@@ -43,10 +44,10 @@ namespace UnitTests.Pages.Leaderboard
 
         /// <summary>
         /// Test case for the OnGet method.
-        /// This test verifies that when the OnGet method is called, the ModelState is valid.
+        /// This test verifies that when the OnGet method is called, the Player list is sorted by assists.
         /// </summary>
         [Test]
-        public void OnGet_Valid_Activity_Set_Should_Return_RequestId()
+        public void OnGet_Valid_Given_Player_List_Should_Populate_Player_List_In_Descending_Order_Of_Assists()
         {
             // Arrange
             var players = TestHelper.ProductService.GetAllData();
@@ -58,6 +59,7 @@ namespace UnitTests.Pages.Leaderboard
 
 
             // Assert
+            // Player list ordered by assists
             var orderedList = pageModel.PlayerList.ToList();
             for (int i = 1; i < orderedList.Count; i++)
             {
@@ -65,6 +67,6 @@ namespace UnitTests.Pages.Leaderboard
             }
         }
 
-        #endregion
+        #endregion OnGet
     }
 }
