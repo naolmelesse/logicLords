@@ -1,4 +1,6 @@
 ﻿@page
+@model ContosoCrafts.WebSite.Pages.Leaderboard.AssistsLeaderboardModel
+
 @{
     ViewData["Title"] = "Assists Leaderboard";
 }
@@ -9,16 +11,24 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Player</th>
-                    <th scope="col">Goals</th>
                     <th scope="col">Assists</th>
+                    <th scope="col">Goals</th>
                     <th scope="col">Matches Played</th>
-                    <th scope="col">Points</th>
+                    <th scope="col">Age</th>
                 </tr>
             </thead>
             <tbody>
-               
+                @foreach (var player in Model.PlayerList)
+                {
+                    <tr>
+                        <td>@player.Title</td>
+                        <td>@player.Assists</td>
+                        <td>@player.Goals</td>
+                        <td>@player.Appearances</td>
+                        <td>@player.Age</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
