@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ContosoCrafts.WebSite.Pages
+namespace ContosoCrafts.WebSite.Pages.Leaderboard
 {
     /// <summary>
     /// Class for methods and properties related to Assists Leaderboard
@@ -42,7 +42,7 @@ namespace ContosoCrafts.WebSite.Pages
         public void OnGet()
         {
             // Retrieve all player data from the PlayerService
-            PlayerList = PlayerService.GetAllData();
+            PlayerList = PlayerService.GetAllData().OrderByDescending(p=> p.Assists);
         }
     }
 }
