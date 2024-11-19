@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ContosoCrafts.WebSite.Pages
+namespace ContosoCrafts.WebSite.Pages.Leaderboard
 {
     /// <summary>
     /// Class for methods and properties related to Goals Leaderboard
@@ -15,7 +15,7 @@ namespace ContosoCrafts.WebSite.Pages
     public class GoalsLeaderboardModel : PageModel
     {
         // Logger instance for logging information and errors
-        private readonly ILogger<ComparePlayersModel> _logger;
+        private readonly ILogger<GoalsLeaderboardModel> _logger;
 
         /// <summary>
         /// Constructor for initializing the GoalsLeaderboardModel with logger and player service dependencies.
@@ -23,7 +23,7 @@ namespace ContosoCrafts.WebSite.Pages
         /// <param name="logger">The logger instance.</param>
         /// <param name="playerService">Service for handling player data retrieval.</param>
 
-        public GoalsLeaderboardModel(ILogger<ComparePlayersModel> logger,
+        public GoalsLeaderboardModel(ILogger<GoalsLeaderboardModel> logger,
            JsonFileProductService playerService)
         {
             _logger = logger;
@@ -42,7 +42,7 @@ namespace ContosoCrafts.WebSite.Pages
         public void OnGet()
         {
             // Retrieve all player data from the PlayerService
-            PlayerList = PlayerService.GetAllData();
+            PlayerList = PlayerService.GetAllData().OrderByDescending(p => p.Goals);
         }
     }
 }
