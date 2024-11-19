@@ -15,7 +15,7 @@ namespace ContosoCrafts.WebSite.Pages.Leaderboard
     public class AssistsLeaderboardModel : PageModel
     {
         // Logger instance for logging information and errors
-        private readonly ILogger<ComparePlayersModel> _logger;
+        private readonly ILogger<AssistsLeaderboardModel> _logger;
 
         /// <summary>
         /// Constructor for initializing the AssistsLeaderboardModel with logger and player service dependencies.
@@ -23,7 +23,7 @@ namespace ContosoCrafts.WebSite.Pages.Leaderboard
         /// <param name="logger">The logger instance.</param>
         /// <param name="playerService">Service for handling player data retrieval.</param>
 
-        public AssistsLeaderboardModel(ILogger<ComparePlayersModel> logger,
+        public AssistsLeaderboardModel(ILogger<AssistsLeaderboardModel> logger,
            JsonFileProductService playerService)
         {
             _logger = logger;
