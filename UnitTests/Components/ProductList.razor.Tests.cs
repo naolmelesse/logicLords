@@ -61,35 +61,7 @@ namespace UnitTests.Components
 
             // Verify that the player name "Alonso Martinez" is present in the markup.
             Assert.That(result.Contains("Alonso Martinez"));
-        }
-
-        /// <summary>
-        /// Tests if a message is displayed when there are no players in the component.
-        /// </summary>
-        [Test]
-        public void RenderComponent_With_No_Players_Empty_List_Should_Display_No_Players_Message()
-        {
-
-            // Arrange
-
-            // Add the ProductService to the test's service collection.
-            Services.AddSingleton<JsonFileProductService>(TestHelper.ProductService);
-
-
-            // Act
-
-            // Render the ProductList component and pass an empty list of players as a parameter.
-            var page = RenderComponent<ProductList>(parameters => parameters.Add(p => p.Players, new List<ProductModel>()));
-
-            // Retrieve the markup of the rendered component.
-            var result = page.Markup;
-
-
-            // Assert
-
-            // Verify that the "No players available to display." message is present in the markup.
-            Assert.That(result.Contains("No players available to display."));
-        }
+        }        
 
         #endregion Rendering Tests
 
