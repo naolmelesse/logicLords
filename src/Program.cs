@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ContosoCrafts.WebSite
 
@@ -15,6 +16,7 @@ namespace ContosoCrafts.WebSite
         /// It creates the host builder, builds it, and starts the web application.
         /// </summary>
         /// <param name="args">Command-line arguments passed to the application.</param>
+        [ExcludeFromCodeCoverage]
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
