@@ -24,7 +24,7 @@
                     <div class="card-footer">
                         <small class="text-muted">
                             <div class="d-flex justify-content-between">
-                                <button id="morebutton_@product.Id" @onclick="(e => SelectProduct(product.Id))"
+                                <button id="morebutton_@product.Id" @onclick="(e => SelectProduct(product))"
                                         data-toggle="modal" data-target="#productModal" class="btn btn-primary">
                                     More Info
                                 </button>
@@ -115,10 +115,9 @@
     ProductModel selectedProduct;
     string selectedProductId;
 
-    void SelectProduct(string productId)
+    public void SelectProduct(ProductModel product)
     {
-        selectedProductId = productId;
-        selectedProduct = Players.FirstOrDefault(x => x.Id == productId);
+        selectedProduct = Players.FirstOrDefault(x => x.Id == product.Id);
         GetCurrentRating();
                 
     }
@@ -147,7 +146,7 @@
     void SubmitRating(int rating)
     {
         System.Console.WriteLine($"Rating received for {selectedProduct.Id}: {rating}");
-        ProductService.AddRating(selectedProductId, rating);
-        SelectProduct(selectedProductId);
+        ProductService.AddRating(selectedProduct.Id, rating);
+        SelectProduct(selectedProduct);
     }
 }
