@@ -21,50 +21,29 @@
 </div>
 <div class="container-home">
     <h1>Logic Lords</h1>
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-3">
-            @(await Html.RenderComponentAsync<LeaderboardSnippet>(
-                RenderMode.ServerPrerendered,
-                new
-                {
-                    Title = "Top Goal Scorers",
-                    Players = Model.TopGoalScorers,
-                    ShowMoreUrl = "/leaderboard/goalsleaderboard",
-                    DisplayStat = "Goals"
-                }))
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            @(await Html.RenderComponentAsync<LeaderboardSnippet>(
-                RenderMode.ServerPrerendered,
-                new
-                {
-                    Title = "Top Assists",
-                    Players = Model.TopAssisters,
-                    ShowMoreUrl = "/leaderboard/assistsleaderboard",
-                    DisplayStat = "Assists"
-                }))
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            @(await Html.RenderComponentAsync<LeaderboardSnippet>(
-                RenderMode.ServerPrerendered,
-                new
-                {
-                    Title = "Most Saves",
-                    Players = Model.TopSaves,
-                    ShowMoreUrl = "/leaderboard/savesleaderboard",
-                    DisplayStat = "Saves"
-                }))
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-            @(await Html.RenderComponentAsync<LeaderboardSnippet>(
-                RenderMode.ServerPrerendered,
-                new
-                {
-                    Title = "Most Clean Sheets",
-                    Players = Model.TopCleanSheets,
-                    ShowMoreUrl = "/leaderboard/cleansheetsleaderboard",
-                    DisplayStat = "CleanSheets"
-                }))
+    <h2>Leaderboards</h2>
+    <div class="container">
+        <div class="row g-3 justify-content-center my-3">
+            <div class="col-auto">
+                <a href="/leaderboard/goalsleaderboard" class="btn btn-outline-primary">
+                    <i class="fa fa-futbol-o me-1"></i>Goals Leaderboard
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/leaderboard/assistsleaderboard" class="btn btn-outline-primary">
+                    <i class="fa fa-hand-peace-o me-1"></i>Assists Leaderboard
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/leaderboard/savesleaderboard" class="btn btn-outline-primary">
+                    <i class="fa fa-shield me-1"></i>Saves Leaderboard
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/leaderboard/cleansheetsleaderboard" class="btn btn-outline-primary">
+                    <i class="fa fa-lock me-1"></i>Clean Sheets Leaderboard
+                </a>
+            </div>
         </div>
     </div>
     <div class="home-player-list-container p-1 p-md-4 p-sm-1 mt-4">
