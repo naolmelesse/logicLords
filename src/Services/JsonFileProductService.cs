@@ -148,7 +148,7 @@ namespace ContosoCrafts.WebSite.Services
             productData.Goals = data.Goals;
             productData.Appearances = data.Appearances;
             productData.Position = data.Position;
-            productData.Height = data.Height;
+            productData.HeightInCMs = data.HeightInCMs;
             productData.Image = data.Image;
             productData.Dateofbirth = data.Dateofbirth;
 
