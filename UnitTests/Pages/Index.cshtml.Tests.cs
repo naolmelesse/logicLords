@@ -5,8 +5,10 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 
 // THIS IS THE UNIT TEST FOR THE HOME PAGE
 
@@ -409,5 +411,36 @@ namespace UnitTests.Pages.Index
         }
 
         #endregion OnGet
+
+
+
+        #region SetPlayerLeaderboardSnippet
+        [Test]
+        public void SetPlayerLeaderboardSnippet_ShouldSetTopGoalScorers()
+        {
+            // Arrange
+            var data = productService.GetAllData();
+            var topGoalScorer = productService.GetAllData().OrderByDescending(p => p.Goals).First();
+            var topAssisters = productService.GetAllData().OrderByDescending(p => p.Assists).First();
+            var topSaves = productService.GetAllData().OrderByDescending(p => p.Saves).First();
+            var topCleanSheets = productService.GetAllData().OrderByDescending(p => p.CleanSheets).First();
+
+            // Act
+            pageModel.SetPlayerLeaderboardSnippet();
+
+            // Assert
+            Assert.That(pageModel.TopGoalScorers.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.TopGoalScorers.First().Title, Is.EqualTo(topGoalScorer.Title));
+
+            Assert.That(pageModel.TopAssisters.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.TopAssisters.First().Title, Is.EqualTo(topAssisters.Title));
+
+            Assert.That(pageModel.TopSaves.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.TopSaves.First().Title, Is.EqualTo(topSaves.Title));
+
+            Assert.That(pageModel.TopCleanSheets.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.TopCleanSheets.First().Title, Is.EqualTo(topCleanSheets.Title));
+        }
+        #endregion SetPlayerLeaderboardSnippet
     }
 }
