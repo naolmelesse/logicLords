@@ -41,12 +41,12 @@ namespace ContosoCrafts.WebSite.Models
         [StringLength(100, ErrorMessage = "Club cannot be longer than 100 characters.")]
         public string Club { get; set; }
 
-        // Player's height in both metric and imperial
-        [Required(ErrorMessage = "Height is required")]
-        [StringLength(100, ErrorMessage = "Height cannot be longer than 100 characters.")]
-        public string Height { get; set; }
+        // Player's height in meters as a string
+        [JsonIgnore] // Prevents serialization as HeightInCM will be calculated
+        public string Height => (HeightInCMs / 100.0).ToString("0.00") + "m";
 
         // Player's height in centimeters
+        [Range(0, int.MaxValue, ErrorMessage = "Height must be a non-negative number.")]
         public int HeightInCMs { get; set; }
 
         // Player's usual position on the field
