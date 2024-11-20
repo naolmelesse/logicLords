@@ -1,7 +1,7 @@
 [
   {
     "Id": "alonso-martinez",
-    "img": "/data/players/AlonsoMartinez.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/xqtofvimirswkl03n0ms.png",
     "Place of birth": "Puntarenas, Costa Rica",
     "Date of birth": "1998-10-15",
     "Age": 26,
@@ -46,7 +46,7 @@
   },
   {
     "Id": "cristian-arango",
-    "img": "/data/players/CristianArango.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/gtc1vqnrm3okadcdhq3o.png",
     "Place of birth": "Medellin, Colombia",
     "Date of birth": "1995-03-09",
     "Age": 29,
@@ -65,7 +65,7 @@
   },
   {
     "Id": "cucho-hernandez",
-    "img": "/data/players/CuchoHernandez.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/p8no0x0r01yrayouphwv.png",
     "Place of birth": "Pereira, Colombia",
     "Date of birth": "1999-04-20",
     "Age": 25,
@@ -84,7 +84,7 @@
   },
   {
     "Id": "daniel-gazdag",
-    "img": "/data/players/DanielGazdag.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/hgoilcq93wmymu56ysjp.png",
     "Place of birth": "Nyiregyhaza,Hungary",
     "Date of birth": "1996-03-02",
     "Age": 28,
@@ -103,7 +103,7 @@
   },
   {
     "Id": "dejan-joveljic",
-    "img": "/data/players/DejanJoveljic.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/eozlbahmyyia7hdxawnq.png",
     "Place of birth": "Bejeljina, Republika Srpska, Bosnia and Herzergovina",
     "Date of birth": "1999-08-07",
     "Age": 25,
@@ -122,7 +122,7 @@
   },
   {
     "Id": "denis-bouanga",
-    "img": "/data/players/DenisBouanga.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/p1o5btm0qretxwd98uwl.png",
     "Place of birth": "Le mans, France",
     "Date of birth": "1994-11-11",
     "Age": 29,
@@ -141,7 +141,7 @@
   },
   {
     "Id": "evander-ferreira",
-    "img": "/data/players/Evander.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/ojplxrov8thfqaanzt7v.png",
     "Place of birth": "Rio de Janeiro, (Brazil)",
     "Date of birth": "1998-06-09",
     "Age": 29,
@@ -160,7 +160,7 @@
   },
   {
     "Id": "jonathan-rodriguez",
-    "img": "/data/players/JonathanRodriguez.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/cqqqutlr5njrot4xk6it.png",
     "Place of birth": "Florida, Uruguay",
     "Date of birth": "1993-07-06",
     "Age": 31,
@@ -179,7 +179,7 @@
   },
   {
     "Id": "lionel-messi",
-    "img": "/data/players/LionelMessi.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/alhcr8hfograrvmksm6w.png",
     "Place of birth": "Rosario, Argentina",
     "Date of birth": "1987-06-24",
     "Age": 37,
@@ -198,7 +198,7 @@
   },
   {
     "Id": "luis-suarez",
-    "img": "/data/players/LuisSuarez.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/ug60s1o8vq5gknokiku4.png",
     "Place of birth": "Salto, Uruguay",
     "Date of birth": "1987-01-24",
     "Age": 37,
@@ -217,7 +217,7 @@
   },
   {
     "Id": "peter-musa",
-    "img": "/data/players/PetarMusa.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/dg3pbtqgf0ihghhg5qas.png",
     "Place of birth": "Zagreb, Croatia",
     "Date of birth": "1998-03-04",
     "Age": 26,
@@ -236,7 +236,7 @@
   },
   {
     "Id": "gabriel-pec",
-    "img": "/data/players/GabrielPec.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/n35h2m1ezpytjs4mtpbf.png",
     "Place of birth": "Petropolis, Brazil",
     "Date of birth": "2001-02-11",
     "Age": 23,
@@ -255,7 +255,7 @@
   },
   {
     "Id": "brian-white",
-    "img": "/data/players/BrianWhite.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/tdy4qqe3tk0liauj8uzl.png",
     "Place of birth": "Flemington, New Jersey, United States",
     "Date of birth": "1996-02-03",
     "Age": 28,
@@ -274,7 +274,7 @@
   },
   {
     "Id": "luciano-acosta",
-    "img": "/data/players/LucianoAcosta.png",
+    "img": "https://images.mlssoccer.com/image/private/t_editorial_squared_6_desktop/f_png/mls/rwk9vhhxmwa5vdrm9w1m.png",
     "Place of birth": "Buenos Aires, Argentina",
     "Date of birth": "1994-05-31",
     "Age": 30,
