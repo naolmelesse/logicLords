@@ -8,7 +8,7 @@
     <div class="d-flex">
         <a asp-page="Create" class="btn btn-lg btn-primary ml-auto my-3 px-4">Create</a>
     </div>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped index-page-table " >
         <thead>
             <tr>
                 <th>Title</th>
@@ -20,9 +20,11 @@
             {
                 <tr>
                     <td>@product.Title</td>
-                    <td><a asp-page="Read" asp-route-id="@product.Id">Read</a></td>
-                    <td><a asp-page="Update" asp-route-id="@product.Id">Update</a></td>
-                    <td><a asp-page="Delete" asp-route-id="@product.Id">Delete</a></td>
+                    <div class="index-action-button-container">
+                        <td class="index-action-button"><a asp-page="Read" asp-route-id="@product.Id">Read</a></td>
+                        <td class="index-action-button"><a asp-page="Update" asp-route-id="@product.Id">Update</a></td>
+                        <td class="index-action-button"><a asp-page="Delete" asp-route-id="@product.Id">Delete</a></td>
+                    </div>                    
                 </tr>
             }
         </tbody>
