@@ -855,3 +855,36 @@ ul {
         Larger for medium screens and up
     }
 }
+
+/* Responsiveness for Crudi Index page */
+.index-action-button {
+    display: table-cell;
+}
+
+/* Stack action buttons on smaller screens */
+@media screen and (max-width: 768px) {
+    .index-page-table tr {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    /* The title cell takes the first column */
+    .index-page-table td:first-child {
+        grid-column: 1;
+    }
+
+    /* Action buttons stack in the second column */
+    .index-action-button {
+        grid-column: 2;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* Optional: Style the action buttons */
+    .index-action-button a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+      
+}
