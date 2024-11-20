@@ -130,7 +130,7 @@ namespace UnitTests.Pages.Product
 
             // Assert
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.PageName, Is.EqualTo("Index"));
+            Assert.That(result.PageName, Is.EqualTo("/Product/Index"));
 
             // Ensure the player was deleted from TestHelper.ProductService
             var remainingPlayers = TestHelper.ProductService.GetAllData();
