@@ -42,6 +42,17 @@ namespace ContosoCrafts.WebSite.Pages
         // Gets the list of players that match the search term.        
         public IEnumerable<ProductModel> SelectedPlayerList { get; private set; }
 
+        // Gets the list of top 5 players have the most goals.        
+        public IEnumerable<ProductModel> TopGoalScorers { get; private set; }
+
+        // Gets the list of top 5 players have the most assists.        
+        public IEnumerable<ProductModel> TopAssisters { get; private set; }
+        // Gets the list of top 5 players have the most clean sheets.        
+        public IEnumerable<ProductModel> TopCleanSheets { get; private set; }
+
+        // Gets the list of top 5 players have the most saves.        
+        public IEnumerable<ProductModel> TopSaves { get; private set; }
+
         // Gets or sets the search term provided by the user.        
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
@@ -77,7 +88,7 @@ namespace ContosoCrafts.WebSite.Pages
         public void OnGet()
         {
             PlayerList = PlayerService.GetAllData();
-
+            SetPlayerLeaderboardSnippet();
             // Filter based on search term if provided
             OnGetSearch();
         }
@@ -89,11 +100,11 @@ namespace ContosoCrafts.WebSite.Pages
         public void OnGetSearch()
         {
             // Load players from PlayerList to SelectedPlayerList to filter if not already loaded
-            if(SelectedPlayerList == null)
+            if (SelectedPlayerList == null)
             {
                 SelectedPlayerList = PlayerList;
             }
-            
+
             // Filter based on search term if provided
             if (string.IsNullOrEmpty(SearchTerm) == false)
             {
@@ -185,6 +196,17 @@ namespace ContosoCrafts.WebSite.Pages
 
             SelectedPlayerList = SelectedPlayerList.ToList();
 
+        }
+
+        /// <summary>
+        /// Sets up leader board snippets
+        /// </summary>
+        public void SetPlayerLeaderboardSnippet()
+        {
+            TopGoalScorers = PlayerService.GetAllData().OrderByDescending(p => p.Goals).Take(5);
+            TopAssisters = PlayerService.GetAllData().OrderByDescending(p => p.Assists).Take(5);
+            TopSaves = PlayerService.GetAllData().OrderByDescending(p => p.Saves).Take(5);
+            TopCleanSheets = PlayerService.GetAllData().OrderByDescending(p => p.CleanSheets).Take(5);
         }
 
     }
