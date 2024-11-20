@@ -63,6 +63,7 @@ namespace ContosoCrafts.WebSite.Models
         public int Assists { get; set; }
 
         // The number of appearances a player has made (starts and subs)
+        [Range(0, int.MaxValue, ErrorMessage = "Appearances must be a non-negative number.")]
         public int Appearances { get; set; }
 
         // Total minutes the player has made
