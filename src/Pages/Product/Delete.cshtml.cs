@@ -64,7 +64,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
                 return RedirectToPage("/Error"); 
             }
 
-            return RedirectToPage("Index"); 
+            return RedirectToPage("/Product/Index"); 
         }
     }
 }
