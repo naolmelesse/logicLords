@@ -31,7 +31,7 @@ namespace UnitTests.Pages.ContactUs
         /// Test that the PhoneNumber property returns the correct phone number
         /// </summary>
         [Test]
-        public void PhoneNumber_Valid_DefaultValue_Should_Return_CorrectPhoneNumber()
+        public void Phone_Number_Valid_Default_Value_Should_Return_Correct_Phone_Number()
         {
             // Arrange
             var data = "(123) 456-7890";
@@ -47,7 +47,7 @@ namespace UnitTests.Pages.ContactUs
         /// Test that the Email property returns the correct email address
         /// </summary>
         [Test]
-        public void Email_Valid_DefaultValue_Should_Return_CorrectEmail()
+        public void Email_Valid_Default_Value_Should_Return_Correct_Email()
         {
             // Arrange
             var data = "info@dribblekings.com";
@@ -63,7 +63,7 @@ namespace UnitTests.Pages.ContactUs
         /// Test that the AddressLine1 property returns the correct address line
         /// </summary>
         [Test]
-        public void AddressLine1_Valid_DefaultValue_Should_Return_CorrectAddress()
+        public void Address_Line1_Valid_Default_Value_Should_Return_Correct_Address()
         {
             // Arrange
             var data = "Seattle University";
@@ -79,7 +79,7 @@ namespace UnitTests.Pages.ContactUs
         /// Test that the City property returns the correct city
         /// </summary>
         [Test]
-        public void City_Valid_DefaultValue_Should_Return_CorrectCity()
+        public void City_Valid_Default_Value_Should_Return_Correct_City()
         {
             // Arrange
             var data = "Seattle";
@@ -95,7 +95,7 @@ namespace UnitTests.Pages.ContactUs
         /// Test that the State property returns the correct state abbreviation
         /// </summary>
         [Test]
-        public void State_Valid_DefaultValue_Should_Return_CorrectState()
+        public void State_Valid_Default_Value_Should_Return_Correct_State()
         {
             // Arrange
             var data = "WA";
