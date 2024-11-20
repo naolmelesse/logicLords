@@ -116,7 +116,7 @@ namespace UnitTests.Pages.Product
                 Title = "Ready Player",
                 Dateofbirth = "15 October 1998",
                 Placeofbirth = "Santiago, Chile",
-                Height = "1.74 m (5 ft 8 in)",
+                HeightInCMs = 174,
                 Position = "Goalkeeper",
                 Club = "Columbus Crew",
                 Appearances = 12,
