@@ -27,7 +27,7 @@ namespace UnitTests.Components
                     Dateofbirth = "1990-01-01",
                     Age = 34,
                     Placeofbirth = "City A",
-                    Height = "6ft",
+                    HeightInCMs = 170,
                     Position = "Forward",
                     Club = "Club A",
                     Appearances = 100,
@@ -43,7 +43,7 @@ namespace UnitTests.Components
                     Dateofbirth = "1992-02-02",
                     Age = 32,
                     Placeofbirth = "City B",
-                    Height = "5ft 10in",
+                    HeightInCMs = 170,
                     Position = "Midfielder",
                     Club = "Club B",
                     Appearances = 80,
@@ -77,7 +77,7 @@ namespace UnitTests.Components
                     Dateofbirth = "1990-01-01",
                     Age = 34,
                     Placeofbirth = "City A",
-                    Height = "6ft 2in",
+                HeightInCMs = 174,
                     Position = "Forward",
                     Club = "Club A",
                     Appearances = 100,
@@ -93,7 +93,7 @@ namespace UnitTests.Components
                     Dateofbirth = "1992-02-02",
                     Age = 32,
                     Placeofbirth = "City B",
-                    Height = "5ft 10in",
+                    HeightInCMs = 174,
                     Position = "Midfielder",
                     Club = "Club B",
                     Appearances = 80,
@@ -128,7 +128,7 @@ namespace UnitTests.Components
             Assert.That(listItems.Count, Is.EqualTo(9));
             Assert.That(listItems[0].TextContent, Does.Contain("Date of Birth: 1990-01-01 (34)"));
             Assert.That(listItems[1].TextContent, Does.Contain("Place of Birth: City A"));
-            Assert.That(listItems[2].TextContent, Does.Contain("Height: 6ft 2in"));
+            Assert.That(listItems[2].TextContent, Does.Contain("Height: 1.74m"));
             Assert.That(listItems[3].TextContent, Does.Contain("Position(s): Forward"));
             Assert.That(listItems[4].TextContent, Does.Contain("Current Team: Club A"));
             Assert.That(listItems[5].TextContent, Does.Contain("Games Played: 100"));
