@@ -84,7 +84,7 @@ namespace UnitTests.Pages.Index
         /// Test that OnGet with a search term returns the filtered players
         /// </summary>
         [Test]
-        public void OnGet_Valid_SearchTerm_Should_Return_FilteredPlayers()
+        public void OnGet_Valid_Search_Term_Should_Return_Filtered_Players()
         {
             // Arrange
             pageModel.SearchTerm = "Lionel";
@@ -125,7 +125,7 @@ namespace UnitTests.Pages.Index
         /// Test that OnGet with MaxAge returns players below the specified age
         /// </summary>
         [Test]
-        public void OnGet_Valid_MaxAge_Should_Return_PlayersBelowMaxAge()
+        public void OnGet_Valid_Max_Age_Should_Return_Players_Below_Max_Age()
         {
             // Arrange
             pageModel.MaxAge = 25;
@@ -146,7 +146,7 @@ namespace UnitTests.Pages.Index
         /// Test that OnGet with both MinAge and MaxAge returns players within the age range
         /// </summary>
         [Test]
-        public void OnGet_Valid_MinAndMaxAge_Should_Return_Players_Within_AgeRange()
+        public void OnGet_Valid_Min_And_Max_Age_Should_Return_Players_Within_Age_Range()
         {
             // Arrange
             pageModel.MinAge = 26;
