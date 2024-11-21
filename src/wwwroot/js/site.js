@@ -26,7 +26,7 @@ function createWheelSpinner() {
     const centerY = canvas.height / 2;
     const radius = canvas.width / 2 - 10;
 
-    const categories = ['Sports', 'Geography', 'History', 'Entertainment'];
+    const categories = ['Player Trivia', 'Team Trivia', 'History Trivia', 'Stats Trivia'];
     const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FDCB6E'];
 
     let rotation = 0;
