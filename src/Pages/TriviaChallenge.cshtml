@@ -4,11 +4,22 @@
     ViewData["Title"] = "Trivia Challenge";
 }
 
-<h1 class="trivia-header">@ViewData["Title"]</h1>
+<div class="trivia-challenge-container">
+    <h1 class="trivia-header">@ViewData["Title"]</h1>
+    
+    <div class="game-wrapper">
+        <div class="wheel-section">
+            <canvas id="fortuneWheel" width="400" height="400"></canvas>
+            <button id="spinButton" class="spin-button">
+                <span class="spin-icon">🎲</span>
+                Spin the Wheel
+            </button>
+        </div>
 
-<div class="trivia-container">
-
-
+        <div id="triviaContainer" class="trivia-container">
+            <div id="categoryDisplay" class="category-display"></div>
+            <div id="questionDisplay" class="question-display"></div>
+            <div id="answerOptions" class="answer-options"></div>
+        </div>
+    </div>
 </div>
-
-
