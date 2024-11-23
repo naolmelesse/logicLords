@@ -8,8 +8,8 @@ using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Buffers.Text;
-using System.Numerics;
+using ContosoCrafts.WebSite.Pages.Shared;
+using System.Reflection;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -42,16 +42,8 @@ namespace ContosoCrafts.WebSite.Pages
         // Gets the list of players that match the search term.        
         public IEnumerable<ProductModel> SelectedPlayerList { get; private set; }
 
-        // Gets the list of top 5 players have the most goals.        
-        public IEnumerable<ProductModel> TopGoalScorers { get; private set; }
-
-        // Gets the list of top 5 players have the most assists.        
-        public IEnumerable<ProductModel> TopAssisters { get; private set; }
-        // Gets the list of top 5 players have the most clean sheets.        
-        public IEnumerable<ProductModel> TopCleanSheets { get; private set; }
-
-        // Gets the list of top 5 players have the most saves.        
-        public IEnumerable<ProductModel> TopSaves { get; private set; }
+        // List of leaderboard snippet criteria to display different leaderboards
+        public List<LeaderboardSnippetModel> LeaderboardSnippetCriterias { get; set; }
 
         // Gets or sets the search term provided by the user.        
         [BindProperty(SupportsGet = true)]
@@ -199,14 +191,64 @@ namespace ContosoCrafts.WebSite.Pages
         }
 
         /// <summary>
-        /// Sets up leader board snippets
+        /// Sets up leaderboard snippets
         /// </summary>
         public void SetPlayerLeaderboardSnippet()
         {
-            TopGoalScorers = PlayerService.GetAllData().OrderByDescending(p => p.Goals).Take(5);
-            TopAssisters = PlayerService.GetAllData().OrderByDescending(p => p.Assists).Take(5);
-            TopSaves = PlayerService.GetAllData().OrderByDescending(p => p.Saves).Take(5);
-            TopCleanSheets = PlayerService.GetAllData().OrderByDescending(p => p.CleanSheets).Take(5);
+            // Get the top 5 goal scorers
+            IEnumerable<ProductModel> topGoalScorers = PlayerService
+                .GetAllData()
+                .OrderByDescending(p => p.Goals)
+                .Take(5);
+
+            // Get the top 5 players with the most assists
+            IEnumerable<ProductModel> topAssisters = PlayerService
+                .GetAllData()
+                .OrderByDescending(p => p.Assists)
+                .Take(5);
+
+            // Get the top 5 players with the most saves
+            IEnumerable<ProductModel> topSaves = PlayerService
+                .GetAllData()
+                .OrderByDescending(p => p.Saves)
+                .Take(5);
+
+            // Get the top 5 players with the most clean sheets
+            IEnumerable<ProductModel> topCleanSheets = PlayerService
+                .GetAllData()
+                .OrderByDescending(p => p.CleanSheets)
+                .Take(5);
+
+            // Initialize the leaderboard snippet criteria list
+            LeaderboardSnippetCriterias = new List<LeaderboardSnippetModel>
+            {
+                new()
+                {
+                        Title = "Top Goal Scorers",
+                        Players = topGoalScorers,
+                        ShowMoreUrl = "/leaderboard/goalsleaderboard",
+                        DisplayStat = "Goals"
+                },
+                new()
+                    {
+                        Title = "Most Assists",
+                        Players = topAssisters,
+                        ShowMoreUrl = "/leaderboard/assistsleaderboard",
+                        DisplayStat = "Assists"
+                    },
+                new() {
+                        Title = "Most Saves",
+                        Players = topSaves,
+                        ShowMoreUrl = "/leaderboard/savesleaderboard",
+                        DisplayStat = "Saves"
+                    },
+                new() {
+                        Title = "Most Clean Sheets",
+                        Players = topCleanSheets,
+                        ShowMoreUrl = "/leaderboard/cleansheetsleaderboard",
+                        DisplayStat = "CleanSheets"
+                    }
+            };
         }
 
     }
