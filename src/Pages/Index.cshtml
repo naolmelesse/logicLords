@@ -1,5 +1,6 @@
 ﻿@page
 @using ContosoCrafts.WebSite.Components
+@using ContosoCrafts.WebSite.Pages.Shared
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -11,7 +12,6 @@
             <p>Home of players.</p>
             <p>know more about your favorite player.</p>
         </div>
-
     </div>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <a href="#search" class="btn btn-get-started">
@@ -24,26 +24,15 @@
     <h2>Leaderboards</h2>
     <div class="container">
         <div class="row g-3 justify-content-center my-3">
-            <div class="col-auto">
-                <a href="/leaderboard/goalsleaderboard" class="btn btn-outline-primary">
-                    <i class="fa fa-futbol-o me-1"></i>Goals Leaderboard
-                </a>
-            </div>
-            <div class="col-auto">
-                <a href="/leaderboard/assistsleaderboard" class="btn btn-outline-primary">
-                    <i class="fa fa-hand-peace-o me-1"></i>Assists Leaderboard
-                </a>
-            </div>
-            <div class="col-auto">
-                <a href="/leaderboard/savesleaderboard" class="btn btn-outline-primary">
-                    <i class="fa fa-shield me-1"></i>Saves Leaderboard
-                </a>
-            </div>
-            <div class="col-auto">
-                <a href="/leaderboard/cleansheetsleaderboard" class="btn btn-outline-primary">
-                    <i class="fa fa-lock me-1"></i>Clean Sheets Leaderboard
-                </a>
-            </div>
+            @if (Model.LeaderboardSnippetCriterias != null)
+            {
+                foreach (var leaderBoardSnippetCriteria in Model.LeaderboardSnippetCriterias)
+                {
+                    <div class="col-12 col-md-6 col-lg-3">
+                        @await Html.PartialAsync("_LeaderboardSnippet", leaderBoardSnippetCriteria)
+                    </div>
+                }
+            }
         </div>
     </div>
     <div class="home-player-list-container p-1 p-md-4 p-sm-1 mt-4">
