@@ -64,7 +64,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
 
             PlayerService.UpdateData(Player);
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Product/Index");
         }
     }
 }
