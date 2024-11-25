@@ -31,6 +31,9 @@ namespace ContosoCrafts.WebSite.Pages
             _logger = logger;
         }
 
+        // Stores the exception message to display on the Error page.
+        public string ErrorMessage { get; set; }
+
         /// <summary>
         /// Handles GET requests to the error page.
         /// Captures and sets the RequestId for the current HTTP context.
@@ -38,6 +41,12 @@ namespace ContosoCrafts.WebSite.Pages
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+
+            // Retrieve the error message from TempData
+            if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ErrorMessage = TempData["ErrorMessage"] as string;
+            }
         }
     }
 }
