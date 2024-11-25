@@ -429,17 +429,17 @@ namespace UnitTests.Pages.Index
             pageModel.SetPlayerLeaderboardSnippet();
 
             // Assert
-            Assert.That(pageModel.TopGoalScorers.Count(), Is.EqualTo(5));
-            Assert.That(pageModel.TopGoalScorers.First().Title, Is.EqualTo(topGoalScorer.Title));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.First().Players.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.First().Players.First().Title, Is.EqualTo(topGoalScorer.Title));
 
-            Assert.That(pageModel.TopAssisters.Count(), Is.EqualTo(5));
-            Assert.That(pageModel.TopAssisters.First().Title, Is.EqualTo(topAssisters.Title));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.Skip(1).First().Players.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.Skip(1).First().Players.First().Title, Is.EqualTo(topAssisters.Title));
 
-            Assert.That(pageModel.TopSaves.Count(), Is.EqualTo(5));
-            Assert.That(pageModel.TopSaves.First().Title, Is.EqualTo(topSaves.Title));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.Skip(2).First().Players.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.Skip(2).First().Players.First().Title, Is.EqualTo(topSaves.Title));
 
-            Assert.That(pageModel.TopCleanSheets.Count(), Is.EqualTo(5));
-            Assert.That(pageModel.TopCleanSheets.First().Title, Is.EqualTo(topCleanSheets.Title));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.Skip(3).First().Players.Count(), Is.EqualTo(5));
+            Assert.That(pageModel.LeaderboardSnippetCriterias.Skip(3).First().Players.First().Title, Is.EqualTo(topCleanSheets.Title));
         }
         #endregion SetPlayerLeaderboardSnippet
     }
