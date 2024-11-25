@@ -1,4 +1,5 @@
-﻿using ContosoCrafts.WebSite.Pages.Product;
+﻿using ContosoCrafts.WebSite.Models;
+using ContosoCrafts.WebSite.Pages.Product;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace UnitTests.Pages.Product.Index
@@ -96,7 +98,7 @@ namespace UnitTests.Pages.Product.Index
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
             
             // Initialize the IndexModel with the product service
-            pageModel = new IndexModel(productService);
+            pageModel = new IndexModel(productService, MockLoggerDirect);
         }
 
         #endregion TestSetup
@@ -120,6 +122,41 @@ namespace UnitTests.Pages.Product.Index
             Assert.That(result, Is.EqualTo(true));
             Assert.That(pageModel.Products.ToList().Any(), Is.EqualTo(true));
         }
+
+
+        /// <summary>
+        /// Tests whether the OnGet method handles null Products and redirects to the Error page
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_Null_Products_Should_Redirect_To_Error()
+        {
+            // Arrange
+            // Mock the ProductService to return null
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+            mockProductService.Setup(service => service.GetAllData()).Returns((IEnumerable<ProductModel>)null);
+
+            var mockLogger = Mock.Of<ILogger<IndexModel>>();
+
+            // Initialize TempData
+            var tempData = new TempDataDictionary(httpContextDefault, Mock.Of<ITempDataProvider>());
+
+            var testPageModel = new IndexModel(mockProductService.Object, mockLogger)
+            {
+                PageContext = pageContext,
+                TempData = tempData
+            };
+
+            // Act
+            var result = testPageModel.OnGet();
+            var redirectResult = result as RedirectToPageResult;
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            Assert.That(redirectResult.PageName, Is.EqualTo("/Error"));
+        }
+
+
+
         #endregion OnGet
     }
 }
