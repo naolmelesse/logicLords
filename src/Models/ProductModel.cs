@@ -32,9 +32,22 @@ namespace ContosoCrafts.WebSite.Models
         [JsonPropertyName("Date of birth")]
         public string Dateofbirth { get; set; }
 
-        //Player's Age
-        [Range(0, 125, ErrorMessage = "Age must be between 0 and 125")]
-        public int Age { get; set; }
+        //Player's Age calculated from Date of Birth
+        [JsonIgnore]
+        public int Age
+        {
+            get
+            {
+                if (DateTime.TryParse(Dateofbirth, out DateTime dob))
+                {
+                    var today = DateTime.Today;
+                    int age = today.Year - dob.Year;
+                    if (dob > today.AddYears(-age)) age--;
+                    return age;
+                }
+                return 0;
+            }
+        }
 
         // The soccer club the player is contracted to
         [Required(ErrorMessage = "Current Club is required")]
@@ -79,7 +92,6 @@ namespace ContosoCrafts.WebSite.Models
         public string Title { get; set; }
 
         // The number of games where a player doesn't concede
-
         [Range(0, int.MaxValue, ErrorMessage = "Clean Sheets must be a non-negative number.")]
         [JsonPropertyName("Clean sheets")]
         public int CleanSheets { get; set; }
@@ -96,6 +108,5 @@ namespace ContosoCrafts.WebSite.Models
         /// </summary>
         /// <returns>String representation of the data</returns>
         public override string ToString() => JsonSerializer.Serialize<ProductModel>(this);
-
     }
 }
