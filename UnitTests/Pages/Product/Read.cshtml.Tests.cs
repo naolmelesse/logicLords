@@ -1,4 +1,5 @@
-﻿using ContosoCrafts.WebSite.Pages.Product;
+﻿using ContosoCrafts.WebSite.Models;
+using ContosoCrafts.WebSite.Pages.Product;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +12,11 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace UnitTests.Pages.Product.Read
 {
-
     /// <summary>
     /// Unit tests for Read Page
     /// </summary>
@@ -94,7 +96,11 @@ namespace UnitTests.Pages.Product.Read
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
             // Initialize the ReadModel instance
-            pageModel = new ReadModel();
+            pageModel = new ReadModel(productService, MockLoggerDirect)
+            {
+                PageContext = pageContext,
+                TempData = tempData,
+            };
         }
 
         #endregion TestSetup
@@ -108,15 +114,126 @@ namespace UnitTests.Pages.Product.Read
         public void OnGet_Valid_Should_Return_Products_With_Correct_ID()
         {
             // Arrange
-            var readModel = new ReadModel();
             var data = "test-id";
-            readModel.Id = data;
+            pageModel.Id = data;
 
             // Act
-            var result = readModel.Id;
+            var result = pageModel.Id;
 
             // Assert
             Assert.That(result, Is.EqualTo(data));
+        }
+
+        /// <summary>
+        /// Tests OnGet when the Id is null or empty.
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_Null_Or_EmptyId_Should_Redirect_To_Error_Page()
+        {
+            // Arrange
+            pageModel.Id = null;
+
+            // Act
+            var result = pageModel.OnGet();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            var redirectResult = result as RedirectToPageResult;
+            Assert.That(redirectResult.PageName, Is.EqualTo("/Error"));
+            Assert.That(pageModel.TempData["ErrorMessage"], Is.EqualTo("Player ID is missing."));
+        }
+
+        /// <summary>
+        /// Tests OnGet when the player with the given Id does not exist.
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_Id_Should_Redirect_To_Error_Page()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+
+            mockProductService.Setup(service => service.GetAllData()).Returns(new List<ProductModel>());
+
+            var mockLogger = Mock.Of<ILogger<ReadModel>>();
+
+            var testPageModel = new ReadModel(mockProductService.Object, mockLogger)
+            {
+                PageContext = pageContext,
+                TempData = tempData
+            };
+
+            testPageModel.Id = "InvalidId";
+
+            // Act
+            var result = testPageModel.OnGet();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            var redirectResult = result as RedirectToPageResult;
+            Assert.That(redirectResult.PageName, Is.EqualTo("/Error"));
+            Assert.That(testPageModel.TempData["ErrorMessage"], Is.EqualTo("Player with ID InvalidId not found."));
+        }
+
+        /// <summary>
+        /// Tests OnGet when the player with the given Id exists.
+        /// </summary>
+        [Test]
+        public void OnGet_Valid_Id_Should_Return_Read_Page()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+
+            mockProductService.Setup(service => service.GetAllData()).Returns(new List<ProductModel>
+            {
+                new ProductModel { Id = "ValidId", Title = "Test Player" }
+            });
+
+            var mockLogger = Mock.Of<ILogger<ReadModel>>();
+
+            var testPageModel = new ReadModel(mockProductService.Object, mockLogger)
+            {
+                PageContext = pageContext,
+                TempData = tempData
+            };
+
+            testPageModel.Id = "ValidId";
+
+            // Act
+            var result = testPageModel.OnGet();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<PageResult>());
+        }
+
+        /// <summary>
+        /// Tests OnGet when an exception is thrown.
+        /// </summary>
+        [Test]
+        public void OnGet_ExceptionThrown_Should_RedirectToError()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
+
+            mockProductService.Setup(service => service.GetAllData()).Throws(new Exception("Test Exception"));
+
+            var mockLogger = Mock.Of<ILogger<ReadModel>>();
+
+            var testPageModel = new ReadModel(mockProductService.Object, mockLogger)
+            {
+                PageContext = pageContext,
+                TempData = tempData
+            };
+
+            testPageModel.Id = "ValidId";
+
+            // Act
+            var result = testPageModel.OnGet();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            var redirectResult = result as RedirectToPageResult;
+            Assert.That(redirectResult.PageName, Is.EqualTo("/Error"));
+            Assert.That(testPageModel.TempData["ErrorMessage"], Is.EqualTo("Test Exception"));
         }
 
         #endregion OnGet
