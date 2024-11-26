@@ -1,4 +1,5 @@
-﻿using ContosoCrafts.WebSite.Pages.Product;
+﻿using ContosoCrafts.WebSite.Models;
+using ContosoCrafts.WebSite.Pages.Product;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace UnitTests.Pages.Product.Index
@@ -131,7 +133,7 @@ namespace UnitTests.Pages.Product.Index
             // Arrange
             // Mock the ProductService to return null
             var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
-            mockProductService.Setup(service => service.GetAllData()).Throws(new System.Exception("Test Exception"));
+            mockProductService.Setup(service => service.GetAllData()).Returns((IEnumerable<ProductModel>)null);
 
             var mockLogger = Mock.Of<ILogger<IndexModel>>();
 
