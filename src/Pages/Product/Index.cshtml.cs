@@ -49,7 +49,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
 
                 if (Products == null)
                 {
-                    throw new Exception();
+                    throw new Exception("Products was null");
                 }
                 return Page();
             }
