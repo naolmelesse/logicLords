@@ -25,9 +25,8 @@ namespace UnitTests.Components
                     Title = "Player One",
                     Image = "player1.jpg",
                     Dateofbirth = "1990-01-01",
-                    Age = 34,
                     Placeofbirth = "City A",
-                    HeightInCMs = 170,
+                    HeightInCMs = 174,
                     Position = "Forward",
                     Club = "Club A",
                     Appearances = 100,
@@ -41,9 +40,8 @@ namespace UnitTests.Components
                     Title = "Player Two",
                     Image = "player2.jpg",
                     Dateofbirth = "1992-02-02",
-                    Age = 32,
                     Placeofbirth = "City B",
-                    HeightInCMs = 170,
+                    HeightInCMs = 176,
                     Position = "Midfielder",
                     Club = "Club B",
                     Appearances = 80,
@@ -61,54 +59,10 @@ namespace UnitTests.Components
         }
 
         /// <summary>
-        /// Setup runs before each test to initialize or reset data.
-        /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            // Setting up playersList before each test execution
-            testProductService.SetProducts(new List<ProductModel>
-            {
-                new ProductModel
-                {
-                    Id = "1",
-                    Title = "Player One",
-                    Image = "player1.jpg",
-                    Dateofbirth = "1990-01-01",
-                    Age = 34,
-                    Placeofbirth = "City A",
-                HeightInCMs = 174,
-                    Position = "Forward",
-                    Club = "Club A",
-                    Appearances = 100,
-                    Minutesplayed = 9000,
-                    Goals = 50,
-                    Assists = 30
-                },
-                new ProductModel
-                {
-                    Id = "2",
-                    Title = "Player Two",
-                    Image = "player2.jpg",
-                    Dateofbirth = "1992-02-02",
-                    Age = 32,
-                    Placeofbirth = "City B",
-                    HeightInCMs = 174,
-                    Position = "Midfielder",
-                    Club = "Club B",
-                    Appearances = 80,
-                    Minutesplayed = 7200,
-                    Goals = 20,
-                    Assists = 40
-                }
-            });
-        }
-
-        /// <summary>
         /// Test to ensure that PlayerData component displays correct data for a valid player ID.
         /// </summary>
         [Test]
-        public void PlayerData_Valid_Id_Players_Displays_Correct_Data_Eleements()
+        public void PlayerData_Valid_Id_Players_Displays_Correct_Data_Elements()
         {
             // Arrange
             var validId = "1";
@@ -157,14 +111,14 @@ namespace UnitTests.Components
             /// <summary>
             /// Override to return the mock product data.
             /// </summary>
-            /// <returns>List of ProductModel representing playersList.</returns>
+            /// <returns>List of ProductModel representing players.</returns>
             public override IEnumerable<ProductModel> GetAllData()
             {
                 return players;
             }
 
             /// <summary>
-            /// Set the playersList to be used in the service.
+            /// Set the players to be used in the service.
             /// </summary>
             /// <param name="playersList">New list of players to set.</param>
             public void SetProducts(IEnumerable<ProductModel> playersList)
