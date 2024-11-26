@@ -62,10 +62,10 @@ namespace ContosoCrafts.WebSite.Models
         [Range(0, int.MaxValue, ErrorMessage = "Height must be a non-negative number.")]
         public int HeightInCMs { get; set; }
 
-        // Player's usual position on the field
+        // Player's position on the field
         [Required(ErrorMessage = "Position is required")]
-        [StringLength(50, ErrorMessage = "Position cannot be longer than 50 characters.")]
-        public string Position { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Position must be a non-negative number.")]
+        public PositionEnum Position { get; set; } = PositionEnum.Undefined;
 
         // Number of goals scored by the player
         [Range(0, int.MaxValue, ErrorMessage = "Goals must be a non-negative number.")]
