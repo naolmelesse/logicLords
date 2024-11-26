@@ -39,14 +39,11 @@ namespace ContosoCrafts.WebSite.Pages.Product
         {
             try
             {
-                // Validate the Id
                 if (string.IsNullOrEmpty(Id))
                 {
                     throw new Exception("Player ID is missing.");
                 }
 
-                // You can add logic here to retrieve player data based on the Id
-                // For example:
                  var player = ProductService.GetAllData().FirstOrDefault(x => x.Id.Equals(Id));
                  if (player == null)
                 {
@@ -57,13 +54,10 @@ namespace ContosoCrafts.WebSite.Pages.Product
             }
             catch (Exception ex)
             {
-                // Log the exception
                 _logger.LogError(ex, "An error occurred on the Read page.");
 
-                // Store the error message in TempData to display on the Error page
                 TempData["ErrorMessage"] = ex.Message;
 
-                // Redirect to the Error page
                 return RedirectToPage("/Error");
             }
         }
