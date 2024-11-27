@@ -27,7 +27,7 @@ namespace UnitTests.Components
                     Dateofbirth = "1990-01-01",
                     Placeofbirth = "City A",
                     HeightInCMs = 174,
-                    Position = "Forward",
+                    Position = (PositionEnum)55,
                     Club = "Club A",
                     Appearances = 100,
                     Minutesplayed = 9000,
@@ -42,7 +42,7 @@ namespace UnitTests.Components
                     Dateofbirth = "1992-02-02",
                     Placeofbirth = "City B",
                     HeightInCMs = 176,
-                    Position = "Midfielder",
+                    Position = (PositionEnum)130,
                     Club = "Club B",
                     Appearances = 80,
                     Minutesplayed = 7200,
@@ -83,7 +83,7 @@ namespace UnitTests.Components
             Assert.That(listItems[0].TextContent, Does.Contain("Date of Birth: 1990-01-01 (34)"));
             Assert.That(listItems[1].TextContent, Does.Contain("Place of Birth: City A"));
             Assert.That(listItems[2].TextContent, Does.Contain("Height: 1.74m"));
-            Assert.That(listItems[3].TextContent, Does.Contain("Position(s): Forward"));
+            Assert.That(listItems[3].TextContent, Does.Contain("Position(s): Defender"));
             Assert.That(listItems[4].TextContent, Does.Contain("Current Team: Club A"));
             Assert.That(listItems[5].TextContent, Does.Contain("Games Played: 100"));
             Assert.That(listItems[6].TextContent, Does.Contain("Minutes Played: 9000"));
