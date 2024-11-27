@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
@@ -87,8 +88,11 @@ namespace UnitTests.Pages.Product.Update
             // Initialize the product service with the mocked web host environment
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
+            // Mock the logger required by the UpdateModel constructor
+            var mockLogger = new Mock<ILogger<UpdateModel>>();
+
             // Initialize the UpdateModel with the product service
-            pageModel = new UpdateModel(productService)
+            pageModel = new UpdateModel(productService, mockLogger.Object)
             {
                 PageContext = pageContext,
                 TempData = tempData,
