@@ -117,7 +117,7 @@ namespace UnitTests.Pages.Product
                 Dateofbirth = "15 October 1998",
                 Placeofbirth = "Santiago, Chile",
                 HeightInCMs = 174,
-                Position = "Goalkeeper",
+                Position = (PositionEnum)60,
                 Club = "Columbus Crew",
                 Appearances = 12,
                 Minutesplayed = 880,
