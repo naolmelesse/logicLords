@@ -149,25 +149,17 @@ namespace ContosoCrafts.WebSite.Pages
                     .Where(player => player.Appearances <= MaxAppearance.Value);
             }
 
-            
 
-            // Filter based on Position if value provided
-            PositionEnum parsedPosition;
-            bool isParsed = Enum.TryParse(Position, true, out parsedPosition);
 
-            if (!isParsed)
+            // Filter by position if a valid position is provided
+            if (Enum.TryParse(Position, true, out PositionEnum parsedPosition))
             {
-                return;
+                if (parsedPosition != PositionEnum.Undefined)
+                {
+                    SelectedPlayerList = SelectedPlayerList
+                        .Where(player => player.Position == parsedPosition);
+                }
             }
-
-            if (parsedPosition == PositionEnum.Undefined)
-            {
-                return;
-            }
-
-            // Filter the player list by position
-            SelectedPlayerList = SelectedPlayerList
-                .Where(player => player.Position == parsedPosition);
 
 
             // Filter based on Height if value provided
