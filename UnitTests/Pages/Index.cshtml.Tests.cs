@@ -1,3 +1,4 @@
+using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Pages;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -5,10 +6,8 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 
 // THIS IS THE UNIT TEST FOR THE HOME PAGE
 
@@ -346,7 +345,7 @@ namespace UnitTests.Pages.Index
             pageModel.MaxAge = 40;
             pageModel.MinAppearance = 15;
             pageModel.MaxAppearance = 25;
-            pageModel.Position = "Forward";
+            pageModel.Position = PositionEnum.Forward.ToString();       
             pageModel.Height = "165 cm - 174 cm";
 
             var data = productService.GetAllData()
@@ -354,7 +353,7 @@ namespace UnitTests.Pages.Index
                     p.Title.Contains("Messi", StringComparison.OrdinalIgnoreCase) &&
                     p.Age >= 30 && p.Age <= 40 &&
                     p.Appearances >= 15 && p.Appearances <= 25 &&
-                    p.Position.Equals("Forward", StringComparison.OrdinalIgnoreCase) &&
+                    p.Position == PositionEnum.Forward &&                   
                     p.HeightInCMs >= 165 && p.HeightInCMs <= 174)
                 .Select(p => p.Title)
                 .ToList();
@@ -394,7 +393,7 @@ namespace UnitTests.Pages.Index
         /// </summary>
         [Test]
         public void OnGet_Invalid_MinAppearance_Greater_Than_MaxAppearance_Should_Set_ModelError()
-        {
+        { 
             // Arrange
             pageModel.MinAppearance = 30;
             pageModel.MaxAppearance = 25;
