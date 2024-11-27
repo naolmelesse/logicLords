@@ -2,6 +2,8 @@ using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 
 namespace ContosoCrafts.WebSite.Pages.Product
@@ -12,6 +14,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
     /// </summary>
     public class UpdateModel : PageModel
     {
+        private readonly ILogger<UpdateModel> _logger;
 
         /// <summary>
         /// The Id of the player to be updated. 
@@ -20,7 +23,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
         [BindProperty(SupportsGet = true)]
         public string Id { get; set; }
 
-        //The ID of the player to be updated. 
+        // The player to be updated.
         [BindProperty]
         public ProductModel Player { get; set; }
 
@@ -32,18 +35,42 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// Initializes the PlayerService used to manage player data.
         /// </summary>
         /// <param name="playerService">The service for handling player data operations.</param>
-        public UpdateModel(JsonFileProductService playerService)
+        /// <param name="logger">Logger for logging errors and information.</param>
+        public UpdateModel(JsonFileProductService playerService, ILogger<UpdateModel> logger)
         {
             PlayerService = playerService;
+            _logger = logger;
         }
 
         /// <summary>
         /// Handles GET requests to retrieve a player by its Id.
-        /// Populates the Player property if a matching product is found.
+        /// Populates the Player attribute if a matching player is found.
         /// </summary>
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            Player = PlayerService.GetAllData().FirstOrDefault(p => p.Id == Id);
+            try
+            {
+                if (string.IsNullOrEmpty(Id))
+                {
+                    throw new Exception("Player ID is missing.");
+                }
+
+                Player = PlayerService.GetAllData().FirstOrDefault(p => p.Id == Id);
+
+                if (Player == null)
+                {
+                    throw new Exception($"Player with ID: '{Id}' not found.");
+                }
+
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred on the Update page during OnGet.");
+                TempData["ErrorMessage"] = ex.Message;
+
+                return RedirectToPage("/Error");
+            }
         }
 
         /// <summary>
@@ -52,19 +79,34 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// </summary>
         /// <returns>
         /// Redirects to Index Page if Model state valid and update successful; 
-        /// otherwise, returns the current page.
+        /// otherwise, redirects to the Error page in case of an exception.
         /// </returns>
         public IActionResult OnPost()
         {
-            //Check if the model's state is invalid
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
+                // Check if the model's state is invalid
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Model State Invalid");
+                }
+
+                if (Player == null)
+                {
+                    throw new Exception("Player data is missing.");
+                }
+
+                PlayerService.UpdateData(Player);
+
+                return RedirectToPage("/Product/Index");
             }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred on the Update page during OnPost.");
+                TempData["ErrorMessage"] = ex.Message;
 
-            PlayerService.UpdateData(Player);
-
-            return RedirectToPage("/Product/Index");
+                return RedirectToPage("/Error");
+            }
         }
     }
 }
