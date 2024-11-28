@@ -71,10 +71,6 @@ namespace ContosoCrafts.WebSite.Pages
 
         // Gets the Height provided by the user.
         [BindProperty(SupportsGet = true)]
-        public string Height { get; set; }
-
-        // Gets the Height provided by the user.
-        [BindProperty(SupportsGet = true)]
         public string HeightInCM { get; set; }
 
         /// <summary>
@@ -249,38 +245,9 @@ namespace ContosoCrafts.WebSite.Pages
             OnGetSearchFilterMinAppearance();
             OnGetSearchFilterMaxAppearance();
 
-
             // Filter by position if a valid position is provided
             OnGetSearchFilterPosition();
 
-            if (Height != null)
-            {
-                // Filter based on Height if value provided
-                if (Height.Equals("< 155 cm"))
-                {
-                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs < 155);
-                }
-                if (Height.Equals("155 cm - 164 cm"))
-                {
-                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 155 && player.HeightInCMs <= 164);
-                }
-                if (Height.Equals("165 cm - 174 cm"))
-                {
-                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 165 && player.HeightInCMs <= 174);
-                }
-                if (Height.Equals("175 cm - 184 cm"))
-                {
-                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 175 && player.HeightInCMs <= 184);
-                }
-                if (Height.Equals("185 cm - 194 cm"))
-                {
-                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs >= 185 && player.HeightInCMs <= 194);
-                }
-                if (Height.Equals("> 195 cm"))
-                {
-                    SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs > 195);
-                }
-            }
             OnGetSearchFilterHeight();
 
 
