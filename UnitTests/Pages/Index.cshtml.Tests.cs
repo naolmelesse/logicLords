@@ -214,7 +214,7 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_165cm_174cm()
         {
             // Arrange
-            pageModel.Height = "165 cm - 174 cm";
+            pageModel.HeightInCM = "165-174";
             var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 165 && p.HeightInCMs <= 174)
                 .Select(p => p.Title)
@@ -235,7 +235,7 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_155_164()
         {
             // Arrange
-            pageModel.Height = "155 cm - 164 cm";
+            pageModel.HeightInCM = "155-164";
             var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 155 && p.HeightInCMs <= 164)
                 .Select(p => p.Title)
@@ -256,7 +256,7 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Height_Should_Return_Players_Within_Height_Range_175cm_184cm()
         {
             // Arrange
-            pageModel.Height = "175 cm - 184 cm";
+            pageModel.HeightInCM = "175-184";
             var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 175 && p.HeightInCMs <= 184)
                 .Select(p => p.Title)
@@ -277,7 +277,7 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Height_Less_Than_155_Should_Return_Players_Below_155cm()
         {
             // Arrange
-            pageModel.Height = "< 155 cm";
+            pageModel.HeightInCM = "0-155";
             var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs < 155)
                 .Select(p => p.Title)
@@ -298,7 +298,7 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Height_Between_185_And_194_Should_Return_Players_Within_Range()
         {
             // Arrange
-            pageModel.Height = "185 cm - 194 cm";
+            pageModel.HeightInCM = "185-194";
             var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs >= 185 && p.HeightInCMs <= 194)
                 .Select(p => p.Title)
@@ -319,7 +319,7 @@ namespace UnitTests.Pages.Index
         public void OnGet_Valid_Height_Greater_Than_195_Should_Return_Players_Above_195cm()
         {
             // Arrange
-            pageModel.Height = "> 195 cm";
+            pageModel.HeightInCM = "195-300";
             var data = productService.GetAllData()
                 .Where(p => p.HeightInCMs > 195)
                 .Select(p => p.Title)
@@ -346,7 +346,7 @@ namespace UnitTests.Pages.Index
             pageModel.MinAppearance = 15;
             pageModel.MaxAppearance = 25;
             pageModel.Position = PositionEnum.Forward.ToString();       
-            pageModel.Height = "165 cm - 174 cm";
+            pageModel.HeightInCM = "165-174";
 
             var data = productService.GetAllData()
                 .Where(p =>
