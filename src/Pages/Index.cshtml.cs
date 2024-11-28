@@ -229,9 +229,9 @@ namespace ContosoCrafts.WebSite.Pages
             int.TryParse(heightParts[1], out int parsedMaxHeight);
 
             SelectedPlayerList = SelectedPlayerList
-              .Where(player => player.HeightInCMs < parsedMaxHeight);
+              .Where(player => player.HeightInCMs <= parsedMaxHeight);
             SelectedPlayerList = SelectedPlayerList
-           .Where(player => player.HeightInCMs > parsedMinHeight);
+           .Where(player => player.HeightInCMs >= parsedMinHeight);
         }
 
         /// <summary>
