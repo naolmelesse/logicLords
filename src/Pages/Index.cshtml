@@ -106,14 +106,14 @@
                     <!-- Height Filter -->
                     <div class="height-filter col-12 col-md-6 pr-4 mt-3">
                         <label class="height-label m-0 w-100 pl-3">Height:</label>
-                        <select name="Height" class="search-filter-dropdown height-dropdown mx-2 col-md-">
+                        <select name="HeightInCM" class="search-filter-dropdown height-dropdown mx-2 col-md-">
                             <option value="">Select Height Range</option>
-                            <option value="< 155 cm" selected="@(Model.Height == "< 155 cm" ? "selected" : null)">< 155 cm</option>
-                            <option value="155 cm - 16 cm" selected="@(Model.Height == "155 cm - 16 cm" ? "selected" : null)">155 cm - 16 cm</option>
-                            <option value="165 cm - 17 cm" selected="@(Model.Height == "165 cm - 17 cm" ? "selected" : null)">165 cm - 17 cm</option>
-                            <option value="175 cm - 18 cm" selected="@(Model.Height == "175 cm - 18 cm" ? "selected" : null)">175 cm - 18 cm</option>
-                            <option value="185 cm - 19 cm" selected="@(Model.Height == "185 cm - 19 cm" ? "selected" : null)">185 cm - 19 cm</option>
-                            <option value="> 195 cm" selected="@(Model.Height == "> 195 cm" ? "selected" : null)">> 195 cm</option>
+                            <option value="0-155" selected="@(Model.HeightInCM == "0-155" ? "selected" : null)">0 cm - 155 cm</option>
+                            <option value="155-165" selected="@(Model.HeightInCM == "155-165" ? "selected" : null)">155 cm - 165 cm</option>
+                            <option value="165-175" selected="@(Model.HeightInCM == "165-175" ? "selected" : null)">165 cm - 175 cm</option>
+                            <option value="175-185" selected="@(Model.HeightInCM == "175-185" ? "selected" : null)">175 cm - 185 cm</option>
+                            <option value="185-195" selected="@(Model.HeightInCM == "185-195" ? "selected" : null)">185 cm - 195 cm</option>
+                            <option value="195-300" selected="@(Model.HeightInCM == "195-300" ? "selected" : null)">> 195 cm</option>
                         </select>
                     </div>
                 </div>
