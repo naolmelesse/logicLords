@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using System.Linq;
+using System;
 
 namespace UnitTests.Pages.Product.Update
 {
@@ -182,19 +185,20 @@ namespace UnitTests.Pages.Product.Update
         }
 
         /// <summary>
-        /// Test that OnPost with an invalid model returns the same page with validation errors
+        /// Test that OnPost with an invalid model returns the Error Page
         /// </summary>
         [Test]
-        public void OnPost_Invalid_Model_Should_Page()
+        public void OnPost_Invalid_Model_Should_Return_Error_Page()
         {
             // Arrange
             pageModel.ModelState.AddModelError("Player.Title", "Title is required");
 
             // Act
-            var result = pageModel.OnPost();
+            var result = pageModel.OnPost() as RedirectToPageResult;
 
             // Assert
-            Assert.That(result, Is.InstanceOf<PageResult>());
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            Assert.That(result.PageName, Is.EqualTo("/Error"));
             Assert.That(pageModel.ModelState.IsValid, Is.False);
         }
 
@@ -234,6 +238,47 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(pageModel.TempData["ErrorMessage"], Is.EqualTo("Player data is missing."));
         }
 
+        /// <summary>
+        /// Test that PositionOptions contains all valid positions excluding Undefined
+        /// </summary>
+        [Test]
+        public void Position_Options_Valid_Should_Contain_Only_Defined_Positions()
+        {
+            // Arrange
+            pageModel.Player = new ProductModel
+            {
+                Position = PositionEnum.Midfielder
+            };
+
+            pageModel.PositionOptions = new SelectList(
+                Enum.GetValues(typeof(PositionEnum))
+                    .Cast<PositionEnum>()
+                    .Where(e => e != PositionEnum.Undefined)
+                    .Select(e => new { Value = (int)e, Text = e.DisplayName() }),
+                "Value",
+                "Text",
+                (int)PositionEnum.Midfielder);
+
+            // Act
+            var options = pageModel.PositionOptions.ToList();
+            var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
+
+            // Assert
+            Assert.That(options, Is.Not.Null);
+            Assert.That(options.Count, Is.EqualTo(6));
+            Assert.That(positionValues, Does.Not.Contain((int)PositionEnum.Undefined));
+            Assert.That(positionValues, Is.EquivalentTo(
+                new[]
+                {
+                    (int)PositionEnum.Striker,
+                    (int)PositionEnum.Forward,
+                    (int)PositionEnum.Winger,
+                    (int)PositionEnum.Midfielder,
+                    (int)PositionEnum.Defender,
+                    (int)PositionEnum.Goalkeeper
+                }
+            ));
+        }
 
 
         #endregion OnPost Tests
