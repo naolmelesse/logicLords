@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using ContosoCrafts.WebSite.Models;
 using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace UnitTests.Models
 {
@@ -77,5 +78,53 @@ namespace UnitTests.Models
         }
 
         #endregion ToString Method Tests
+
+        #region ValidatePosition Method Tests
+
+        /// <summary>
+        /// Test that ValidatePosition returns a validation error when the position is Undefined.
+        /// </summary>
+        [Test]
+        public void ValidatePosition_UndefinedPosition_ShouldReturnValidationError()
+        {
+            // Arrange
+            var position = PositionEnum.Undefined;
+
+            // Act
+            var result = ProductModel.ValidatePosition(position);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.ErrorMessage, Is.EqualTo("Position cannot be Undefined."));
+        }
+
+        /// <summary>
+        /// Test that the ValidatePosition method returns success for all valid positions.
+        /// </summary>
+        [Test]
+        public void ValidatePosition_ValidPositions_ShouldReturnSuccess()
+        {
+            // Arrange
+            var validPositions = new[]
+            {
+                PositionEnum.Striker,
+                PositionEnum.Forward,
+                PositionEnum.Winger,
+                PositionEnum.Midfielder,
+                PositionEnum.Defender,
+                PositionEnum.Goalkeeper
+            };
+
+            foreach (var position in validPositions)
+            {
+                // Act
+                var result = ProductModel.ValidatePosition(position);
+
+                // Assert
+                Assert.That(result, Is.EqualTo(ValidationResult.Success), $"Position {position} failed validation unexpectedly.");
+            }
+        }
+
+        #endregion ValidatePosition Method Tests
     }
 }
