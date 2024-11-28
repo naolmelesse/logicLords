@@ -63,8 +63,9 @@ namespace ContosoCrafts.WebSite.Models
         public int HeightInCMs { get; set; }
 
         // Player's position on the field
-        [Required(ErrorMessage = "Position is required")]
-        [Range(0, int.MaxValue, ErrorMessage = "Position must be a non-negative number.")]
+        [Required(ErrorMessage = "Position is required.")]
+        [EnumDataType(typeof(PositionEnum), ErrorMessage = "Invalid position selected.")]
+        [CustomValidation(typeof(ProductModel), nameof(ValidatePosition))]
         public PositionEnum Position { get; set; } = PositionEnum.Undefined;
 
         // Number of goals scored by the player
@@ -108,5 +109,24 @@ namespace ContosoCrafts.WebSite.Models
         /// </summary>
         /// <returns>String representation of the data</returns>
         public override string ToString() => JsonSerializer.Serialize<ProductModel>(this);
+
+        /// <summary>
+        /// Custom validation method for ensuring player position is not undefined
+        /// </summary>
+        /// <param name="position"> The position selected </param>
+        /// <returns>
+        /// ValidationResult indicating a successful validation or error message if fail
+        /// </returns>
+        public static ValidationResult ValidatePosition(PositionEnum position)
+        {
+
+            if (position == PositionEnum.Undefined)
+            {
+
+                return new ValidationResult("Position cannot be Undefined.");
+            }
+
+            return ValidationResult.Success;
+        }
     }
 }
