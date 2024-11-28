@@ -185,7 +185,7 @@ namespace UnitTests.Pages.Product.Update
         /// Test that OnPost with an invalid model returns the same page with validation errors
         /// </summary>
         [Test]
-        public void OnPost_Invalid_Model_Should_Return_Page()
+        public void OnPost_Invalid_Model_Should_Page()
         {
             // Arrange
             pageModel.ModelState.AddModelError("Player.Title", "Title is required");
@@ -199,10 +199,10 @@ namespace UnitTests.Pages.Product.Update
         }
 
         /// <summary>
-        /// Test that OnPost with a player having an empty Id returns the same page with validation errors
+        /// Test that OnPost with a player having an empty Id returns Error 
         /// </summary>
         [Test]
-        public void OnPost_Invalid_Player_With_EmptyId_Should_Return_Page()
+        public void OnPost_Invalid_Player_With_EmptyId_Should_Return_Page_With_Validation_Errors()
         {
             // Arrange
             pageModel.Player = new ProductModel { Id = string.Empty, Title = "Test Product" };
@@ -212,9 +212,29 @@ namespace UnitTests.Pages.Product.Update
             var result = pageModel.OnPost();
 
             // Assert
-            Assert.That(result, Is.InstanceOf<PageResult>());
+            Assert.That(result, Is.InstanceOf<PageResult>()); 
             Assert.That(pageModel.ModelState.IsValid, Is.False);
         }
+
+        /// <summary>
+        /// Test that OnPost with a player having an null Id returns the Error page 
+        /// </summary>
+        [Test]
+        public void OnPost_Invalid_Null_Player_Should_Return_Error_Page()
+        {
+            // Arrange
+            pageModel.Player = null;
+
+            // Act
+            var result = pageModel.OnPost() as RedirectToPageResult;
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            Assert.That(result.PageName, Is.EqualTo("/Error"));
+            Assert.That(pageModel.TempData["ErrorMessage"], Is.EqualTo("Player data is missing."));
+        }
+
+
 
         #endregion OnPost Tests
     }
