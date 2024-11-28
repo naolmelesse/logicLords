@@ -73,6 +73,10 @@ namespace ContosoCrafts.WebSite.Pages
         [BindProperty(SupportsGet = true)]
         public string Height { get; set; }
 
+        // Gets the Height provided by the user.
+        [BindProperty(SupportsGet = true)]
+        public string HeightInCM { get; set; }
+
         /// <summary>
         /// Handles GET requests to the error page.
         /// Loads all data for players from the Product Service and applies filtering if a search term is provided.
@@ -83,6 +87,139 @@ namespace ContosoCrafts.WebSite.Pages
             SetPlayerLeaderboardSnippet();
             // Filter based on search term if provided
             OnGetSearch();
+        }
+
+        /// <summary>
+        /// Filters players based on minimum age if provided.
+        /// </summary>
+        public void OnGetSearchFilterMinAge()
+        {
+            if (MinAge.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                .Where(player => player.Age >= MinAge.Value);
+            }
+        }
+
+        /// <summary>
+        /// Filters players based on maximum age if provided.
+        /// </summary>
+        public void OnGetSearchFilterMaxAge()
+        {
+            if (MaxAge.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                .Where(player => player.Age <= MaxAge.Value);
+            }
+        }
+
+        /// <summary>
+        /// Validates the age range to ensure MinAge is not greater than MaxAge.
+        /// </summary>
+        public void OnGetSearchFilterAgeValidation()
+        {
+            if (MinAge == 0)
+            {
+                return;
+            }
+
+            if (MaxAge == 0)
+            {
+                return;
+            }
+
+            if (MinAge > MaxAge)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Age Range: Min Age cannot be greater than Max Age");
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Filters players based on minimum number of appearances if provided.
+        /// </summary>
+        public void OnGetSearchFilterMinAppearance()
+        {
+            if (MinAppearance.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                   .Where(player => player.Appearances >= MinAppearance.Value);
+            }
+        }
+
+        /// <summary>
+        /// Filters players based on maximum number of appearances if provided.
+        /// </summary>
+        public void OnGetSearchFilterMaxAppearance()
+        {
+            if (MaxAppearance.HasValue)
+            {
+                SelectedPlayerList = SelectedPlayerList
+                    .Where(player => player.Appearances <= MaxAppearance.Value);
+            }
+        }
+
+        /// <summary>
+        /// Validates the appearance range to ensure MinAppearance is not greater than MaxAppearance.
+        /// </summary>
+        public void OnGetSearchFilterAppearanceValidation()
+        {
+            if (MinAppearance == 0)
+            {
+                return;
+            }
+            if (MaxAppearance == 0)
+            {
+                return;
+            }
+
+            if (MinAppearance > MaxAppearance)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid Appearance Range: Min Appearances cannot be greater than Max Appearances");
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Filters players based on their position.
+        /// </summary>
+        public void OnGetSearchFilterPosition()
+        {
+            // Try to parse the string to an enum value
+            Enum.TryParse(Position, true, out PositionEnum parsedPosition);
+
+            if (parsedPosition.Equals(PositionEnum.Undefined))
+            {
+                return;
+            }
+
+            SelectedPlayerList = SelectedPlayerList
+                .Where(player => player.Position == parsedPosition);
+        }
+
+        /// <summary>
+        /// Filters players based on their height range provided as a string (e.g., "170-180").
+        /// </summary>
+        public void OnGetSearchFilterHeight()
+        {
+            if (string.IsNullOrEmpty(HeightInCM))
+            {
+                return;
+            }
+
+            // Split the height range string into min and max parts
+            string[] heightParts = HeightInCM.Split('-');
+
+            // Parse minimum height values
+            int.TryParse(heightParts[0], out int parsedMinHeight);
+
+            // Parse maximum height values
+            int.TryParse(heightParts[1], out int parsedMaxHeight);
+
+            SelectedPlayerList = SelectedPlayerList
+              .Where(player => player.HeightInCMs < parsedMaxHeight);
+            SelectedPlayerList = SelectedPlayerList
+           .Where(player => player.HeightInCMs > parsedMinHeight);
         }
 
         /// <summary>
@@ -104,67 +241,21 @@ namespace ContosoCrafts.WebSite.Pages
                     .Where(player => player.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase));
             }
 
-            // Filter based on MinAge if value provided that validates if greater than MaxAge when provided
-            if (MinAge.HasValue)
-            {
-                if (MaxAge.HasValue)
-                {
-                    if (MinAge > MaxAge)
-                    {
-                        ModelState.AddModelError(string.Empty, "Invalid Age Range: Min Age cannot be greater than Max Age");
-                        return;
-                    }
-                }
-                SelectedPlayerList = SelectedPlayerList
-                    .Where(player => player.Age >= MinAge.Value);
-            }
+            OnGetSearchFilterAgeValidation();
+            OnGetSearchFilterMinAge();
+            OnGetSearchFilterMaxAge();
 
-            // Filter based on MaxAge if value provided
-            if (MaxAge.HasValue)
-            {
-                SelectedPlayerList = SelectedPlayerList
-                    .Where(player => player.Age <= MaxAge.Value);
-            }
-
-            // Filter based on MinAppearance if value provided that validates if greater than MaxAppearance when provided
-            if (MinAppearance.HasValue)
-            {
-                if (MaxAppearance.HasValue)
-                {
-                    if (MinAppearance > MaxAppearance)
-                    {
-                        ModelState.AddModelError(string.Empty, "Invalid Appearance Range: Min Appearances cannot be greater than Max Appearances");
-                        return;
-                    }
-                }
-                SelectedPlayerList = SelectedPlayerList
-                    .Where(player => player.Appearances >= MinAppearance.Value);
-            }
-
-
-            // Filter based on MaxAppearance if value provided
-            if (MaxAppearance.HasValue)
-            {
-                SelectedPlayerList = SelectedPlayerList
-                    .Where(player => player.Appearances <= MaxAppearance.Value);
-            }
-
+            OnGetSearchFilterAppearanceValidation();
+            OnGetSearchFilterMinAppearance();
+            OnGetSearchFilterMaxAppearance();
 
 
             // Filter by position if a valid position is provided
-            if (Enum.TryParse(Position, true, out PositionEnum parsedPosition))
-            {
-                if (parsedPosition != PositionEnum.Undefined)
-                {
-                    SelectedPlayerList = SelectedPlayerList
-                        .Where(player => player.Position == parsedPosition);
-                }
-            }
+            OnGetSearchFilterPosition();
 
-
-            // Filter based on Height if value provided
             if (Height != null)
             {
+                // Filter based on Height if value provided
                 if (Height.Equals("< 155 cm"))
                 {
                     SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs < 155);
@@ -190,6 +281,7 @@ namespace ContosoCrafts.WebSite.Pages
                     SelectedPlayerList = SelectedPlayerList.Where(player => player.HeightInCMs > 195);
                 }
             }
+            OnGetSearchFilterHeight();
 
 
             SelectedPlayerList = SelectedPlayerList.ToList();
