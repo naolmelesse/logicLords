@@ -2,6 +2,7 @@ using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -14,7 +15,11 @@ namespace ContosoCrafts.WebSite.Pages.Product
     /// </summary>
     public class UpdateModel : PageModel
     {
+        // Logger instance for logging errors and information
         private readonly ILogger<UpdateModel> _logger;
+
+        //A list for getting the postion enums 
+        public SelectList PositionOptions { get; set; }
 
         /// <summary>
         /// The Id of the player to be updated. 
@@ -62,6 +67,14 @@ namespace ContosoCrafts.WebSite.Pages.Product
                     throw new Exception($"Player with ID: '{Id}' not found.");
                 }
 
+                PositionOptions = new SelectList(Enum.GetValues(typeof(PositionEnum))
+                        .Cast<PositionEnum>()
+                        .Where(e => e != PositionEnum.Undefined)
+                        .Select(e => new { Value = (int)e, Text = e.DisplayName() }),
+                    "Value",
+                    "Text",
+                    (int)Player.Position);
+
                 return Page();
             }
             catch (Exception ex)
@@ -85,9 +98,16 @@ namespace ContosoCrafts.WebSite.Pages.Product
         {
             try
             {
-                // Check if the model's state is invalid
                 if (!ModelState.IsValid)
                 {
+                    PositionOptions = new SelectList(Enum.GetValues(typeof(PositionEnum))
+                        .Cast<PositionEnum>()
+                        .Where(e => e != PositionEnum.Undefined)
+                        .Select(e => new { Value = (int)e, Text = e.DisplayName() }),
+                    "Value",
+                    "Text",
+                    (int)Player.Position);
+
                     return Page();
                 }
 
