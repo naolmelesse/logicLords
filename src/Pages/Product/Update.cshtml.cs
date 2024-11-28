@@ -88,7 +88,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
                 // Check if the model's state is invalid
                 if (!ModelState.IsValid)
                 {
-                    throw new Exception("Model State Invalid");
+                    return Page();
                 }
 
                 if (Player == null)
