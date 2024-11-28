@@ -114,16 +114,6 @@ namespace ContosoCrafts.WebSite.Pages
         /// </summary>
         public void OnGetSearchFilterAgeValidation()
         {
-            if (MinAge == 0)
-            {
-                return;
-            }
-
-            if (MaxAge == 0)
-            {
-                return;
-            }
-
             if (MinAge > MaxAge)
             {
                 ModelState.AddModelError(string.Empty, "Invalid Age Range: Min Age cannot be greater than Max Age");
@@ -160,15 +150,6 @@ namespace ContosoCrafts.WebSite.Pages
         /// </summary>
         public void OnGetSearchFilterAppearanceValidation()
         {
-            if (MinAppearance == 0)
-            {
-                return;
-            }
-            if (MaxAppearance == 0)
-            {
-                return;
-            }
-
             if (MinAppearance > MaxAppearance)
             {
                 ModelState.AddModelError(string.Empty, "Invalid Appearance Range: Min Appearances cannot be greater than Max Appearances");
