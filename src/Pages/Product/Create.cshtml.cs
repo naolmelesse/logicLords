@@ -64,22 +64,38 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// </returns>
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                PositionOptions = new SelectList(Enum.GetValues(typeof(PositionEnum))
-                    .Cast<PositionEnum>()
-                    .Where(e => e != PositionEnum.Undefined)
-                    .Select(e => new { Value = (int)e, Text = e.DisplayName() }),
-                "Value",
-                "Text",
-                (int)Player.Position);
+                if (!ModelState.IsValid)
+                {
+                    PositionOptions = new SelectList(Enum.GetValues(typeof(PositionEnum))
+                        .Cast<PositionEnum>()
+                        .Where(e => e != PositionEnum.Undefined)
+                        .Select(e => new { Value = (int)e, Text = e.DisplayName() }),
+                    "Value",
+                    "Text",
+                    (int)Player.Position);
 
-                return Page();
+                    return Page();
+                }
+
+                if (Player == null)
+                {
+                    throw new Exception("Player data is missing");
+                }
+
+                PlayerService.CreateData(Player);
+
+                return RedirectToPage("/Product/Index");
             }
+            catch (Exception ex)
+            {
 
-            PlayerService.CreateData(Player);
+                _logger.LogError(ex, "An error occurred on the Create page during OnPost.");
+                TempData["ErrorMessage"] = ex.Message;
 
-            return RedirectToPage("/Product/Index");
+                return RedirectToPage("/Error");
+            }
         }
     }
 }
