@@ -132,7 +132,7 @@ namespace UnitTests.Pages.Product
 
             // Assert
             Assert.That(pageModel.ModelState.IsValid, Is.EqualTo(true));
-            Assert.That(result.PageName, Is.EqualTo("/Index"));
+            Assert.That(result.PageName, Is.EqualTo("/Product/Index"));
         }
 
         /// <summary>
