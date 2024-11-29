@@ -160,6 +160,43 @@ namespace UnitTests.Pages.Product.Update
             Assert.That(result, Is.Null);
         }
 
+        /// <summary>
+        /// Test that OnGet with a valid ID populates PositionOptions correctly
+        /// </summary>
+        [Test]
+        public void OnGet_Valid_Id_Should_Populate_Position_Dropdown()
+        {
+            // Arrange
+            var data = "alonso-martinez";
+
+            // Act
+            pageModel.Id = data;
+            pageModel.OnGet();
+            var options = pageModel.PositionOptions.ToList();
+            var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
+            var result = pageModel.Player;
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Id, Is.EqualTo(data));
+            Assert.That(pageModel.PositionOptions, Is.Not.Null);
+            Assert.That(options.Count, Is.EqualTo(6));
+            Assert.That(positionValues, Does.Not.Contain((int)PositionEnum.Undefined));
+            Assert.That(positionValues, Is.EquivalentTo(new[]
+            {
+                (int)PositionEnum.Striker,
+                (int)PositionEnum.Forward,
+                (int)PositionEnum.Winger,
+                (int)PositionEnum.Midfielder,
+                (int)PositionEnum.Defender,
+                (int)PositionEnum.Goalkeeper
+            }
+            ));
+
+            Assert.That(pageModel.PositionOptions.SelectedValue, Is.EqualTo(((int)pageModel.Player.Position)));
+        }
+
+
         #endregion OnGet Tests
 
         #region OnPost Tests
@@ -242,7 +279,7 @@ namespace UnitTests.Pages.Product.Update
         /// Test that PositionOptions contains all valid positions excluding Undefined
         /// </summary>
         [Test]
-        public void Position_Options_Valid_Should_Contain_Only_Defined_Positions()
+        public void OnPost_Valid_Should_Contain_Only_Defined_Positions_In_Dropdown()
         {
             // Arrange
             pageModel.Player = new ProductModel
@@ -280,6 +317,44 @@ namespace UnitTests.Pages.Product.Update
             ));
         }
 
+        /// <summary>
+        /// Test that OnGet with a invalid model returns update page and populates PositionOptions correctly
+        /// </summary>
+        [Test]
+        public void OnPost_Invalid_ModelState_Should_Return_Page_And_Populate_Position_Dropdown()
+        {
+            // Arrange
+            pageModel.Player = new ProductModel
+            {
+                Position = PositionEnum.Midfielder
+            };
+
+            pageModel.ModelState.AddModelError("Player.Title", "The Title field is required.");
+
+            // Act
+            var result = pageModel.OnPost();
+            var options = pageModel.PositionOptions.ToList();
+            var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<PageResult>());
+            Assert.That(pageModel.ModelState.IsValid, Is.False);
+            Assert.That(pageModel.PositionOptions, Is.Not.Null);
+            Assert.That(options.Count, Is.EqualTo(6));
+            Assert.That(positionValues, Does.Not.Contain((int)PositionEnum.Undefined));
+            Assert.That(positionValues, Is.EquivalentTo(
+                new[]
+                {
+            (int)PositionEnum.Striker,
+            (int)PositionEnum.Forward,
+            (int)PositionEnum.Winger,
+            (int)PositionEnum.Midfielder,
+            (int)PositionEnum.Defender,
+            (int)PositionEnum.Goalkeeper
+                }
+            ));
+            Assert.That(pageModel.PositionOptions.SelectedValue, Is.EqualTo(((int)PositionEnum.Midfielder)));
+        }
 
         #endregion OnPost Tests
     }
