@@ -8,8 +8,11 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace UnitTests.Pages.Product
 {
@@ -73,6 +76,9 @@ namespace UnitTests.Pages.Product
             viewData = new ViewDataDictionary(modelMetadataProvider, modelState);
             tempData = new TempDataDictionary(httpContextDefault, Mock.Of<ITempDataProvider>());
 
+            // Mock the logger required by the UpdateModel constructor
+            var mockLogger = new Mock<ILogger<CreateModel>>();
+
             // Initialize page context with the action context
             pageContext = new PageContext(actionContext)
             {
@@ -89,7 +95,7 @@ namespace UnitTests.Pages.Product
             productService = new JsonFileProductService(mockWebHostEnvironment.Object);
 
             // Initialize the CreateModel page model
-            pageModel = new CreateModel(productService)
+            pageModel = new CreateModel(productService, mockLogger.Object)
             {
                 PageContext = pageContext,
                 TempData = tempData,
@@ -99,8 +105,43 @@ namespace UnitTests.Pages.Product
 
         #endregion TestSetup
 
-        #region OnPost
+        #region OnGet
 
+        /// <summary>
+        /// Tests that the PositionOptions are populated correctly in OnGet
+        /// </summary>
+        [Test]
+        public void OnGet_Valid_Should_Populate_Position_Dropdown_With_Valid_Positions()
+        {
+            // Arrange
+
+            // Act
+            pageModel.OnGet();
+
+            // Get the options from PositionOptions
+            var options = pageModel.PositionOptions.ToList();
+            var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
+
+            // Assert
+            Assert.That(options, Is.Not.Null);
+            Assert.That(options.Count, Is.EqualTo(6)); // Number of positions excluding Undefined
+            Assert.That(positionValues, Does.Not.Contain((int)PositionEnum.Undefined));
+            Assert.That(positionValues, Is.EquivalentTo(
+                new[]
+                {
+                    (int)PositionEnum.Striker,
+                    (int)PositionEnum.Forward,
+                    (int)PositionEnum.Winger,
+                    (int)PositionEnum.Midfielder,
+                    (int)PositionEnum.Defender,
+                    (int)PositionEnum.Goalkeeper
+                }
+            ));
+        }
+
+        #endregion OnGet        
+
+        #region OnPost
 
         /// <summary>
         /// Test case for a valid product model. 
@@ -143,6 +184,10 @@ namespace UnitTests.Pages.Product
         public void OnPost_Invalid_Model_Should_Return_Page()
         {
             // Arrange
+            pageModel.Player = new ProductModel
+            {
+                Position = PositionEnum.Midfielder
+            };
             pageModel.ModelState.AddModelError("Player.Title", "Title is required");
 
             // Act
@@ -152,6 +197,62 @@ namespace UnitTests.Pages.Product
             Assert.That(result, Is.InstanceOf<PageResult>());
             Assert.That(pageModel.ModelState.IsValid, Is.False);
         }
+
+        /// <summary>
+        /// Test that OnPost with a player having an null Id returns the Error page 
+        /// </summary>
+        [Test]
+        public void OnPost_Invalid_Null_Player_Should_Return_Error_Page()
+        {
+            // Arrange
+            pageModel.Player = null;
+
+            // Act
+            var result = pageModel.OnPost() as RedirectToPageResult;
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            Assert.That(result.PageName, Is.EqualTo("/Error"));
+            Assert.That(pageModel.TempData["ErrorMessage"], Is.EqualTo("Player data is missing"));
+        }
+
+        [Test]
+        public void OnPost_Invalid_ModelState_Should_Return_Page_And_Populate_Position_Dropdown()
+        {
+            // Arrange
+            pageModel.Player = new ProductModel
+            {
+                Position = PositionEnum.Midfielder
+                // Leave out required properties to make the model invalid
+            };
+
+            pageModel.ModelState.AddModelError("Player.Title", "The Title field is required.");
+
+            // Act
+            var result = pageModel.OnPost();
+            var options = pageModel.PositionOptions.ToList();
+            var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
+
+            // Assert
+            Assert.That(result, Is.InstanceOf<PageResult>());
+            Assert.That(pageModel.ModelState.IsValid, Is.False);
+            Assert.That(pageModel.PositionOptions, Is.Not.Null);
+            Assert.That(options.Count, Is.EqualTo(6));
+            Assert.That(positionValues, Does.Not.Contain((int)PositionEnum.Undefined));
+            Assert.That(positionValues, Is.EquivalentTo(
+                new[]
+                {
+            (int)PositionEnum.Striker,
+            (int)PositionEnum.Forward,
+            (int)PositionEnum.Winger,
+            (int)PositionEnum.Midfielder,
+            (int)PositionEnum.Defender,
+            (int)PositionEnum.Goalkeeper
+                }
+            ));
+            Assert.That(pageModel.PositionOptions.SelectedValue, Is.EqualTo(((int)PositionEnum.Midfielder)));
+        }
+
 
         #endregion OnPost
     }
