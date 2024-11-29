@@ -56,6 +56,7 @@ namespace UnitTests.Pages.Shared
         /// <summary>
         /// Verifies that setting and retrieving the Players property works as expected.
         /// </summary>
+        [Test]
         public void Players_Valid_Setting_Players_should_be_able_to_retreive_Players()
         {
             // Arrange
