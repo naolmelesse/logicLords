@@ -40,8 +40,12 @@ namespace ContosoCrafts.WebSite.Models
             {
                 if (DateTime.TryParse(Dateofbirth, out DateTime dob))
                 {
+                    // Today date
                     var today = DateTime.Today;
+
+                    // Age of player
                     int age = today.Year - dob.Year;
+
                     if (dob > today.AddYears(-age)) age--;
                     return age;
                 }
