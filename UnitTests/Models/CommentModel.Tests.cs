@@ -41,6 +41,8 @@ namespace UnitTests.Models
 
 
             // Act
+
+            // Get the Id
             var result = commentModel.Id;
 
             // Assert
@@ -60,6 +62,8 @@ namespace UnitTests.Models
 
             // Act
             commentModel.Comment = data;
+
+            //Get the Comment
             var result = commentModel.Comment;
 
             // Assert
@@ -77,6 +81,8 @@ namespace UnitTests.Models
 
             // Act
             commentModel.Id = newId;
+
+            //Get the Id
             var result = commentModel.Id;
 
             // Assert
