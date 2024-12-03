@@ -2,14 +2,14 @@ using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Pages;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
-// THIS IS THE UNIT TEST FOR THE HOME PAGE
 
 namespace UnitTests.Pages.Index
 {
@@ -60,6 +60,32 @@ namespace UnitTests.Pages.Index
         #endregion TestSetup
 
         #region OnGet
+
+        /// <summary>
+        /// Test that OnGet throws an exception when PlayerList is null and handles it correctly.
+        /// </summary>
+        [Test]
+        public void OnGet_Invalid_When_PlayerList_Is_Null_Should_Throw_Exception_And_Redirect_To_Error_Page()
+        {
+            // Arrange
+            var mockProductService = new Mock<JsonFileProductService>(webHostEnvironment);
+            mockProductService.Setup(service => service.GetAllData()).Returns((List<ProductModel>)null);
+
+            var mockLogger = new Mock<ILogger<IndexModel>>();
+            pageModel = new IndexModel(mockLogger.Object, mockProductService.Object);
+
+            // Initialize TempData for the pageModel
+            var tempDataMock = new Mock<Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary>();
+            pageModel.TempData = tempDataMock.Object;
+
+            // Act
+            var result = pageModel.OnGet();
+            var redirectResult = result as RedirectToPageResult;
+
+            // Assert: Verify redirection to the Error page
+            Assert.That(result, Is.InstanceOf<RedirectToPageResult>());
+            Assert.That(redirectResult.PageName, Is.EqualTo("/Error"));
+        }
 
         /// <summary>
         /// Test that OnGet retrieves all players when no filters are applied
