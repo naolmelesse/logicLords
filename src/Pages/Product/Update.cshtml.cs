@@ -51,6 +51,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// Handles GET requests to retrieve a player by its Id.
         /// Populates the Player attribute if a matching player is found.
         /// </summary>
+        /// <returns> A page result or a redirection to the Error page in case of an exception.</returns>
         public IActionResult OnGet()
         {
             try
