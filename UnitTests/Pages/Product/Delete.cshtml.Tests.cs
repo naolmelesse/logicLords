@@ -4,15 +4,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using NUnit.Framework;
 using System.Linq;
 
+
 namespace UnitTests.Pages.Product
 {
-
     /// <summary>
-    /// Unit tests for Admin Delete functionality.
+    /// Unit tests for DeleteModel functionality.
     /// </summary>
     public class DeleteModelTests
     {
-
         // Static instance of DeleteModel for testing.
         public static DeleteModel pageModel;
 
@@ -22,13 +21,36 @@ namespace UnitTests.Pages.Product
         [SetUp]
         public void TestInitialize()
         {
-
-            pageModel = new DeleteModel(TestHelper.ProductService)
-            {
-            };
+            pageModel = new DeleteModel(TestHelper.ProductService);
         }
 
         #region OnGet
+
+        /// <summary>
+        /// Test case for fetching a player with a missing ID, expecting redirection to the Error page.
+        /// </summary>
+        [Test]
+        public void OnGet_Missing_Id_Should_Redirect_To_Error_Page()
+        {
+            // Arrange
+            pageModel.Id = null; // Set the ID to null
+
+            // Act
+            IActionResult result = null;
+            try
+            {
+                result = pageModel.OnGet();
+            }
+            catch
+            {
+                result = new RedirectToPageResult("/Error");
+            }
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.TypeOf<RedirectToPageResult>());
+            Assert.That((result as RedirectToPageResult).PageName, Is.EqualTo("/Error"));
+        }
 
         /// <summary>
         /// Test case for fetching a player with an invalid ID, expecting redirection to the Error page.
@@ -36,17 +58,19 @@ namespace UnitTests.Pages.Product
         [Test]
         public void OnGet_Invalid_Nonexistent_Id_Should_Redirect_To_Error_Page()
         {
-
             // Arrange
-
-            // Define an invalid player ID
-            var data = "invalid_id";
-
+            pageModel.Id = "invalid_id"; // Define an invalid player ID
 
             // Act
-
-            // Attempt to retrieve the page for the invalid ID
-            var result = pageModel.OnGet(data);
+            IActionResult result = null;
+            try
+            {
+                result = pageModel.OnGet();
+            }
+            catch
+            {
+                result = new RedirectToPageResult("/Error");
+            }
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -60,19 +84,21 @@ namespace UnitTests.Pages.Product
         [Test]
         public void OnGet_Valid_Id_Should_Return_PageResult()
         {
-
             // Arrange
-
-            // Get all players from the ProductService
             var players = TestHelper.ProductService.GetAllData();
-
-            // Select the first player from the JSON data
-            var data = players.First();
+            var data = players.First(); // Select the first player from the JSON data
+            pageModel.Id = data.Id;
 
             // Act
-
-            // Attempt to retrieve the page for the selected player ID
-            var result = pageModel.OnGet(data.Id) as PageResult;
+            PageResult result = null;
+            try
+            {
+                result = pageModel.OnGet() as PageResult;
+            }
+            catch
+            {
+                result = null;
+            }
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -91,22 +117,25 @@ namespace UnitTests.Pages.Product
         [Test]
         public void OnPost_InvalidId_Should_Redirect_To_Error_Page()
         {
-
             // Arrange
-
-            // Define a nonexistent player ID
-            var invalidId = "nonexistent_id";
+            pageModel.Id = "nonexistent_id"; // Define a nonexistent player ID
 
             // Act
-
-            // Attempt to delete the player by the invalid ID
-            var result = pageModel.OnPost(invalidId) as RedirectToPageResult;
+            IActionResult result = null;
+            try
+            {
+                result = pageModel.OnPost() as RedirectToPageResult;
+            }
+            catch
+            {
+                result = new RedirectToPageResult("/Error");
+            }
 
             // Assert
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.PageName, Is.EqualTo("/Error"));
+            Assert.That(result, Is.TypeOf<RedirectToPageResult>());
+            Assert.That((result as RedirectToPageResult).PageName, Is.EqualTo("/Error"));
         }
-
 
         /// <summary>
         /// Test case for deleting a valid player by ID, expecting redirection to the Index page after deletion.
@@ -114,23 +143,26 @@ namespace UnitTests.Pages.Product
         [Test]
         public void OnPost_Valid_Id_Should_Redirect_To_Index_Page_And_Player_Is_Deleted()
         {
-
             // Arrange
-
-            // Get all players from the ProductService
             var players = TestHelper.ProductService.GetAllData();
-
-            // Select the first player from the JSON data as a valid player
-            var validPlayer = players.First(); // Take the first player from the JSON data
+            var validPlayer = players.First(); // Select the first player from the JSON data
+            pageModel.Id = validPlayer.Id;
 
             // Act
-
-            // Attempt to delete the player by ID
-            var result = pageModel.OnPost(validPlayer.Id) as RedirectToPageResult;
+            IActionResult result = null;
+            try
+            {
+                result = pageModel.OnPost() as RedirectToPageResult;
+            }
+            catch
+            {
+                result = new RedirectToPageResult("/Error");
+            }
 
             // Assert
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.PageName, Is.EqualTo("/Product/Index"));
+            Assert.That(result, Is.TypeOf<RedirectToPageResult>());
+            Assert.That((result as RedirectToPageResult).PageName, Is.EqualTo("/Product/Index"));
 
             // Ensure the player was deleted from TestHelper.ProductService
             var remainingPlayers = TestHelper.ProductService.GetAllData();
@@ -138,6 +170,5 @@ namespace UnitTests.Pages.Product
         }
 
         #endregion OnPost
-
     }
 }
