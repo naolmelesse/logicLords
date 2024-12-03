@@ -220,12 +220,50 @@
             <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
                 @if (Model.SelectedPlayerLeft != null)
                 {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.CleanSheets</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">❌ Clean Sheets ❌</p>
+            </div>
+
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.CleanSheets</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Saves</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">🧤 Saves 🧤</p>
+            </div>
+
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Saves</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
                     <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Appearances</p>
                 }
             </div>
+
             <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
                 <p class="text-center m-0 p-0">👕 Appearances 👕</p>
             </div>
+
             <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
                 @if (Model.SelectedPlayerRight != null)
                 {
@@ -239,15 +277,20 @@
                     <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Minutesplayed</p>
                 }
             </div>
+
             <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
                 <p class="text-center m-0 p-0">⏱️ Minutes played ⏱️</p>
             </div>
+
             <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
                 @if (Model.SelectedPlayerRight != null)
                 {
                     <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Minutesplayed</p>
                 }
             </div>
+
+
+
         </div>
 </form>
 
