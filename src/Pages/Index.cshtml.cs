@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using System;
-
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-
 using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using ContosoCrafts.WebSite.Pages.Shared;
-using System.Reflection;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -74,15 +71,32 @@ namespace ContosoCrafts.WebSite.Pages
         public string HeightInCM { get; set; }
 
         /// <summary>
-        /// Handles GET requests to the error page.
+        /// Handles GET requests to the Index (Home) page.
         /// Loads all data for players from the Product Service and applies filtering if a search term is provided.
         /// </summary>
-        public void OnGet()
+        /// <returns> A page result or a redirection to the Error page in case of an exception.</returns>
+        public IActionResult OnGet()
         {
-            PlayerList = PlayerService.GetAllData();
-            SetPlayerLeaderboardSnippet();
-            // Filter based on search term if provided
-            OnGetSearch();
+            try
+            {
+                PlayerList = PlayerService.GetAllData();
+
+                if (PlayerList == null)
+                {
+                    throw new Exception("An error occurred while loading players on the Home Page");
+                }
+
+                SetPlayerLeaderboardSnippet();
+                OnGetSearch();
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred during OnGet in IndexModel.");
+                TempData["ErrorMessage"] = ex.Message;
+
+                return RedirectToPage("/Error");
+            }
         }
 
         /// <summary>
@@ -109,9 +123,7 @@ namespace ContosoCrafts.WebSite.Pages
             OnGetSearchFilterSetPosition();
             OnGetSearchFilterSetHeight();
 
-
             SelectedPlayerList = SelectedPlayerList.ToList();
-
         }
 
         /// <summary>
