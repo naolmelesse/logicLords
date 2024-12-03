@@ -16,9 +16,6 @@ namespace ContosoCrafts.WebSite.Pages
         // Gets or sets the request ID associated with the current HTTP request.
         public string RequestId { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public string Code { get; set; }
-
         // Gets a value indicating whether the request ID should be shown.
         // Returns true if the RequestId is not null or empty.
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
