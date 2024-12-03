@@ -84,6 +84,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Player.CleanSheets">Clean Sheets:</label>
+                    <input asp-for="Player.CleanSheets" class="form-input" />
+                    <span asp-validation-for="Player.CleanSheets" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Player.Saves">Saves: </label>
+                    <input asp-for="Player.Saves" class="form-input" />
+                    <span asp-validation-for="Player.Saves" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
                     <label asp-for="Player.Image">Image Path:</label>
                     <input asp-for="Player.Image" class="form-input" />
                     <span asp-validation-for="Player.Image" class="text-danger"></span>
