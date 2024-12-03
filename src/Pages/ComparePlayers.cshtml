@@ -8,107 +8,246 @@
 
 
 
-    <form method="Get">
+<form method="Get">
     <div class="comparison-container">
         <!-- Left Player Card -->
-    <div class="player-card">
-            <label for="dropdown1">Choose a player to compare:</label>
-            <select asp-for="SelectedPlayerLeftId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
-                <option value="">-- Select Player --</option>
-            </select>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <label for="dropdown1">Choose a player to compare:</label>
+                <select asp-for="SelectedPlayerLeftId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
+                    <option value="">-- Select Player --</option>
+                </select>
 
-            <div class="player-image">
+                <div class="player-image w-100 d-flex justify-content-center">
+                    @if (Model.SelectedPlayerLeft != null)
+                    {
+                        <img id="playerImageLeft"
+                             src="@(Model.SelectedPlayerLeft.Image == null ? "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" : Model.SelectedPlayerLeft.Image)"
+                             onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
+                             alt="Player Image Left" />
+
+                    }
+                    @if (Model.SelectedPlayerLeft == null)
+                    {
+                        <img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Left" />
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-md-4  w-100">
+                <div class="d-flex justify-content-center align-items-center">
+                    @if (Model.SelectedPlayerLeft != null && Model.SelectedPlayerRight != null)
+                    {
+                        <div>
+                            <div class="crop">
+                                <img src="/data/temp/polarChartComparison.png" />
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-8 offset-md-2">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="legend-item d-flex align-items-center mr-4">
+                                            <div class="legend-color" style="background-color: rgba(0, 0, 255, 0.35); width: 20px; height: 20px; border-radius: 50%;"></div>
+                                            <span class="ml-2">@Model.SelectedPlayerLeft.Title</span>
+                                        </div>
+                                        <div class="legend-item d-flex align-items-center">
+                                            <div class="legend-color" style="background-color: rgba(255, 0, 0, 0.4); width: 20px; height: 20px; border-radius: 50%;"></div>
+                                            <span class="ml-2">@Model.SelectedPlayerRight.Title</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <label for="dropdown2">Choose a player to compare:</label>
+                <select asp-for="SelectedPlayerRightId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
+                    <option value="">-- Select Player --</option>
+                </select>
+
+                <div class="player-image  w-100 d-flex justify-content-center">
+                    @if (Model.SelectedPlayerRight != null)
+                    {
+                        <img id="playerImageRight"
+                             src="@(Model.SelectedPlayerRight.Image == null ? "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" : Model.SelectedPlayerRight.Image)"
+                             onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
+                             alt="Player Image Right" />
+                    }
+                    @if (Model.SelectedPlayerRight == null)
+                    {
+                        <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Right" />
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="row w-100">
+            <div class="col-12 col-md-4 py-2   mt-4 mt-md-0 d-flex justify-content-center ">
                 @if (Model.SelectedPlayerLeft != null)
                 {
-                    <img id="playerImageLeft"
-                         src="@(Model.SelectedPlayerLeft.Image == null ? "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" : Model.SelectedPlayerLeft.Image)"
-                         onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
-                         alt="Player Image Left" />
-
+                    <p class="text-center m-0 p-0">⚔️</p>
                 }
                 @if (Model.SelectedPlayerLeft == null)
                 {
-                    <img id="playerImageLeft" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Left" />
+                    <p class="text-center m-0 p-0">No Player Selected</p>
                 }
             </div>
-
-            <div class="player-details">
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0 font-weight-bold"><strong>Comparison</strong></p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">⚔️</p>
+                }
+                @if (Model.SelectedPlayerRight == null)
+                {
+                    <p class="text-center m-0 p-0">No Player Selected</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
                 @if (Model.SelectedPlayerLeft != null)
                 {
-                    <p>@Model.SelectedPlayerLeft.Placeofbirth</p>
-                    <p>@Model.SelectedPlayerLeft.Dateofbirth</p>
-                    <p>@Model.SelectedPlayerLeft.Club</p>
-                    <p>@Model.SelectedPlayerLeft.Height</p>
-                    <p>@Model.SelectedPlayerLeft.Position</p>
-                    <p>@Model.SelectedPlayerLeft.Goals</p>
-                    <p>@Model.SelectedPlayerLeft.Assists</p>
-                    <p>@Model.SelectedPlayerLeft.Appearances</p>
-                    <p>@Model.SelectedPlayerLeft.Minutesplayed</p>
-                }
-                @if (Model.SelectedPlayerLeft == null)
-                {
-                    <p>No player selected</p>
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Placeofbirth</p>
                 }
             </div>
-        
-    </div>
-
-    <!-- Comparison Stats Column -->
-        <div class="comparison-stats">
-            <p><strong>⚔️ Comparison ⚔️</strong></p>
-            <p>🌍 Place of birth 🌍</p>
-            <p>📅 Date of birth 📅</p>
-            <p>🏟️ Club 🏟️</p>
-            <p>📏 Height 📏</p>
-            <p>⚽ Position ⚽</p>
-            <p>🥅 Goals 🥅</p>
-            <p>🎯 Assists 🎯</p>
-            <p>👕 Appearances 👕</p>
-            <p>⏱️ Minutes played ⏱️</p>
-        </div>
-
-
-    <!-- Right Player Card -->
-    <div class="player-card">
-        <label for="dropdown2">Choose a player to compare:</label>
-        <select asp-for="SelectedPlayerRightId" class="form-control" asp-items="Model.PlayerDropDownItems" onchange="this.form.submit()">
-            <option value="">-- Select Player --</option>
-        </select>
-
-        <div class="player-image">
-            @if (Model.SelectedPlayerRight != null)
-            {
-                    <img id="playerImageRight"
-                         src="@(Model.SelectedPlayerRight.Image == null ? "https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" : Model.SelectedPlayerRight.Image)"
-                         onerror="this.src='https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png'; this.onerror=null;"
-                         alt="Player Image Right" />
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">🌍 Place of birth 🌍</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Placeofbirth</p>
                 }
-            @if (Model.SelectedPlayerRight == null)
-            {
-                <img id="playerImageRight" src="https://static.sky.it/images/skysport/configurations/placeholders/football/SkySpport-player_placeholder.png" alt="player Image Right" />
-            }
-        </div>
+            </div>
 
-        <div class="player-details">
-            @if (Model.SelectedPlayerRight != null)
-            {
-                <p>@Model.SelectedPlayerRight.Placeofbirth</p>
-                <p>@Model.SelectedPlayerRight.Dateofbirth</p>
-                <p>@Model.SelectedPlayerRight.Club</p>
-                <p>@Model.SelectedPlayerRight.Height</p>
-                <p>@Model.SelectedPlayerRight.Position</p>
-                <p>@Model.SelectedPlayerRight.Goals</p>
-                <p>@Model.SelectedPlayerRight.Assists</p>
-                <p>@Model.SelectedPlayerRight.Appearances</p>
-                <p>@Model.SelectedPlayerRight.Minutesplayed</p>
-            }
-            @if (Model.SelectedPlayerRight == null)
-            {
-                <p>No player selected</p>
-            }
-        </div>
-    </div>
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Dateofbirth</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">📅 Date of birth 📅</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Dateofbirth</p>
+                }
+            </div>
 
-    </div>
-    </form>
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Club</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">🏟️ Club 🏟️</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Club</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Height</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">📏 Height 📏</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Height</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Position</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">⚽ Position ⚽</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Position</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Goals</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">🥅 Goals 🥅</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Goals</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Assists</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">🎯 Assists 🎯</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Assists</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Appearances</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">👕 Appearances 👕</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Appearances</p>
+                }
+            </div>
+
+            <div class="col-12 col-md-4 py-2 mt-4 mt-md-0 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerLeft != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerLeft.Minutesplayed</p>
+                }
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                <p class="text-center m-0 p-0">⏱️ Minutes played ⏱️</p>
+            </div>
+            <div class="col-12 col-md-4 py-2 d-flex justify-content-center ">
+                @if (Model.SelectedPlayerRight != null)
+                {
+                    <p class="text-center m-0 p-0">@Model.SelectedPlayerRight.Minutesplayed</p>
+                }
+            </div>
+        </div>
+</form>
 
