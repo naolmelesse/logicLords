@@ -2,6 +2,7 @@ using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Linq;
 
 namespace ContosoCrafts.WebSite.Pages.Product
@@ -25,6 +26,12 @@ namespace ContosoCrafts.WebSite.Pages.Product
             _playerService = playerService;
         }
 
+        /// <summary>
+        /// The Id of the player to be deleted. 
+        /// This property supports GET requests.
+        /// </summary>
+        [BindProperty(SupportsGet = true)]
+        public string Id { get; set; }
 
         // Gets or sets the Player to be deleted.
         [BindProperty]
@@ -36,16 +43,32 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// <param name="id">The unique identifier of the player to delete.</param>
         /// <returns>The page displaying the player if found; redirects to an error page if not found.</returns>
 
-        public IActionResult OnGet(string id)
+        public IActionResult OnGet()
         {
-            // Load the product to confirm deletion
-            Player = _playerService.GetAllData().FirstOrDefault(p => p.Id == id);
-            if (Player == null)
+            try
             {
+                if (string.IsNullOrEmpty(Id))
+                {
+                    throw new Exception("Player ID is missing.");
+                }
+
+                // Load the product to confirm deletion
+                Player = _playerService.GetAllData().FirstOrDefault(p => p.Id == Id);
+
+                // Check if the player with the given ID was not found
+                if (Player == null)
+                {
+                    throw new Exception($"Player with ID: '{Id}' not found.");
+                    //return RedirectToPage("/Error");
+                }
+
+                return Page();
+            }
+            catch
+            {
+                // Redirect to error page in case of any exceptions
                 return RedirectToPage("/Error");
             }
-
-            return Page();
         }
 
         /// <summary>
@@ -53,18 +76,27 @@ namespace ContosoCrafts.WebSite.Pages.Product
         /// </summary>
         /// <param name="id">The unique identifier of the player to delete.</param>
         /// <returns>Redirects to the index page if deletion is successful; redirects to an error page if deletion fails.</returns>
-        public IActionResult OnPost(string id)
+        public IActionResult OnPost()
         {
-            // Call DeleteData to delete the player
-            var deletedPlayer = _playerService.DeleteData(id);
-
-            // Check if the player to be deleted doesn't exist
-            if (deletedPlayer == null)
+            try
             {
-                return RedirectToPage("/Error"); 
-            }
+                // Call DeleteData to delete the player
+                var deletedPlayer = _playerService.DeleteData(Id);
 
-            return RedirectToPage("/Product/Index"); 
+                // Check if the player to be deleted doesn't exist
+                if (deletedPlayer == null)
+                {
+                    throw new Exception("Player data is missing.");
+                    //return RedirectToPage("/Error");
+                }
+
+                return RedirectToPage("/Product/Index");
+            }
+            catch
+            {
+                // Redirect to error page in case of any exceptions
+                return RedirectToPage("/Error");
+            }
         }
     }
 }
