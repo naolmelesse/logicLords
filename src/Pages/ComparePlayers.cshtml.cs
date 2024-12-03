@@ -12,7 +12,7 @@ using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
 using LiveChartsCore.Drawing;
-using LiveChartsCore.Measure;
+using System;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -60,6 +60,8 @@ namespace ContosoCrafts.WebSite.Pages
         // ID of the selected player on the right side
         public string SelectedPlayerRightId { get; set; }
 
+        public string comparisonChartBase64 { get; set; }
+
         /// <summary>
         /// Handles GET requests to populate the player list, selected players, and dropdown items for player selection.
         /// </summary>
@@ -88,6 +90,10 @@ namespace ContosoCrafts.WebSite.Pages
             }).ToList();
         }
 
+        /// <summary>
+        /// Generates a polar chart comparing the selected players' statistics 
+        /// and saves the chart as an image.
+        /// </summary>
         public void GenerateChart()
         {
             if (SelectedPlayerLeft == null)
@@ -99,11 +105,16 @@ namespace ContosoCrafts.WebSite.Pages
                 return;
             }
 
-            // List of player stats to be compared
-            var players = new List<ProductModel> { SelectedPlayerLeft, SelectedPlayerRight };
-
             // Calculate the maximum appearance and add 500 to it
-            int maxMinutesplayed = (SelectedPlayerLeft.Minutesplayed > SelectedPlayerRight.Minutesplayed ? SelectedPlayerLeft.Minutesplayed : SelectedPlayerRight.Minutesplayed) + 500;
+            int maxMinutesplayed = 0;
+            if (SelectedPlayerLeft.Minutesplayed > SelectedPlayerRight.Minutesplayed)
+            {
+                maxMinutesplayed = SelectedPlayerLeft.Minutesplayed;
+            }
+            if (SelectedPlayerLeft.Minutesplayed <= SelectedPlayerRight.Minutesplayed)
+            {
+                maxMinutesplayed = SelectedPlayerRight.Minutesplayed;
+            }
 
             // Scale player 1's Minutes played to the new scale
             int scaledPlayer1Minutesplayed = (int)((SelectedPlayerLeft.Minutesplayed / (float)maxMinutesplayed) * 40);
@@ -136,7 +147,7 @@ namespace ContosoCrafts.WebSite.Pages
                 }
             };
 
-
+            // Configure the angle axes with labels and styling
             List<PolarAxis> AngleAxes = new List<PolarAxis>()
            {
                new PolarAxis
@@ -161,7 +172,7 @@ namespace ContosoCrafts.WebSite.Pages
                }
            };
 
-            // Create the Polar Chart
+            // Configure the polar chart with series and axes
             var polarChart = new SKPolarChart
             {
                 Width = 1500,
@@ -171,13 +182,14 @@ namespace ContosoCrafts.WebSite.Pages
                 Background = SKColors.Transparent,
                 InitialRotation = -45.0,
                 LegendTextSize = 50,
-                DrawMargin = new Margin(1000,1000,0,0),
                 FitToBounds = false
             };
 
 
-            // Save the chart as an image (or render to the screen if desired)
-            polarChart.SaveImage("wwwroot\\data\\temp\\polarChartComparison.png");
+            // Save the polar chart as an image
+            using var image = polarChart.GetImage();
+            using var data = image.Encode();
+            comparisonChartBase64 = Convert.ToBase64String(data.AsSpan());
         }
     }
 }
