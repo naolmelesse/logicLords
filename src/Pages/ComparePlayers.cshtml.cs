@@ -106,15 +106,7 @@ namespace ContosoCrafts.WebSite.Pages
             }
 
             // Calculate the maximum appearance and add 500 to it
-            int maxMinutesplayed = 0;
-            if (SelectedPlayerLeft.Minutesplayed > SelectedPlayerRight.Minutesplayed)
-            {
-                maxMinutesplayed = SelectedPlayerLeft.Minutesplayed;
-            }
-            if (SelectedPlayerLeft.Minutesplayed <= SelectedPlayerRight.Minutesplayed)
-            {
-                maxMinutesplayed = SelectedPlayerRight.Minutesplayed;
-            }
+            int maxMinutesplayed = Math.Max(SelectedPlayerLeft.Minutesplayed, SelectedPlayerRight.Minutesplayed);
 
             // Scale player 1's Minutes played to the new scale
             int scaledPlayer1Minutesplayed = (int)((SelectedPlayerLeft.Minutesplayed / (float)maxMinutesplayed) * 40);
