@@ -1,11 +1,18 @@
 using ContosoCrafts.WebSite.Models;
 using ContosoCrafts.WebSite.Services;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.SKCharts;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
+using LiveChartsCore.Drawing;
+using LiveChartsCore.Measure;
 
 namespace ContosoCrafts.WebSite.Pages
 {
@@ -22,7 +29,7 @@ namespace ContosoCrafts.WebSite.Pages
         /// </summary>
         /// <param name="logger">The logger instance.</param>
         /// <param name="playerService">Service for handling player data retrieval.</param>
-        
+
         public ComparePlayersModel(ILogger<ComparePlayersModel> logger,
            JsonFileProductService playerService)
         {
@@ -72,13 +79,105 @@ namespace ContosoCrafts.WebSite.Pages
             {
                 SelectedPlayerRight = PlayerList.FirstOrDefault(p => p.Id.ToString() == SelectedPlayerRightId);
             }
-
+            GenerateChart();
             // Populate dropdown items with player names for selection
             PlayerDropDownItems = PlayerList.Select(p => new SelectListItem
             {
                 Value = p.Id,
                 Text = p.Title
             }).ToList();
+        }
+
+        public void GenerateChart()
+        {
+            if (SelectedPlayerLeft == null)
+            {
+                return;
+            }
+            if (SelectedPlayerRight == null)
+            {
+                return;
+            }
+
+            // List of player stats to be compared
+            var players = new List<ProductModel> { SelectedPlayerLeft, SelectedPlayerRight };
+
+            // Calculate the maximum appearance and add 500 to it
+            int maxMinutesplayed = (SelectedPlayerLeft.Minutesplayed > SelectedPlayerRight.Minutesplayed ? SelectedPlayerLeft.Minutesplayed : SelectedPlayerRight.Minutesplayed) + 500;
+
+            // Scale player 1's Minutes played to the new scale
+            int scaledPlayer1Minutesplayed = (int)((SelectedPlayerLeft.Minutesplayed / (float)maxMinutesplayed) * 40);
+
+            // Scale player 2's Minutes played to the new scale
+            int scaledPlayer2Minutesplayed = (int)((SelectedPlayerRight.Minutesplayed / (float)maxMinutesplayed) * 40);
+
+            // Series for the chart's data
+            var series = new List<PolarLineSeries<int>>
+            {
+                new PolarLineSeries<int>
+                {
+                    Values = new List<int> { SelectedPlayerLeft.Goals, SelectedPlayerLeft.Assists, SelectedPlayerLeft.Appearances, SelectedPlayerLeft.CleanSheets, SelectedPlayerLeft.Age,  SelectedPlayerLeft.HeightInCMs/10, scaledPlayer1Minutesplayed },
+                    LineSmoothness = 0,
+                    GeometrySize = 0,
+                    Fill = new SolidColorPaint(SKColors.Blue.WithAlpha(90)),
+                    Name = SelectedPlayerLeft.Title,
+                    DataLabelsPaint = new SolidColorPaint(SKColors.Blue.WithAlpha(90)),
+                    DataLabelsSize = 40
+                },
+                new PolarLineSeries<int>
+                {
+                    Values = new List<int> { SelectedPlayerRight.Goals, SelectedPlayerRight.Assists, SelectedPlayerRight.Appearances, SelectedPlayerRight.CleanSheets, SelectedPlayerRight.Age,  SelectedPlayerRight.HeightInCMs/10, scaledPlayer2Minutesplayed },
+                    LineSmoothness = 0,
+                    GeometrySize = 0,
+                    Fill = new SolidColorPaint(SKColors.Red.WithAlpha(90)),
+                    Name = SelectedPlayerRight.Title,
+                    DataLabelsPaint = new SolidColorPaint(SKColors.Red.WithAlpha(90)),
+                    DataLabelsSize = 40
+                }
+            };
+
+
+            List<PolarAxis> AngleAxes = new List<PolarAxis>()
+           {
+               new PolarAxis
+               {
+                   LabelsRotation = LiveCharts.TangentAngle,
+                   Labels = new[] { "Goals", "Assists", "Appearances", "CleanSheets", "Age", "Height", "Minutes Played" },
+                   LabelsBackground = LvcColor.FromArgb(0, 0, 0, 0),
+                   LabelsPaint = new SolidColorPaint
+                        {
+                           Color = SKColors.White,
+                            SKTypeface = SKTypeface.FromFamilyName("Arial"),
+                            SKFontStyle = new SKFontStyle(SKFontStyleWeight.Black, SKFontStyleWidth.SemiExpanded, SKFontStyleSlant.Upright),
+                        },
+                   TextSize = 40,
+                   NamePaint = new SolidColorPaint
+                        {
+                           Color = SKColors.White,
+                            SKTypeface = SKTypeface.FromFamilyName("Arial"),
+                            SKFontStyle = new SKFontStyle(SKFontStyleWeight.Black, SKFontStyleWidth.SemiExpanded, SKFontStyleSlant.Upright),
+                        },
+                   NameTextSize = 40
+               }
+           };
+
+            // Create the Polar Chart
+            var polarChart = new SKPolarChart
+            {
+                Width = 1500,
+                Height = 1500,
+                Series = series,
+                AngleAxes = AngleAxes,
+                Background = SKColors.Transparent,
+                InitialRotation = -45.0,
+                LegendTextSize = 50,
+                DrawMargin = new Margin(1000,1000,0,0),
+                FitToBounds = false
+            };
+
+
+            // Save the chart as an image (or render to the screen if desired)
+            polarChart.SaveImage("wwwroot\\data\\temp\\polarChartComparison.png");
         }
     }
 }
