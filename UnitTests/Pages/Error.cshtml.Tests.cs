@@ -91,7 +91,9 @@ namespace UnitTests.Pages.Error
         {
             // Arrange
             var mockLogger = Mock.Of<ILogger<ErrorModel>>();
-            var pageModel = new ErrorModel(mockLogger)
+
+            // page model to be testedvar
+            pageModel = new ErrorModel(mockLogger)
             {
                 PageContext = TestHelper.PageContext,
                 TempData = TestHelper.TempData
@@ -116,6 +118,8 @@ namespace UnitTests.Pages.Error
         {
             // Arrange
             var mockLogger = Mock.Of<ILogger<ErrorModel>>();
+
+            // page model to be tested
             var pageModel = new ErrorModel(mockLogger)
             {
                 PageContext = TestHelper.PageContext,
@@ -141,6 +145,8 @@ namespace UnitTests.Pages.Error
         {
             // Arrange
             var mockLogger = Mock.Of<ILogger<ErrorModel>>();
+
+            // page model
             var pageModel = new ErrorModel(mockLogger)
             {
                 PageContext = TestHelper.PageContext,
