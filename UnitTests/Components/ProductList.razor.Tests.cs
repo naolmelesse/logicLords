@@ -244,7 +244,6 @@ namespace UnitTests.Components
             var modal = page.Find("#productModal");
 
             // Click the third star to simulate giving a rating of 3.
-            
             var stars = modal.QuerySelectorAll("span.fa");
             if (stars.Count() >= 4)
             {
