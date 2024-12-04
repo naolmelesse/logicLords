@@ -6,12 +6,25 @@
     /// </summary>
     public enum PositionEnum
     {
+        // Represents an undefined position.
         Undefined = 0,
+
+        // Represents a Striker position.
         Striker = 1,
+
+        // Represents a Forward position.
         Forward = 5,
+
+        // Represents a Winger position.
         Winger = 25,
+
+        // Represents a Midfielder position.
         Midfielder = 130,
+
+        // Represents a Defender position.
         Defender = 55,
+
+        // Represents a Goalkeeper position.
         Goalkeeper = 60,
     }
 
