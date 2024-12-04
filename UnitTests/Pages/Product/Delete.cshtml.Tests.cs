@@ -36,15 +36,8 @@ namespace UnitTests.Pages.Product
             pageModel.Id = null; // Set the ID to null
 
             // Act
-            IActionResult result = null;
-            try
-            {
-                result = pageModel.OnGet();
-            }
-            catch
-            {
-                result = new RedirectToPageResult("/Error");
-            }
+            var result = pageModel.OnGet();
+
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -62,15 +55,7 @@ namespace UnitTests.Pages.Product
             pageModel.Id = "invalid_id"; // Define an invalid player ID
 
             // Act
-            IActionResult result = null;
-            try
-            {
-                result = pageModel.OnGet();
-            }
-            catch
-            {
-                result = new RedirectToPageResult("/Error");
-            }
+            var result = pageModel.OnGet();
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -90,15 +75,7 @@ namespace UnitTests.Pages.Product
             pageModel.Id = data.Id;
 
             // Act
-            PageResult result = null;
-            try
-            {
-                result = pageModel.OnGet() as PageResult;
-            }
-            catch
-            {
-                result = null;
-            }
+            PageResult result = pageModel.OnGet() as PageResult;
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -121,15 +98,7 @@ namespace UnitTests.Pages.Product
             pageModel.Id = "nonexistent_id"; // Define a nonexistent player ID
 
             // Act
-            IActionResult result = null;
-            try
-            {
-                result = pageModel.OnPost() as RedirectToPageResult;
-            }
-            catch
-            {
-                result = new RedirectToPageResult("/Error");
-            }
+            var result = pageModel.OnPost() as RedirectToPageResult;
 
             // Assert
             Assert.That(result, Is.Not.Null);
@@ -149,15 +118,7 @@ namespace UnitTests.Pages.Product
             pageModel.Id = validPlayer.Id;
 
             // Act
-            IActionResult result = null;
-            try
-            {
-                result = pageModel.OnPost() as RedirectToPageResult;
-            }
-            catch
-            {
-                result = new RedirectToPageResult("/Error");
-            }
+            var result = pageModel.OnPost() as RedirectToPageResult;
 
             // Assert
             Assert.That(result, Is.Not.Null);
