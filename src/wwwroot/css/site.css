@@ -568,6 +568,60 @@ button.accept-policy {
         margin: 0;
     }
 
+
+/* Responsive Leaderboard Styling */
+@media screen and (max-width: 768px) {
+    .table-responsive {
+        border: none;
+    }
+
+    .leaderboard{
+        display: none;
+    }
+
+    .table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+        .table td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            color: #6c757d;
+        }
+
+        .table td:last-child {
+            border-bottom: none;
+        }
+
+    .player-name {
+        font-weight: bold;
+        color: #007bff;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .display-6 {
+        font-size: 1.5rem;
+    }
+
+    .table td {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 /*Styling for the index page*/
 /* Center align table headers */
 .table thead th {
