@@ -38,7 +38,7 @@
             </div>
         }
     }
-   
+
 </div>
 
 
@@ -54,38 +54,38 @@
                     </button>
                 </div>
                 <div class="modal-body">
-               
-                        <div class="card">
-                            <div class="card-img" style="background-image: url('@selectedProduct.Image');">
-                            </div>
-                            <div class="card-body">
 
-                                <p class="card-text">Date of Birth:  @selectedProduct.Dateofbirth (@selectedProduct.Age y/o)</p>
-                                <p class="card-text">Place of Birth:  @selectedProduct.Placeofbirth</p>
-                                <p class="card-text">Height:  @selectedProduct.Height</p>
-                                <p class="card-text">Position(s):  @selectedProduct.Position</p>
-                                <p class="card-text">Current team:  @selectedProduct.Club</p>
-                                <p class="card-text">Games Played:  @selectedProduct.Appearances</p>
-                                <p class="card-text">Minutes Played:  @selectedProduct.Minutesplayed</p>
-                                <p class="card-text">Goals:  @selectedProduct.Goals</p>
-                                <p class="card-text">Assists:  @selectedProduct.Assists</p>
-                                <p class="card-text">Clean Sheets:  @selectedProduct.CleanSheets</p>
-                                <p class="card-text">Saves:  @selectedProduct.Saves</p>
-
-
-                            </div>
+                    <div class="card">
+                        <div class="card-img" style="background-image: url('@selectedProduct.Image');">
                         </div>
+                        <div class="card-body">
 
-               
+                            <p class="card-text">Date of Birth:  @selectedProduct.Dateofbirth (@selectedProduct.Age y/o)</p>
+                            <p class="card-text">Place of Birth:  @selectedProduct.Placeofbirth</p>
+                            <p class="card-text">Height:  @selectedProduct.Height</p>
+                            <p class="card-text">Position(s):  @selectedProduct.Position</p>
+                            <p class="card-text">Current team:  @selectedProduct.Club</p>
+                            <p class="card-text">Games Played:  @selectedProduct.Appearances</p>
+                            <p class="card-text">Minutes Played:  @selectedProduct.Minutesplayed</p>
+                            <p class="card-text">Goals:  @selectedProduct.Goals</p>
+                            <p class="card-text">Assists:  @selectedProduct.Assists</p>
+                            <p class="card-text">Clean Sheets:  @selectedProduct.CleanSheets</p>
+                            <p class="card-text">Saves:  @selectedProduct.Saves</p>
+
+
+                        </div>
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
                     @if (voteCount == 0)
                     {
                         <span>Be the first to vote!</span>
                     }
-                    else
+                    @if (voteCount != 0)
                     {
-                        <span>@voteCount @voteLabel</span>
+                    <span>@voteCount @voteLabel</span>
                     }
                     @for (int i = 1; i < 6; i++)
                     {
@@ -94,7 +94,7 @@
                         {
                             <span class="fa fa-star checked" @onclick="(e => SubmitRating(currentStar))"></span>
                         }
-                        else
+                        if (i > currentRating)
                         {
                             <span class="fa fa-star" @onclick="(e => SubmitRating(currentStar))"></span>
                         }
@@ -110,20 +110,34 @@
 
 @code
 {
+    // Parameter to bind a collection of players to the component
     [Parameter]
     public IEnumerable<ProductModel> Players { get; set; }
+
+    // Holds the currently selected product
     ProductModel selectedProduct;
+
+    // Holds the ID of the currently selected product
     string selectedProductId;
 
+    /// <summary>
+    /// Method to select a product and update the current rating
+    /// </summary>
+    /// <param name="product">Selected Product</param>
     public void SelectProduct(ProductModel product)
     {
         selectedProduct = Players.FirstOrDefault(x => x.Id == product.Id);
         GetCurrentRating();
-                
+
     }
 
+    // Holds the current average rating of the selected product
     int currentRating = 0;
+
+    // Holds the total number of votes for the selected product
     int voteCount = 0;
+
+    // Displays whether there are "Vote" or "Votes" based on vote count
     string voteLabel;
 
     void GetCurrentRating()
@@ -132,13 +146,11 @@
         {
             currentRating = 0;
             voteCount = 0;
+            return;
         }
-        else
-        {
-            voteCount = selectedProduct.Ratings.Count();
-            voteLabel = voteCount > 1 ? "Votes" : "Vote";
-            currentRating = selectedProduct.Ratings.Sum() / voteCount;
-        }
+        voteCount = selectedProduct.Ratings.Count();
+        voteLabel = voteCount > 1 ? "Votes" : "Vote";
+        currentRating = selectedProduct.Ratings.Sum() / voteCount;
 
         System.Console.WriteLine($"Current rating for {selectedProduct.Id}: {currentRating}");
     }
