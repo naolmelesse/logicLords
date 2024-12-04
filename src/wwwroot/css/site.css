@@ -144,7 +144,8 @@ body {
 
 .home-player-list-container {
     background-size: contain;
-    background-image: url('../data/background.jpg');
+    background-color: rgba(200,200,200, 0.1);
+    box-shadow: 0 5px 10px rgba(37,33,82,.12), 0 2px 4px rgba(37,33,82,.06);
 }
 
 .search-heading {
