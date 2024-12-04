@@ -100,7 +100,7 @@ namespace UnitTests.Controllers
         /// Test case for an invalid rating request with null ProductId. Expects a BadRequest result.
         /// </summary>
         [Test]
-        public void Patch_InvalidRequest_ReturnsBadRequest()
+        public void Patch_InvalidRequest_Returns_Bad_Request()
         {
             // Arrange:
             // Create an invalid rating request with null ProductId
