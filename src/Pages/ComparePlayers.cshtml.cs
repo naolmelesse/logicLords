@@ -180,7 +180,11 @@ namespace ContosoCrafts.WebSite.Pages
 
             // Save the polar chart as an image
             using var image = polarChart.GetImage();
+
+            // encode image
             using var data = image.Encode();
+
+            // convert to base64
             comparisonChartBase64 = Convert.ToBase64String(data.AsSpan());
         }
     }
