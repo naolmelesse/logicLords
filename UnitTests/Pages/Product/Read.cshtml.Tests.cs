@@ -154,8 +154,10 @@ namespace UnitTests.Pages.Product.Read
 
             mockProductService.Setup(service => service.GetAllData()).Returns(new List<ProductModel>());
 
+            // set up mock logger
             var mockLogger = Mock.Of<ILogger<ReadModel>>();
 
+            // setup test page model
             var testPageModel = new ReadModel(mockProductService.Object, mockLogger)
             {
                 PageContext = pageContext,
@@ -188,8 +190,10 @@ namespace UnitTests.Pages.Product.Read
                 new ProductModel { Id = "ValidId", Title = "Test Player" }
             });
 
+            // set up mock logger
             var mockLogger = Mock.Of<ILogger<ReadModel>>();
 
+            // setup test page model
             var testPageModel = new ReadModel(mockProductService.Object, mockLogger)
             {
                 PageContext = pageContext,
