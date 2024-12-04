@@ -204,18 +204,32 @@ namespace ContosoCrafts.WebSite.Services
             return data;
         }
 
+        /// <summary>
+        /// Creates a new player entry in the database with a unique ID.
+        /// </summary>
+        /// <param name="newPlayer">The product model representing the new player.</param>
+        /// <returns>The newly created player with a unique ID, or null if input is invalid.</returns>
         public ProductModel CreateData(ProductModel newPlayer)
         {
+            // Validate input: Ensure the new player is not null
             if (newPlayer == null)
             {
                 return null;
             }
 
+            // Retrieve all existing players and extract their IDs
             var playersInDB = GetAllData();
+
+            // Set of existing player IDs
             var existingIds = new HashSet<string>(playersInDB.Select(player => player.Id));
 
+            // Base ID derived from the player's title
             var baseId = newPlayer.Title.Replace(' ', '-');
+
+            // Variable to hold the new unique ID
             var newId = baseId;
+            
+            // Counter for generating unique IDs if there's a conflict
             var counter = 1;  // Start counter at 1 (not 0)
 
             while (existingIds.Contains(newId))
@@ -241,8 +255,11 @@ namespace ContosoCrafts.WebSite.Services
         {
             // Get the current set, and append the new record to it
             var dataSet = GetAllData();
+            
+            // Find the player matching the provided ID
             var data = dataSet.FirstOrDefault(m => m.Id.Equals(id));
 
+            // Filter out the player with the given ID to create a new dataset
             var newDataSet = GetAllData().Where(m => m.Id.Equals(id) == false);
             
             // Save update dataset
