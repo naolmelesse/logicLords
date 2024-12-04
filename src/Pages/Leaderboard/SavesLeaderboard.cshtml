@@ -9,25 +9,24 @@
     <div class="container mt-5">
         <h1 class="text-center">@ViewData["Title"]</h1>
         <table class="table table-striped">
-            <thead>
+            <thead class="leaderboard">
                 <tr>
                     <th scope="col">Player</th>
                     <th scope="col">Saves</th>                   
                     <th scope="col">Matches Played</th>
-                    <th scope="col">Clean Sheets</th>
-                    <th scope="col">Age</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Club</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var player in Model.PlayerList)
                 {
                     <tr>
-                        <td>@player.Title</td>
-                        <td>@player.Saves</td>
-                        <td>@player.Appearances</td>
-                        <td>@player.CleanSheets</td>
-                        <td>@player.Age</td>
-                        
+                        <td data-label="Player">@player.Title</td>
+                        <td data-label="Player">@player.Saves</td>
+                        <td data-label="Player">@player.Appearances</td>
+                        <td data-label="Player">@player.Position</td>
+                        <td data-label="Player">@player.Club</td>                        
                        
                     </tr>
                 }
