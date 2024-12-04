@@ -1,8 +1,6 @@
 using ContosoCrafts.WebSite.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
-using System.Numerics;
 
 namespace ContosoCrafts.WebSite.Pages.Shared
 {
