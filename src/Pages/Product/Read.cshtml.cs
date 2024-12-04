@@ -12,6 +12,7 @@ namespace ContosoCrafts.WebSite.Pages.Product
     /// </summary>
     public class ReadModel : PageModel
     {
+        // Logger instance for logging errors and information
         private readonly ILogger<ReadModel> _logger;
 
         // Data Service
