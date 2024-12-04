@@ -42,9 +42,17 @@ namespace UnitTests.Components
             var validPlayer = players.First();
 
             // Act
+
+            // Render the PlayerData component with the valid player ID as a parameter
             var cut = RenderComponent<PlayerData>(parameters => parameters.Add(p => p.Id, validPlayer.Id));
+
+            // Find the first <h1> element in the rendered component
             var heading = cut.Find("h1");
+
+            // Find the first <img> element in the rendered component
             var image = cut.Find("img");
+
+            // Find all <li> elements within an ordered list (<ol>) in the rendered component
             var listItems = cut.FindAll("ol li");
 
             // Assert
