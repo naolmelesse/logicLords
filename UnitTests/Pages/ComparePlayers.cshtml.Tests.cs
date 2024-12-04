@@ -146,7 +146,11 @@ namespace UnitTests.Pages
 
             // Act
             pageModel.OnGet();
+
+            // selected player left result
             var result1 = pageModel.SelectedPlayerLeft.Id;
+            
+            // selected player left result
             var result2 = pageModel.SelectedPlayerRight.Id;
 
             // Assert
