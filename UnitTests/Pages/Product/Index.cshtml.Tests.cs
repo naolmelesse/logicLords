@@ -116,6 +116,8 @@ namespace UnitTests.Pages.Product.Index
 
             // Act
             pageModel.OnGet();
+
+            // result of onget
             var result = pageModel.ModelState.IsValid;
 
             // Assert
@@ -135,11 +137,13 @@ namespace UnitTests.Pages.Product.Index
             var mockProductService = new Mock<JsonFileProductService>(Mock.Of<IWebHostEnvironment>());
             mockProductService.Setup(service => service.GetAllData()).Returns((IEnumerable<ProductModel>)null);
 
+            // mock logger
             var mockLogger = Mock.Of<ILogger<IndexModel>>();
 
             // Initialize TempData
             var tempData = new TempDataDictionary(httpContextDefault, Mock.Of<ITempDataProvider>());
 
+            // setup test page
             var testPageModel = new IndexModel(mockProductService.Object, mockLogger)
             {
                 PageContext = pageContext,
@@ -148,6 +152,8 @@ namespace UnitTests.Pages.Product.Index
 
             // Act
             var result = testPageModel.OnGet();
+
+            // Get redirect result
             var redirectResult = result as RedirectToPageResult;
 
             // Assert
