@@ -52,7 +52,7 @@ namespace UnitTests.Pages.Product
         public void OnGet_Invalid_Nonexistent_Id_Should_Redirect_To_Error_Page()
         {
             // Arrange
-            pageModel.Id = "invalid_id"; // Define an invalid player ID
+            pageModel.Id = "invalid_id";
 
             // Act
             var result = pageModel.OnGet();
@@ -71,7 +71,9 @@ namespace UnitTests.Pages.Product
         {
             // Arrange
             var players = TestHelper.ProductService.GetAllData();
-            var data = players.First(); // Select the first player from the JSON data
+
+            // Select the first player from the JSON data
+            var data = players.First();
             pageModel.Id = data.Id;
 
             // Act
@@ -114,7 +116,9 @@ namespace UnitTests.Pages.Product
         {
             // Arrange
             var players = TestHelper.ProductService.GetAllData();
-            var validPlayer = players.First(); // Select the first player from the JSON data
+
+            // Select the first player from the JSON data
+            var validPlayer = players.First();
             pageModel.Id = validPlayer.Id;
 
             // Act
