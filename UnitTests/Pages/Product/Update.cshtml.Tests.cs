@@ -172,8 +172,14 @@ namespace UnitTests.Pages.Product.Update
             // Act
             pageModel.Id = data;
             pageModel.OnGet();
+
+            // Convert PositionOptions to a list for easy manipulation
             var options = pageModel.PositionOptions.ToList();
+
+            // Extract position values from the dropdown options
             var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
+
+            // Fetch the player data from the PageModel
             var result = pageModel.Player;
 
             // Assert
@@ -214,6 +220,8 @@ namespace UnitTests.Pages.Product.Update
 
             // Act
             var page = pageModel.OnPost() as RedirectToPageResult;
+
+            // page result
             var result = page.PageName;
 
             // Assert
@@ -298,6 +306,8 @@ namespace UnitTests.Pages.Product.Update
 
             // Act
             var options = pageModel.PositionOptions.ToList();
+
+            // selected positon values
             var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
 
             // Assert
@@ -333,7 +343,11 @@ namespace UnitTests.Pages.Product.Update
 
             // Act
             var result = pageModel.OnPost();
+
+            // all positions
             var options = pageModel.PositionOptions.ToList();
+
+            // selected position values
             var positionValues = options.Select(option => int.Parse(option.Value)).ToList();
 
             // Assert
