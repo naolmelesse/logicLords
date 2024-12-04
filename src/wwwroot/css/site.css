@@ -942,38 +942,6 @@ ul {
         }
 }
 
-/* Trivia Challenge Page Styles*/
-.wheel {
-    width: 100%;
-    max-width: 300px;
-    transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.spinning {
-    animation: spin 3s linear;
-}
-
-.wheel-pointer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background-color: #007bff;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(540deg);
-    }
-}
-
 @media (max-width: 575.98px) {
 
     .crop {
@@ -981,7 +949,7 @@ ul {
         text-align: center; /* ensures the image is always in the h-middle */
         overflow: hidden; /* hide the cropped portion */
     }
-
+ 
         .crop img {
             max-width: 100%;
             position: relative; /* allows repositioning */
@@ -1054,8 +1022,4 @@ ul {
             left: 100%; /* move the whole width of the image to the right */
             margin-left: -200%; /* magic! */
         }
-}
-
-@media (max-width: 1399.98px) {
-    
 }
