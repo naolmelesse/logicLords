@@ -441,7 +441,7 @@ namespace UnitTests.Pages.Index
 
         #region SetPlayerLeaderboardSnippet
         [Test]
-        public void SetPlayerLeaderboardSnippet_ShouldSetTopGoalScorers()
+        public void SetPlayerLeaderboardSnippet_Should_Set_Top_Goal_Scorers()
         {
             // Arrange
             var data = productService.GetAllData();
