@@ -3,11 +3,16 @@
 @inject JsonFileProductService ProductService
 
 @code {
+    // Player Id
     [Parameter]
-
     public string Id { get; set; }
+
+    // Selected player
     private ProductModel selectedPlayer;
 
+    /// <summary>
+    /// Method invoked when the parameters are set or updated in the component.
+    /// </summary>
     protected override void OnParametersSet()
 
     {
@@ -40,7 +45,5 @@
             <li>Clean Sheets: @selectedPlayer.CleanSheets</li>
             <li>Saves: @selectedPlayer.Saves</li>
         </ol>
-
     </div>
-
 </div>
